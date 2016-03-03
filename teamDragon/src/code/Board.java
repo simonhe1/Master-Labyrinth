@@ -19,6 +19,7 @@ public class Board {
 	private int n3;
 	private int n4;
 	private int n5;
+	//work!
 	
 	private ArrayList<int[]> triangle = new ArrayList<int[]>();
 	

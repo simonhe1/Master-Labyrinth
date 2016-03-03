@@ -19,6 +19,7 @@ public class Board {
 	private int n3;
 	private int n4;
 	private int n5;
+	private int aaa;
 	//work!
 	//work!
 	//work!

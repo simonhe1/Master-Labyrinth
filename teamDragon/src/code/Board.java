@@ -15,7 +15,7 @@ public class Board {
 	private int[] pawn4 = {4,4};
 	
 	private int n1;
-	private int n25;
+	private int n2;
 	private int n3;
 	private int n4;
 	private int n5;

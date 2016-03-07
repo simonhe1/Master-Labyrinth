@@ -9,10 +9,7 @@ public class Board {
 	
 	private Tile extra = new Tile(1);
 	
-	private int[] pawn1 = {2,3};
-	private int[] pawn2 = {2,4};
-	private int[] pawn3 = {4,2};
-	private int[] pawn4 = {4,4};
+	private ArrayList<int[]> triangle = new ArrayList<int[]>();
 	
 	private int n1;
 	private int n2;
@@ -21,7 +18,44 @@ public class Board {
 	private int n5;
 
 	private ArrayList<int[]> triangle = new ArrayList<int[]>();
+
 	
+	private int[] pawn1 = {2,2};
+	private int[] pawn2 = {2,4};
+	private int[] pawn3 = {4,2};
+	private int[] pawn4 = {4,4};
+	
+	static int[][] tokenPosition = {
+							 {1,1},{1,2},{1,3},{1,4},{1,5},
+							 {2,1},	   	 {2,3}	    ,{2,5},	
+							 {3,1},{3,2},{3,3},{3,4},{3,5},
+							 {4,1},	     {4,3}	    ,{4,5},
+							 {5,1},{5,2},{5,3},{5,4},{5,5},
+	};
+	int[] token1;
+	int[] token2;
+	int[] token3;
+	int[] token4;
+	int[] token5;
+	int[] token6;
+	int[] token7;
+	int[] token8;
+	int[] token9;
+	int[] token10;
+	int[] token11;
+	int[] token12;
+	int[] token13;
+	int[] token14;
+	int[] token15;
+	int[] token16;
+	int[] token17;
+	int[] token18;
+	int[] token19;
+	int[] token20;
+	int[] token21;
+	
+
+
 	Board(int t1, int t2, int t3, int t4, int t5){
 		
 		if(t1+t2+t3+t4+t5 == 50){
@@ -67,25 +101,164 @@ public class Board {
 		triangle.add(tri12);
 		
 		
-
 	}
 	
 	
-	public int[] pawnPosition(int playerNO){
+	public int[] get_pawnPosition(int playerNO){
+		
+			switch(playerNO){
+			case 1:
+				return pawn1;
+			case 2:
+				return pawn2;
+			case 3:
+				return pawn3;
+			case 4:
+				return pawn4;
+			}
+		
+			int[] error = {-1,-1};
+			return error;
+	}
+	
+	public boolean set_pawnPosition(int playerNO, int[] pos){
 		switch(playerNO){
 		case 1:
-			return pawn1;
+			pawn1 = pos;
+			return true;
 		case 2:
-			return pawn2;
+			pawn2 = pos;
+			return true;
 		case 3:
-			return pawn3;
+			pawn3 = pos;
+			return true;
 		case 4:
-			return pawn4;
+			pawn4 = pos;
+			return true;
 		}
-		int[] output = {-1,-1};
-		return output;
+		return false;
+	}
+	
+	public int[] get_tokenPosition(int tokenNO){
+		switch(tokenNO){
+		case 1:
+			return token1;
+		case 2:
+			return token2;
+		case 3:
+			return token3;
+		case 4:
+			return token4;
+		case 5:
+			return token5;
+		case 6:
+			return token6;
+		case 7:
+			return token7;
+		case 8:
+			return token8;
+		case 9:
+			return token9;
+		case 10:
+			return token10;
+		case 11:
+			return token11;
+		case 12:
+			return token12;
+		case 13:
+			return token13;
+		case 14:
+			return token14;
+		case 15:
+			return token15;
+		case 16:
+			return token16;
+		case 17:
+			return token17;
+		case 18:
+			return token18;
+		case 19:
+			return token19;
+		case 20:
+			return token20;
+		case 21:
+			return token21;
+		}
+		int[] error = {-1,-1};
+		return error;
 		
 	}
+	
+	public boolean set_tokenPosition(int tokenNO,int[] pos){
+		switch(tokenNO){
+		case 1:
+			token1 = pos;
+			return true;
+		case 2:
+			token2 = pos;
+			return true;
+		case 3:
+			token3 = pos;
+			return true;
+		case 4:
+			token4 = pos;
+			return true;
+		case 5:
+			token5 = pos;
+			return true;
+		case 6:
+			token6 = pos;
+			return true;
+		case 7:
+			token7 = pos;
+			return true;
+		case 8:
+			token8 = pos;
+			return true;
+		case 9:
+			token9 = pos;
+			return true;
+		case 10:
+			token10 = pos;
+			return true;
+		case 11:
+			token11 = pos;
+			return true;
+		case 12:
+			token12 = pos;
+			return true;
+		case 13:
+			token13 = pos;
+			return true;
+		case 14:
+			token14 = pos;
+			return true;
+		case 15:
+			token15 = pos;
+			return true;
+		case 16:
+			token16 = pos;
+			return true;
+		case 17:
+			token17 = pos;
+			return true;
+		case 18:
+			token18 = pos;
+			return true;
+		case 19:
+			token19 = pos;
+			return true;
+		case 20:
+			token20 = pos;
+			return true;
+		case 21:
+			token21 = pos;
+			return true;
+		}
+		return false;
+		
+	}
+		
 	
 	public Tile placeOneTile(){
 		
@@ -174,7 +347,38 @@ public class Board {
 		else if(count5 < n5){
 			extra = new Tile(5);
 		}
-				
+	
+		
+		ArrayList<Integer> shown = new ArrayList<Integer>();
+		while(shown.size()<21){
+			int index = (int)Math.round(Math.random()*21-1); //0 ~ 20
+			if(shown.contains(index) == false){
+				shown.add(index);
+			}
+		}
+		token1 = tokenPosition[shown.get(0)];
+		token2 = tokenPosition[shown.get(1)];
+		token3 = tokenPosition[shown.get(2)];
+		token4 = tokenPosition[shown.get(3)];
+		token5 = tokenPosition[shown.get(4)];
+		token6 = tokenPosition[shown.get(5)];
+		token7 = tokenPosition[shown.get(6)];
+		token8 = tokenPosition[shown.get(7)];
+		token9 = tokenPosition[shown.get(8)];
+		token10 = tokenPosition[shown.get(9)];
+		token11 = tokenPosition[shown.get(10)];
+		token12 = tokenPosition[shown.get(11)];
+		token13 = tokenPosition[shown.get(12)];
+		token14 = tokenPosition[shown.get(13)];
+		token15 = tokenPosition[shown.get(14)];
+		token16 = tokenPosition[shown.get(15)];
+		token17 = tokenPosition[shown.get(16)];
+		token18 = tokenPosition[shown.get(17)];
+		token19 = tokenPosition[shown.get(18)];
+		token20 = tokenPosition[shown.get(19)];
+		token21 = tokenPosition[shown.get(20)];
+		
+		
 	}
 	
 	public boolean insert(int[] tri, int rotTime){
@@ -184,9 +388,6 @@ public class Board {
 		Tile out;
 		int triRow = tri[0];
 		int triCol = tri[1];
-		
-		
-		
 		
 		if(triangle.contains(tri)){
 			if(triRow == 0){
@@ -242,6 +443,34 @@ public class Board {
 				state[triRow][triCol] = extra;
 				extra = out;
 			}
+			
+			pushPlayer(tri,1);
+			pushPlayer(tri,2);
+			pushPlayer(tri,3);
+			pushPlayer(tri,4);
+			
+			pushToken(tri,1);
+			pushToken(tri,2);
+			pushToken(tri,3);
+			pushToken(tri,4);
+			pushToken(tri,5);
+			pushToken(tri,6);
+			pushToken(tri,7);
+			pushToken(tri,8);
+			pushToken(tri,9);
+			pushToken(tri,10);
+			pushToken(tri,11);
+			pushToken(tri,12);
+			pushToken(tri,13);
+			pushToken(tri,14);
+			pushToken(tri,15);
+			pushToken(tri,16);
+			pushToken(tri,17);
+			pushToken(tri,18);
+			pushToken(tri,19);
+			pushToken(tri,20);
+			pushToken(tri,21);
+			
 			return true;
 		}
 		else{
@@ -249,6 +478,122 @@ public class Board {
 		}
 
 	}
+	
+	public boolean pushPlayer(int[] tri, int playerNO){
+		int[] pos = get_pawnPosition(playerNO);
+		
+		if(triangle.contains(tri)){
+			if(tri[0] == 0){
+				if(pos[1] == tri[1]){
+					if(pos[0] != 6){
+						pos[0]++;
+					}
+					else if(pos[0] == 6){
+						pos[0] = 0;
+					}
+				}
+			}
+			if(tri[0] == 6){
+				if(pos[1] == tri[1]){
+					if(pos[0] != 0){
+						pos[0]--;
+					}
+					else if(pos[0] == 0){
+						pos[0] = 6;
+					}
+				}
+			}
+			if(tri[1] == 0){
+				if(pos[0] == tri[0]){
+					if(pos[1] != 6){
+						pos[1]++;
+					}
+					else if(pos[1] == 6){
+						pos[1] = 0;
+					}
+				}
+			}
+			if(tri[1] == 6){
+				if(pos[0] == tri[0]){
+					if(pos[1] != 0){
+						pos[1]--;
+					}
+					else if(pos[1] == 0){
+						pos[1] = 6;
+					}
+				}
+			}
+
+		}
+		else{
+			return false;
+		}
+		
+		set_pawnPosition(playerNO,pos);
+		
+		return true;
+
+	}
+	
+	public boolean pushToken(int[] tri, int tokenNO){
+		int[] pos = get_tokenPosition(tokenNO);
+		
+		if(triangle.contains(tri)){
+			if(tri[0] == 0){
+				if(pos[1] == tri[1]){
+					if(pos[0] != 6){
+						pos[0]++;
+					}
+					else if(pos[0] == 6){
+						pos[0] = 0;
+					}
+				}
+			}
+			if(tri[0] == 6){
+				if(pos[1] == tri[1]){
+					if(pos[0] != 0){
+						pos[0]--;
+					}
+					else if(pos[0] == 0){
+						pos[0] = 6;
+					}
+				}
+			}
+			if(tri[1] == 0){
+				if(pos[0] == tri[0]){
+					if(pos[1] != 6){
+						pos[1]++;
+					}
+					else if(pos[1] == 6){
+						pos[1] = 0;
+					}
+				}
+			}
+			if(tri[1] == 6){
+				if(pos[0] == tri[0]){
+					if(pos[1] != 0){
+						pos[1]--;
+					}
+					else if(pos[1] == 0){
+						pos[1] = 6;
+					}
+				}
+			}
+
+		}
+		else{
+			return false;
+		}
+		
+		set_tokenPosition(tokenNO,pos);
+		
+		return true;
+
+	}
+	
+	
+	
+	
 	
 	
 	//The idea behind "move" is we first check all possible (legal) positions for a player, make a set to store those positions' (x,y)

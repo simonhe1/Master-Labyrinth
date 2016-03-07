@@ -16,9 +16,6 @@ public class Board {
 	private int n3;
 	private int n4;
 	private int n5;
-
-	private ArrayList<int[]> triangle = new ArrayList<int[]>();
-
 	
 	private int[] pawn1 = {2,2};
 	private int[] pawn2 = {2,4};

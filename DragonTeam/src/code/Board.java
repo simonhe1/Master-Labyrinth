@@ -2,6 +2,7 @@ package code;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 // board class 
 public class Board {
@@ -30,34 +31,33 @@ public class Board {
 	private int curToken = 1;
 	
 	
-	static int[][] tokenPosition = {
-							 {1,1},{1,2},{1,3},{1,4},{1,5},
-							 {2,1},	   	 {2,3}	    ,{2,5},	
+	private ArrayList<int[]> tokenPosition = new ArrayList<int[]>();
+							 /*{1,1},{1,2},{1,3},{1,4},{1,5},
+							 {2,1}      ,{2,3},      {2,5},	
 							 {3,1},{3,2},{3,3},{3,4},{3,5},
-							 {4,1},	     {4,3}	    ,{4,5},
-							 {5,1},{5,2},{5,3},{5,4},{5,5},
-	};
-	int[] token1;
-	int[] token2;
-	int[] token3;
-	int[] token4;
-	int[] token5;
-	int[] token6;
-	int[] token7;
-	int[] token8;
-	int[] token9;
-	int[] token10;
-	int[] token11;
-	int[] token12;
-	int[] token13;
-	int[] token14;
-	int[] token15;
-	int[] token16;
-	int[] token17;
-	int[] token18;
-	int[] token19;
-	int[] token20;
-	int[] token21;
+							 {4,1},      {4,3},      {4,5},
+							 {5,1},{5,2},{5,3},{5,4},{5,5},*/
+	int[] token1={1,1};
+	int[] token2={1,2};
+	int[] token3={1,3};
+	int[] token4={1,4};
+	int[] token5={1,5};
+	int[] token6={2,1};
+	int[] token7={2,3};
+	int[] token8={2,5};
+	int[] token9={3,1};
+	int[] token10={3,2};
+	int[] token11={3,3};
+	int[] token12={3,4};
+	int[] token13={3,5};
+	int[] token14={4,1};
+	int[] token15={4,3};
+	int[] token16={4,5};
+	int[] token17={5,1};
+	int[] token18={5,2};
+	int[] token19={5,3};
+	int[] token20={5,4};
+	int[] token21={5,5};
 	
 	public Board(){
 		n1 = 10;
@@ -65,6 +65,27 @@ public class Board {
 		n3 = 10;
 		n4 = 10;
 		n5 = 10;
+		tokenPosition.add(token1);
+		tokenPosition.add(token2);
+		tokenPosition.add(token3);
+		tokenPosition.add(token4);
+		tokenPosition.add(token5);
+		tokenPosition.add(token6);
+		tokenPosition.add(token7);
+		tokenPosition.add(token8);
+		tokenPosition.add(token9);
+		tokenPosition.add(token10);
+		tokenPosition.add(token11);
+		tokenPosition.add(token12);
+		tokenPosition.add(token13);
+		tokenPosition.add(token14);
+		tokenPosition.add(token15);
+		tokenPosition.add(token16);
+		tokenPosition.add(token17);
+		tokenPosition.add(token18);
+		tokenPosition.add(token19);
+		tokenPosition.add(token20);
+		tokenPosition.add(token21);
 		initialize();
 		int[] tri1 = {0,1};
 		int[] tri2 = {0,3};
@@ -386,32 +407,41 @@ public class Board {
 		
 		ArrayList<Integer> shown = new ArrayList<Integer>();
 		while(shown.size()<21){
-			int index = (int)Math.round(Math.random()*21-1); //0 ~ 20
-			if(shown.contains(index) == false){
-				shown.add(index);
+			Random random = new Random();
+			int rand = random.nextInt(21);
+			if(shown.contains(rand) == false){
+			shown.add(rand);
 			}
 		}
-		token1 = tokenPosition[shown.get(0)];
-		token2 = tokenPosition[shown.get(1)];
-		token3 = tokenPosition[shown.get(2)];
-		token4 = tokenPosition[shown.get(3)];
-		token5 = tokenPosition[shown.get(4)];
-		token6 = tokenPosition[shown.get(5)];
-		token7 = tokenPosition[shown.get(6)];
-		token8 = tokenPosition[shown.get(7)];
-		token9 = tokenPosition[shown.get(8)];
-		token10 = tokenPosition[shown.get(9)];
-		token11 = tokenPosition[shown.get(10)];
-		token12 = tokenPosition[shown.get(11)];
-		token13 = tokenPosition[shown.get(12)];
-		token14 = tokenPosition[shown.get(13)];
-		token15 = tokenPosition[shown.get(14)];
-		token16 = tokenPosition[shown.get(15)];
-		token17 = tokenPosition[shown.get(16)];
-		token18 = tokenPosition[shown.get(17)];
-		token19 = tokenPosition[shown.get(18)];
-		token20 = tokenPosition[shown.get(19)];
-		token21 = tokenPosition[shown.get(20)];
+		
+//		while(shown.size()<21){
+//			int index = (int)Math.round(Math.random()*21)-1; //0 ~ 20
+//			if(shown.contains(index) == false){
+//				shown.add(index);
+//			}
+//		}
+
+		token1 = tokenPosition.get(shown.get(0));
+		token2 = tokenPosition.get(shown.get(1));
+		token3 = tokenPosition.get(shown.get(2));
+		token4 = tokenPosition.get(shown.get(3));
+		token5 = tokenPosition.get(shown.get(4));
+		token6 = tokenPosition.get(shown.get(5));
+		token7 = tokenPosition.get(shown.get(6));
+		token8 = tokenPosition.get(shown.get(7));
+		token9 = tokenPosition.get(shown.get(8));
+		token10 = tokenPosition.get(shown.get(9));
+		token11 = tokenPosition.get(shown.get(10));
+		token12 = tokenPosition.get(shown.get(11));
+		token13 = tokenPosition.get(shown.get(12));
+		token14 = tokenPosition.get(shown.get(13));
+		token15 = tokenPosition.get(shown.get(14));
+		token16 = tokenPosition.get(shown.get(15));
+		token17 = tokenPosition.get(shown.get(16));
+		token18 = tokenPosition.get(shown.get(17));
+		token19 = tokenPosition.get(shown.get(18));
+		token20 = tokenPosition.get(shown.get(19));
+		token21 = tokenPosition.get(shown.get(20));
 		
 		
 	}

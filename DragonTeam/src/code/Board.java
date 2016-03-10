@@ -23,6 +23,13 @@ public class Board {
 	private int[] pawn3 = {4,2};
 	private int[] pawn4 = {4,4};
 	
+	private ArrayList<Integer> score1 = new ArrayList<Integer>();
+	private ArrayList<Integer> score2 = new ArrayList<Integer>();
+	private ArrayList<Integer> score3 = new ArrayList<Integer>();
+	private ArrayList<Integer> score4 = new ArrayList<Integer>();
+	private int curToken = 1;
+	
+	
 	static int[][] tokenPosition = {
 							 {1,1},{1,2},{1,3},{1,4},{1,5},
 							 {2,1},	   	 {2,3}	    ,{2,5},	
@@ -753,8 +760,48 @@ public class Board {
 			return false;
 		}
 
-
-
 	}
+
+	public void eat(int playerNO, int tokenNO){
+		if(tokenNO>=1 && tokenNO<=4){
+				switch(playerNO){
+			case 1:
+				score1.add(tokenNO);
+				curToken++;
+				break;
+			case 2:
+				score2.add(tokenNO);
+				curToken++;
+				break;
+			case 3:
+				score3.add(tokenNO);
+				curToken++;
+				break;
+			case 4:
+				score4.add(tokenNO);
+				curToken++;
+				break;
+			}
+		}
+		
+	}
+	
+	public ArrayList<Integer> showScore(int playerNO){
+		if(playerNO>=1 && playerNO<=4){
+			switch(playerNO){
+			case 1:
+				return score1;
+			case 2:
+				return score2;
+			case 3:
+				return score3;
+			case 4:
+				return score4;
+			}
+			return null;
+		}
+		return null;
+	}
+
 	
 }

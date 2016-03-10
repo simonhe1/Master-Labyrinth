@@ -3,6 +3,7 @@ package code;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// board class 
 public class Board {
 	
 	private Tile[][] state = new Tile[7][7];

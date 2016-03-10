@@ -1,5 +1,6 @@
 package code;
 
+// tile class
 public class Tile{
 	private int type;
 	boolean[] open = {false,false,false,false}; //boolean[] open = new boolean[4]  

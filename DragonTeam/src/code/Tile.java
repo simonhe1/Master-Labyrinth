@@ -6,7 +6,7 @@ public class Tile{
 	boolean[] open = {false,false,false,false}; //boolean[] open = new boolean[4]  
 	 											//open[0] = false  open[1] = false...
 	
-	Tile(int k) {
+	public Tile(int k) {
 		if(k>=1 && k<=5){
 			type = k;
 		}

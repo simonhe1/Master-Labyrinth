@@ -59,9 +59,40 @@ public class Board {
 	int[] token20;
 	int[] token21;
 	
+	public Board(){
+		n1 = 10;
+		n2 = 10;
+		n3 = 10;
+		n4 = 10;
+		n5 = 10;
+		initialize();
+		int[] tri1 = {0,1};
+		int[] tri2 = {0,3};
+		int[] tri3 = {0,5};
+		int[] tri4 = {6,1};
+		int[] tri5 = {6,3};
+		int[] tri6 = {6,5};
+		int[] tri7 = {1,0};
+		int[] tri8 = {3,0};
+		int[] tri9 = {5,0};
+		int[] tri10 = {1,6};
+		int[] tri11 = {3,6};
+		int[] tri12 = {5,6};
+		triangle.add(tri1);
+		triangle.add(tri2);
+		triangle.add(tri3);
+		triangle.add(tri4);
+		triangle.add(tri5);
+		triangle.add(tri6);
+		triangle.add(tri7);
+		triangle.add(tri8);
+		triangle.add(tri9);
+		triangle.add(tri10);
+		triangle.add(tri11);
+		triangle.add(tri12);
+	}
 
-
-	Board(int t1, int t2, int t3, int t4, int t5){
+	public Board(int t1, int t2, int t3, int t4, int t5){
 		
 		if(t1+t2+t3+t4+t5 == 50){
 			n1 = t1;
@@ -77,7 +108,6 @@ public class Board {
 			n4 = 10;
 			n5 = 10;
 		}
-		
 		initialize();
 		
 		int[] tri1 = {0,1};

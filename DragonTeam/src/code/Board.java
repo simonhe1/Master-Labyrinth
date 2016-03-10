@@ -762,23 +762,23 @@ public class Board {
 
 	}
 
-	public void eat(int playerNO, int tokenNO){
-		if(tokenNO>=1 && tokenNO<=4){
+	public void eat(int playerNO){
+		if(playerNO>=1 && playerNO<=4){
 				switch(playerNO){
 			case 1:
-				score1.add(tokenNO);
+				score1.add(curToken);
 				curToken++;
 				break;
 			case 2:
-				score2.add(tokenNO);
+				score2.add(curToken);
 				curToken++;
 				break;
 			case 3:
-				score3.add(tokenNO);
+				score3.add(curToken);
 				curToken++;
 				break;
 			case 4:
-				score4.add(tokenNO);
+				score4.add(curToken);
 				curToken++;
 				break;
 			}

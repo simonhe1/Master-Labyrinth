@@ -12,7 +12,7 @@ public class Get_tokenPositionTests {
 		int input = 1;
 		int row = 0;
 		int col = 0;
-		//while(row!=)
+		/*while(row!=)*/
 		int[] expected = {1,1};
 		int[] actual = board.get_tokenPosition(input);
 		int counter = 0;

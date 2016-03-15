@@ -10,7 +10,7 @@ public class Set_tokenPositionTests {
 	@Test public void test01(){
 		Board board = new Board();
 		int input = 1;
-		int[] expected = {2,2};
+		int[] expected = {3,3};
 		board.set_tokenPosition(input, expected);
 		int[] actual = board.get_tokenPosition(input);
 		int counter = 0;

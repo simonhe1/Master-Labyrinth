@@ -11,6 +11,7 @@ public class Set_tokenPositionTests {
 		Board board = new Board();
 		int input = 1;
 		int[] expected = {2,2};
+		board.set_tokenPosition(input, expected);
 		int[] actual = board.get_tokenPosition(input);
 		int counter = 0;
 		for(int i = 0; i<2; i++){

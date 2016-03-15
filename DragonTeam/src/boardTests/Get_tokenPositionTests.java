@@ -10,6 +10,9 @@ public class Get_tokenPositionTests {
 	@Test public void test01(){
 		Board board = new Board();
 		int input = 1;
+		int row = 0;
+		int col = 0;
+		//while(row!=)
 		int[] expected = {1,1};
 		int[] actual = board.get_tokenPosition(input);
 		int counter = 0;

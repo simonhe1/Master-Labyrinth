@@ -331,12 +331,31 @@ public class Board {
 		}
 		return output;
 	}
+	
+	
 	public boolean isTile(Tile tile){
 		int type = tile.type();
 		boolean[] open = tile.open();
 		return type>=1&&type<=5&&open.length==4;
 	}
 	
+	
+	public Tile[][] get_StateOfBoard(){
+		return state;
+	}
+	
+	public Tile get_ExtraTile(){
+		return extra;
+	}
+	
+	public boolean isTokenPosition(int[] position){
+		for(int[] place:tokenPosition){
+			if(place==position){
+				return true;
+			}
+		}
+		return false;
+	}
 	public void initialize(){
 		//Run this code before starting.
 		int count1 = 0;

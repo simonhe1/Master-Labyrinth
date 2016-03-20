@@ -331,6 +331,11 @@ public class Board {
 		}
 		return output;
 	}
+	public boolean isTile(Tile tile){
+		int type = tile.type();
+		boolean[] open = tile.open();
+		return type>=1&&type<=5&&open.length==4;
+	}
 	
 	public void initialize(){
 		//Run this code before starting.

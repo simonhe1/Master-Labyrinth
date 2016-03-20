@@ -63,6 +63,9 @@ public class Tile{
 	public int type(){
 		return type;
 	}
+	public boolean[] open(){
+		return open;
+	}
 	
 	public boolean[] initial(){
 		 //initialize the Tile

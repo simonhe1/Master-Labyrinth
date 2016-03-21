@@ -50,12 +50,15 @@ public class InsertTests {
 		if(!t2.equals(board.get_StateOfBoard()[2][1])){
 			actual = false;
 		}
+		if(!t1.equals(board.get_StateOfBoard()[1][1])){
+			actual = false;
+		}
 		if(!extra.equals(board.get_StateOfBoard()[0][1])){
 			actual = false;
 		}
 		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
 	}
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		Board board = new Board();
 		for(int i=0;i<=6;i++){
 			for(int j =0;j<=6;j++){
@@ -63,6 +66,7 @@ public class InsertTests {
 			}
 			System.out.println("");
 		}
+		System.out.println(board.get_ExtraTile().type());
 		int[] arr = {0,1};
 		boolean b = board.insert(arr,3);
 		System.out.println(b);
@@ -73,5 +77,6 @@ public class InsertTests {
 			}
 			System.out.println("");
 		}
-	}
+		System.out.println(board.get_ExtraTile().type());
+	}*/
 }

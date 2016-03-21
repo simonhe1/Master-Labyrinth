@@ -544,7 +544,7 @@ public class Board {
 				else{return false;}
 			}
 			else{return false;}
-			/*pushPlayer(tri,1);
+			pushPlayer(tri,1);
 			pushPlayer(tri,2);
 			pushPlayer(tri,3);
 			pushPlayer(tri,4);
@@ -570,7 +570,7 @@ public class Board {
 			pushToken(tri,19);
 			pushToken(tri,20);
 			pushToken(tri,21);
-			*/
+			
 			return true;
 
 	}
@@ -578,53 +578,59 @@ public class Board {
 	public boolean pushPlayer(int[] tri, int playerNO){
 		int[] pos = get_pawnPosition(playerNO);
 		
-		if(triangle.contains(tri)){
+		//if(triangle.contains(tri)){
 			if(tri[0] == 0){
-				if(pos[1] == tri[1]){
-					if(pos[0] != 6){
-						pos[0]++;
-					}
-					else if(pos[0] == 6){
-						pos[0] = 0;
+				if(tri[1] == 1 || tri[1] == 3 || tri[1] == 5){
+					if(pos[1] == tri[1]){
+						if(pos[0] != 6){
+							pos[0]++;
+						}
+						else if(pos[0] == 6){
+							pos[0] = 0;
+						}
 					}
 				}
+				else{return false;}
 			}
 			if(tri[0] == 6){
-				if(pos[1] == tri[1]){
-					if(pos[0] != 0){
-						pos[0]--;
-					}
-					else if(pos[0] == 0){
-						pos[0] = 6;
+				if(tri[1] == 1 || tri[1] == 3 || tri[1] == 5){
+					if(pos[1] == tri[1]){
+						if(pos[0] != 0){
+							pos[0]--;
+						}
+						else if(pos[0] == 0){
+							pos[0] = 6;
+						}
 					}
 				}
+				else{return false;}
 			}
 			if(tri[1] == 0){
-				if(pos[0] == tri[0]){
-					if(pos[1] != 6){
-						pos[1]++;
-					}
-					else if(pos[1] == 6){
-						pos[1] = 0;
+				if(tri[0] == 1 || tri[0] == 3 || tri[0] == 5){
+					if(pos[0] == tri[0]){
+						if(pos[1] != 6){
+							pos[1]++;
+						}
+						else if(pos[1] == 6){
+							pos[1] = 0;
+						}
 					}
 				}
+				else{return false;}
 			}
 			if(tri[1] == 6){
-				if(pos[0] == tri[0]){
-					if(pos[1] != 0){
-						pos[1]--;
-					}
-					else if(pos[1] == 0){
-						pos[1] = 6;
+				if(tri[0] == 1 || tri[0] == 3 || tri[0] == 5){
+					if(pos[0] == tri[0]){
+						if(pos[1] != 0){
+							pos[1]--;
+						}
+						else if(pos[1] == 0){
+							pos[1] = 6;
+						}
 					}
 				}
-			}
-
+				else{return false;}
 		}
-		else{
-			return false;
-		}
-		
 		set_pawnPosition(playerNO,pos);
 		
 		return true;
@@ -634,52 +640,58 @@ public class Board {
 	public boolean pushToken(int[] tri, int tokenNO){
 		int[] pos = get_tokenPosition(tokenNO);
 		
-		if(triangle.contains(tri)){
 			if(tri[0] == 0){
-				if(pos[1] == tri[1]){
-					if(pos[0] != 6){
-						pos[0]++;
-					}
-					else if(pos[0] == 6){
-						pos[0] = 0;
+				if(tri[1] == 1 || tri[1] == 3 || tri[1] == 5){
+					if(pos[1] == tri[1]){
+						if(pos[0] != 6){
+							pos[0]++;
+						}
+						else if(pos[0] == 6){
+							pos[0] = 0;
+						}
 					}
 				}
+				else{return false;}
 			}
 			if(tri[0] == 6){
-				if(pos[1] == tri[1]){
-					if(pos[0] != 0){
-						pos[0]--;
+					if(tri[1] == 1 || tri[1] == 3 || tri[1] == 5){
+						if(pos[1] == tri[1]){
+							if(pos[0] != 0){
+								pos[0]--;
+							}
+							else if(pos[0] == 0){
+								pos[0] = 6;
+							}
+						}
 					}
-					else if(pos[0] == 0){
-						pos[0] = 6;
-					}
-				}
+					else{return false;}
 			}
 			if(tri[1] == 0){
-				if(pos[0] == tri[0]){
-					if(pos[1] != 6){
-						pos[1]++;
-					}
-					else if(pos[1] == 6){
-						pos[1] = 0;
+				if(tri[0] == 1 || tri[0] == 3 || tri[0] == 5){
+					if(pos[0] == tri[0]){
+						if(pos[1] != 6){
+							pos[1]++;
+						}
+						else if(pos[1] == 6){
+							pos[1] = 0;
+						}
 					}
 				}
+				else{return false;}
 			}
 			if(tri[1] == 6){
-				if(pos[0] == tri[0]){
-					if(pos[1] != 0){
-						pos[1]--;
-					}
-					else if(pos[1] == 0){
-						pos[1] = 6;
+				if(tri[0] == 1 || tri[0] == 3 || tri[0] == 5){
+					if(pos[0] == tri[0]){
+						if(pos[1] != 0){
+							pos[1]--;
+						}
+						else if(pos[1] == 0){
+							pos[1] = 6;
+						}
 					}
 				}
+				else{return false;}
 			}
-
-		}
-		else{
-			return false;
-		}
 		
 		set_tokenPosition(tokenNO,pos);
 		

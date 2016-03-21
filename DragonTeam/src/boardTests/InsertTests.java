@@ -31,16 +31,13 @@ public class InsertTests {
 		t6 = board.get_StateOfBoard()[5][1];
 		t7 = board.get_StateOfBoard()[6][1];
 		board.insert(position, rotation);
-		//extra.rotate();
-		//extra.rotate();
-		//extra.rotate();
 		boolean actual = true;
-		/*if(!t7.equals(board.get_ExtraTile())){
+		if(!t7.equals(board.get_ExtraTile())){
 			actual = false;
-		}*/
+		}
 		if(t6.type()!=board.get_StateOfBoard()[6][1].type()){
 			actual = false;
-		}/*
+		}
 		if(!t5.equals(board.get_StateOfBoard()[5][1])){
 			actual = false;
 		}
@@ -52,10 +49,10 @@ public class InsertTests {
 		}
 		if(!t2.equals(board.get_StateOfBoard()[2][1])){
 			actual = false;
-		}*/
-		/*if(!t1.equals(extra)){
+		}
+		if(!extra.equals(board.get_StateOfBoard()[0][1])){
 			actual = false;
-		}*/
+		}
 		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
 	}
 	public static void main(String[] args){

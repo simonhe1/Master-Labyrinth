@@ -11,7 +11,7 @@ public class Board {
 	
 	private Tile extra = new Tile(1);
 	
-	private ArrayList<int[]> triangle = new ArrayList<int[]>();
+	//private ArrayList<int[]> triangle = new ArrayList<int[]>();
 	
 	private int n1;
 	private int n2;
@@ -87,7 +87,7 @@ public class Board {
 		tokenPosition.add(token20);
 		tokenPosition.add(token21);
 		initialize();
-		int[] tri1 = {0,1};
+		/*int[] tri1 = {0,1};
 		int[] tri2 = {0,3};
 		int[] tri3 = {0,5};
 		int[] tri4 = {6,1};
@@ -110,7 +110,7 @@ public class Board {
 		triangle.add(tri9);
 		triangle.add(tri10);
 		triangle.add(tri11);
-		triangle.add(tri12);
+		triangle.add(tri12);*/
 	}
 
 	public Board(int t1, int t2, int t3, int t4, int t5){
@@ -131,7 +131,7 @@ public class Board {
 		}
 		initialize();
 		
-		int[] tri1 = {0,1};
+		/*int[] tri1 = {0,1};
 		int[] tri2 = {0,3};
 		int[] tri3 = {0,5};
 		int[] tri4 = {6,1};
@@ -154,7 +154,7 @@ public class Board {
 		triangle.add(tri9);
 		triangle.add(tri10);
 		triangle.add(tri11);
-		triangle.add(tri12);
+		triangle.add(tri12);*/
 		
 		
 	}
@@ -477,9 +477,9 @@ public class Board {
 		Tile out;
 		int triRow = tri[0];
 		int triCol = tri[1];
-		
-		if(triangle.contains(tri)){
+			
 			if(triRow == 0){
+				if(triCol == 1 || triCol == 3 || triCol == 5){
 				out = state[triRow + 6][triCol];
 				for(int i=6; i>0;i--){
 					state[triRow + i][triCol] = state[triRow + (i-1)][triCol];
@@ -491,9 +491,12 @@ public class Board {
 
 				state[triRow][triCol] = extra;
 				extra = out;
-
+				
+				}
+				else{return false;}
 			}
 			else if(triRow == 6){
+				if(triCol == 1 || triCol == 3 || triCol == 5){
 				out = state[triRow - 6][triCol];
 				for(int i=6; i>0;i--){
 					state[triRow  - i][triCol] = state[triRow  - (i-1)][triCol];
@@ -506,8 +509,11 @@ public class Board {
 				state[triRow][triCol] = extra;
 				extra = out;
 				
+				}
+				else{return false;}
 			}
 			else if(triCol == 0){
+				if(triRow == 1 || triRow == 3 || triRow == 5){
 				out = state[triRow][triCol + 6];
 				for(int i=6; i>0; i--){
 					state[triRow][triCol + i] = state[triRow][triCol + (i-1)];
@@ -519,8 +525,11 @@ public class Board {
 				state[triRow][triCol] = extra;
 				extra = out;
 				
+				}
+				else{return false;}
 			}
 			else if(triCol == 6){
+				if(triRow == 1 || triRow == 3 || triRow == 5){
 				out = state[triRow][triCol-6];
 				for(int i=6; i>0; i--){
 					state[triRow][triCol - i] = state[triRow][triCol - (i-1)];
@@ -531,9 +540,11 @@ public class Board {
 
 				state[triRow][triCol] = extra;
 				extra = out;
+				}
+				else{return false;}
 			}
-			
-			pushPlayer(tri,1);
+			else{return false;}
+			/*pushPlayer(tri,1);
 			pushPlayer(tri,2);
 			pushPlayer(tri,3);
 			pushPlayer(tri,4);
@@ -559,12 +570,8 @@ public class Board {
 			pushToken(tri,19);
 			pushToken(tri,20);
 			pushToken(tri,21);
-			
+			*/
 			return true;
-		}
-		else{
-			return false;
-		}
 
 	}
 	

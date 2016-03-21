@@ -699,7 +699,11 @@ public class Board {
 
 	}
 	
-	
+	public void set_Tile(int [] position, int type){
+		int row = position[0];
+		int col = position[1];
+		state[row][col] = new Tile(type);
+	}
 	
 	
 	
@@ -724,7 +728,7 @@ public class Board {
 		Tile currentTile = state[inputR][inputC];
 		outputRC[0] = inputR;
 		outputRC[1] = inputC;
-		output.put(outputRC, 1);
+		output.put(outputRC, 1); //basically add method if compared to Arraylist, ignore the 1
 
 		if(currentTile.curOpen()[0] == true){
 			if(inputR != 0){

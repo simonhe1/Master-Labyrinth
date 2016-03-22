@@ -3,7 +3,7 @@ package code;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-
+//note
 // board class 
 public class Board {
 	

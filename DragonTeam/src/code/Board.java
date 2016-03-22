@@ -933,7 +933,8 @@ public class Board {
 			}
 			else{
 				playerNO=5;
-			};
+				break;
+			}
 		case 2:
 			if(pawn2Wands>0){
 			pawn2Wands = pawn2Wands - 1;
@@ -941,6 +942,7 @@ public class Board {
 			}
 			else{
 				playerNO=5;
+				break;
 			}
 		case 3:
 			if(pawn3Wands>0){
@@ -949,6 +951,7 @@ public class Board {
 			}
 			else{
 				playerNO=5;
+				break;
 			}
 		case 4:
 			if(pawn4Wands>0){
@@ -957,6 +960,7 @@ public class Board {
 			}
 			else{
 				playerNO=5;
+				break;
 			}
 		case 5:
 			return -1;

@@ -22,4 +22,22 @@ public class IsTokenPositionTests {
 		boolean actual = board.isTokenPosition(board.get_tokenPosition(input));
 		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
 	}
+	
+	@Test public void test03(){
+		Board board = new Board();
+		for(int input = 1; input<21; input++){
+		boolean expected = true;
+		boolean actual = board.isTokenPosition(board.get_tokenPosition(input));
+		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
+		}
+	}
+	
+	@Test public void test04(){
+		Board board = new Board();
+		int input = 22;
+		boolean expected = false;
+		boolean actual = board.isTokenPosition(board.get_tokenPosition(input));
+		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
+	}
 }
+

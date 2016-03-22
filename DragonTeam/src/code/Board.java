@@ -726,28 +726,29 @@ public class Board {
 		
 		//check all the corresponding opens. If both open, then add that neighbor into output list.
 		//This method only check the four neighbors of a tile. Later on, we'll use an iterator to check all possible moves.
-	public HashMap<Integer[], Integer> checkNeighbor(int[] pos){
+	
+	
+	
+	//This method returns a set of all legal moves.
+	//It uses the previous method and a loop.
+	public ArrayList<int[]> checkNeighbor(int[] pos){
 
-		HashMap<Integer[], Integer> output = new HashMap<Integer[], Integer>();
-		Integer[] outputRC = new Integer[2];
+		ArrayList<int[]> output = new ArrayList<int[]>();
 
 		int inputR = pos[0];
 		int inputC = pos[1];
 
 		Tile currentTile = state[inputR][inputC];
-		outputRC[0] = inputR;
-		outputRC[1] = inputC;
-		output.put(outputRC, 1); //basically add method if compared to Arraylist, ignore the 1
-
+		
 		if(currentTile.curOpen()[0] == true){
 			if(inputR != 0){
 				Tile upTile = state[inputR-1][inputC];
 				
 				if(upTile.curOpen()[2] == true){
-					Integer [] outputUP = new Integer[2];
+					int [] outputUP = new int[2];
 					outputUP[0] = inputR-1;
 					outputUP[1] = inputC;
-					output.put(outputUP, 1);
+					output.add(outputUP);
 				}
 			}
 
@@ -758,10 +759,10 @@ public class Board {
 				Tile rightTile = state[inputR][inputC+1];
 
 				if(rightTile.curOpen()[3] == true){
-					Integer [] outputRIGHT = new Integer[2];
+					int [] outputRIGHT = new int[2];
 					outputRIGHT[0] = inputR;
 					outputRIGHT[1] = inputC+1;
-					output.put(outputRIGHT, 1);
+					output.add(outputRIGHT);
 				}
 			}
 
@@ -773,10 +774,10 @@ public class Board {
 				Tile downTile = state[inputR+1][inputC];
 
 				if(downTile.curOpen()[0] == true){
-					Integer [] outputDOWN = new Integer[2];
+					int [] outputDOWN = new int[2];
 					outputDOWN[0] = inputR+1;
 					outputDOWN[1] = inputC;
-					output.put(outputDOWN, 1);
+					output.add(outputDOWN);
 				}
 			}
 
@@ -787,11 +788,11 @@ public class Board {
 			if(inputC != 0){
 				Tile leftTile = state[inputR][inputC-1];
 
-				if(leftTile.curOpen()[3] == true){
-					Integer [] outputLEFT = new Integer[2];
+				if(leftTile.curOpen()[1] == true){
+					int [] outputLEFT = new int[2];
 					outputLEFT[0] = inputR;
 					outputLEFT[1] = inputC-1;
-					output.put(outputLEFT, 1);
+					output.add(outputLEFT);
 				}
 			}
 
@@ -801,37 +802,31 @@ public class Board {
 	}
 	
 	
-	
-	//This method returns a set of all legal moves.
-	//It uses the previous method and a loop.
-	public HashMap<Integer[], Integer> legalMoves(int[] pos){
-
-		Integer[] position = {pos[0],pos[1]};
-
-		HashMap<Integer[], Integer> set = new HashMap<Integer[], Integer>();
-		set.put(position, 1);
-
-		HashMap<Integer[], Integer> output = checkNeighbor(pos);
-
-		HashMap<Integer[], Integer> tempSet = new HashMap<Integer[], Integer>();
-
-		int[] currentTile;
-
-		while(set.size() < output.size()){
-			tempSet = (HashMap<Integer[], Integer>) output.clone();
-			for(int i=0; i<=output.size()-1; i++){
-				currentTile = (int[]) output.keySet().toArray()[i];
-				if(set.containsKey(currentTile) == false){
-					output.putAll(checkNeighbor(currentTile));
+	public ArrayList<int[]> legalMoves(int[] pos){
+		ArrayList<int[]> output = (checkNeighbor(pos));
+		ArrayList<int[]> neighbor;
+		for(int i=0; i<output.size(); i++){
+			neighbor = checkNeighbor(output.get(i));
+			for(int j=0; j<neighbor.size(); j++){
+				if(!containsArray(output, neighbor.get(j))){
+					output.add(neighbor.get(j).clone());
 				}
 			}
-			set = tempSet;
 		}
-
 		return output;
-
+		
+		
 	}
 	
+	public boolean containsArray(ArrayList<int[]> al, int[] arr){
+		for(int i=0; i<al.size(); i++){
+			if(al.get(i)[0] == arr[0] && al.get(i)[1] == arr[1]){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public boolean move(int playerNO, int[] request){
 
 		if(playerNO>= 1 && playerNO<=4){
@@ -852,7 +847,7 @@ public class Board {
 				pos = pawn4;
 				break;
 			}
-			HashMap<Integer[], Integer> set = legalMoves(pos);
+			ArrayList<int[]> set = legalMoves(pos);
 			
 			if(set.containsKey(request)){
 

@@ -2,7 +2,7 @@ package boardTests;
 
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -21,8 +21,8 @@ public class CheckNeighborTests {
 		board.set_Tile(neighbor2, 5, 0);
 		board.set_Tile(neighbor3, 5, 0);
 		board.set_Tile(neighbor4, 5, 0);
-		HashMap<Integer[], Integer> list = board.checkNeighbor(current);
-		int expected = 5;
+		ArrayList<int[]> list = board.checkNeighbor(current);
+		int expected = 4;
 		int actual = list.size();
 		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
 	}
@@ -38,8 +38,8 @@ public class CheckNeighborTests {
 		board.set_Tile(neighbor2, 5, 0);
 		board.set_Tile(neighbor3, 5, 0);
 		board.set_Tile(neighbor4, 5, 0);
-		HashMap<Integer[], Integer> list = board.checkNeighbor(current);
-		int expected = 4;
+		ArrayList<int[]> list = board.checkNeighbor(current);
+		int expected = 3;
 		int actual = list.size();
 		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
 	}
@@ -55,8 +55,8 @@ public class CheckNeighborTests {
 		board.set_Tile(neighbor2, 2, 0);
 		board.set_Tile(neighbor3, 5, 0);
 		board.set_Tile(neighbor4, 5, 0);
-		HashMap<Integer[], Integer> list = board.checkNeighbor(current);
-		int expected = 1;
+		ArrayList<int[]> list = board.checkNeighbor(current);
+		int expected = 0;
 		int actual = list.size();
 		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
 	}

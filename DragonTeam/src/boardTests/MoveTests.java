@@ -34,8 +34,8 @@ public class MoveTests {
 		int [] tile2 = {2,1};
 		int [] tile3 = {3,1};
 		
-		b.set_Tile(tile1, 3,0);
-		b.set_Tile(tile2, 2,0);
+		b.set_Tile(tile1, 1,2);
+		b.set_Tile(tile2, 1,0);
 		b.set_Tile(tile3, 5,0);
 		
 		int[] pawn = {1,1};
@@ -44,7 +44,7 @@ public class MoveTests {
 		int [] request = {3,1};
 		boolean expected  = false;
 		boolean actual = b.move(pawn1, request);
-		assertTrue("Expected was"+expected+"but actual was"+actual,expected == actual);
+		assertTrue("Expected was "+expected+" but actual was "+actual,expected == actual);
  	
 }
 	@Test public void test03(){

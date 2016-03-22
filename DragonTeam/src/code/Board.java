@@ -849,23 +849,23 @@ public class Board {
 			}
 			ArrayList<int[]> set = legalMoves(pos);
 			
-			if(set.containsKey(request)){
+			if(containsArray(set,request)){
 
 				switch(playerNO){
 				case 1:
 					pawn1 = request;
-					break;
+					return true;
 				case 2:
 					pawn2 = request;
-					break;
+					return true;
 				case 3:
 					pawn3 = request;
-					break;
+					return true;
 				case 4:
 					pawn4 = request;
-					break;
+					return true;
 				}
-				return true;
+				return false;
 			}
 			else{
 				return false;

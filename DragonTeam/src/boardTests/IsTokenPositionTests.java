@@ -14,4 +14,12 @@ public class IsTokenPositionTests {
 		boolean actual = board.isTokenPosition(board.get_tokenPosition(input));
 		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
 	}
+	
+	@Test public void test02(){
+		Board board = new Board();
+		int input = 0;
+		boolean expected = false;
+		boolean actual = board.isTokenPosition(board.get_tokenPosition(input));
+		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);
+	}
 }

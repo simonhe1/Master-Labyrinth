@@ -13,7 +13,8 @@ public class Set_TileTests {
 		Tile expectedTile = new Tile(2);
 		int [] position = {1,3};
 		int type = 2;
-		board.set_Tile(position, type);
+		int rotation = 0;
+		board.set_Tile(position, type, rotation);
 		Tile actualTile = board.get_StateOfBoard()[1][3];
 		int expected = expectedTile.type();
 		int actual = actualTile.type();

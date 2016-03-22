@@ -699,10 +699,14 @@ public class Board {
 
 	}
 	
-	public void set_Tile(int [] position, int type){
+	public void set_Tile(int [] position, int type, int rotation){
 		int row = position[0];
 		int col = position[1];
-		state[row][col] = new Tile(type);
+		Tile tile = new Tile(type);
+		for(int i = 0; i<rotation;i++){
+			tile.rotate();
+		}
+		state[row][col] = tile;
 	}
 	
 	
@@ -733,52 +737,56 @@ public class Board {
 		if(currentTile.curOpen()[0] == true){
 			if(inputR != 0){
 				Tile upTile = state[inputR-1][inputC];
-
+				
 				if(upTile.curOpen()[2] == true){
-					outputRC[0] = inputR-1;
-					outputRC[1] = inputC;
-					output.put(outputRC, 1);
+					Integer [] outputUP = new Integer[2];
+					outputUP[0] = inputR-1;
+					outputUP[1] = inputC;
+					output.put(outputUP, 1);
 				}
 			}
 
 		}
-		else if(currentTile.curOpen()[1] == true){
+		if(currentTile.curOpen()[1] == true){
 
 			if(inputC != 6){
 				Tile rightTile = state[inputR][inputC+1];
 
 				if(rightTile.curOpen()[3] == true){
-					outputRC[0] = inputR;
-					outputRC[1] = inputC+1;
-					output.put(outputRC, 1);
+					Integer [] outputRIGHT = new Integer[2];
+					outputRIGHT[0] = inputR;
+					outputRIGHT[1] = inputC+1;
+					output.put(outputRIGHT, 1);
 				}
 			}
 
 		}
 
-		else if(currentTile.curOpen()[2] == true){
+		if(currentTile.curOpen()[2] == true){
 
 			if(inputR != 6){
 				Tile downTile = state[inputR+1][inputC];
 
 				if(downTile.curOpen()[0] == true){
-					outputRC[0] = inputR+1;
-					outputRC[1] = inputC;
-					output.put(outputRC, 1);
+					Integer [] outputDOWN = new Integer[2];
+					outputDOWN[0] = inputR+1;
+					outputDOWN[1] = inputC;
+					output.put(outputDOWN, 1);
 				}
 			}
 
 		}
 
-		else if(currentTile.curOpen()[3] == true){
+		if(currentTile.curOpen()[3] == true){
 
 			if(inputC != 0){
 				Tile leftTile = state[inputR][inputC-1];
 
 				if(leftTile.curOpen()[3] == true){
-					outputRC[0] = inputR;
-					outputRC[1] = inputC-1;
-					output.put(outputRC, 1);
+					Integer [] outputLEFT = new Integer[2];
+					outputLEFT[0] = inputR;
+					outputLEFT[1] = inputC-1;
+					output.put(outputLEFT, 1);
 				}
 			}
 

@@ -24,6 +24,11 @@ public class Board {
 	private int[] pawn3 = {4,2};
 	private int[] pawn4 = {4,4};
 	
+	private int pawn1Wands = 3;
+	private int pawn2Wands = 3;
+	private int pawn3Wands = 3;
+	private int pawn4Wands = 3;
+	
 	private ArrayList<Integer> score1 = new ArrayList<Integer>();
 	private ArrayList<Integer> score2 = new ArrayList<Integer>();
 	private ArrayList<Integer> score3 = new ArrayList<Integer>();
@@ -917,6 +922,63 @@ public class Board {
 		}
 		return null;
 	}
-
+	
+	public Integer useMagicWand(int playerNO){
+		if(playerNO>=1 && playerNO<=4){
+		switch(playerNO){
+		case 1:
+			if(pawn1Wands>0){
+			pawn1Wands = pawn1Wands - 1;
+			return pawn1Wands;
+			}
+			else{
+				playerNO=5;
+			};
+		case 2:
+			if(pawn2Wands>0){
+			pawn2Wands = pawn2Wands - 1;
+			return pawn2Wands;
+			}
+			else{
+				playerNO=5;
+			}
+		case 3:
+			if(pawn3Wands>0){
+			pawn3Wands = pawn3Wands - 1;
+			return pawn3Wands;
+			}
+			else{
+				playerNO=5;
+			}
+		case 4:
+			if(pawn4Wands>0){
+			pawn4Wands = pawn4Wands - 1;
+			return pawn4Wands;
+			}
+			else{
+				playerNO=5;
+			}
+		case 5:
+			return -1;
+			}
+		}
+		return -1;
+	}
+	
+	public Integer getMagicWands(int playerNO){
+		if(playerNO>=1 && playerNO<=4){
+			switch(playerNO){
+			case 1:
+				return pawn1Wands;
+			case 2:
+				return pawn2Wands;
+			case 3:
+				return pawn3Wands;
+			case 4:
+				return pawn4Wands;
+			}
+		}
+	return -1;
+	}
 	
 }

@@ -1,7 +1,6 @@
 package code;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 //note
 // board class 
@@ -10,8 +9,6 @@ public class Board {
 	private Tile[][] state = new Tile[7][7];
 	
 	private Tile extra = new Tile(1);
-	
-	//private ArrayList<int[]> triangle = new ArrayList<int[]>();
 	
 	private int n1;
 	private int n2;
@@ -37,90 +34,72 @@ public class Board {
 	
 	
 	private ArrayList<int[]> tokenPosition = new ArrayList<int[]>();
-							 /*{1,1},{1,2},{1,3},{1,4},{1,5},
-							 {2,1}      ,{2,3},      {2,5},	
-							 {3,1},{3,2},{3,3},{3,4},{3,5},
-							 {4,1},      {4,3},      {4,5},
-							 {5,1},{5,2},{5,3},{5,4},{5,5},*/
-	int[] token1={1,1};
-	int[] token2={1,2};
-	int[] token3={1,3};
-	int[] token4={1,4};
-	int[] token5={1,5};
-	int[] token6={2,1};
-	int[] token7={2,3};
-	int[] token8={2,5};
-	int[] token9={3,1};
-	int[] token10={3,2};
-	int[] token11={3,3};
-	int[] token12={3,4};
-	int[] token13={3,5};
-	int[] token14={4,1};
-	int[] token15={4,3};
-	int[] token16={4,5};
-	int[] token17={5,1};
-	int[] token18={5,2};
-	int[] token19={5,3};
-	int[] token20={5,4};
-	int[] token21={5,5};
+		
+	int[] tokenPos1={1,1};
+	int[] tokenPos2={1,2};
+	int[] tokenPos3={1,3};
+	int[] tokenPos4={1,4};
+	int[] tokenPos5={1,5};
+	int[] tokenPos6={2,1};
+	int[] tokenPos7={2,3};
+	int[] tokenPos8={2,5};
+	int[] tokenPos9={3,1};
+	int[] tokenPos10={3,2};
+	int[] tokenPos11={3,3};
+	int[] tokenPos12={3,4};
+	int[] tokenPos13={3,5};
+	int[] tokenPos14={4,1};
+	int[] tokenPos15={4,3};
+	int[] tokenPos16={4,5};
+	int[] tokenPos17={5,1};
+	int[] tokenPos18={5,2};
+	int[] tokenPos19={5,3};
+	int[] tokenPos20={5,4};
+	int[] tokenPos21={5,5};
 	
-	public Board(){
-		n1 = 10;
-		n2 = 10;
-		n3 = 10;
-		n4 = 10;
-		n5 = 10;
-		tokenPosition.add(token1);
-		tokenPosition.add(token2);
-		tokenPosition.add(token3);
-		tokenPosition.add(token4);
-		tokenPosition.add(token5);
-		tokenPosition.add(token6);
-		tokenPosition.add(token7);
-		tokenPosition.add(token8);
-		tokenPosition.add(token9);
-		tokenPosition.add(token10);
-		tokenPosition.add(token11);
-		tokenPosition.add(token12);
-		tokenPosition.add(token13);
-		tokenPosition.add(token14);
-		tokenPosition.add(token15);
-		tokenPosition.add(token16);
-		tokenPosition.add(token17);
-		tokenPosition.add(token18);
-		tokenPosition.add(token19);
-		tokenPosition.add(token20);
-		tokenPosition.add(token21);
-		initialize();
-		/*int[] tri1 = {0,1};
-		int[] tri2 = {0,3};
-		int[] tri3 = {0,5};
-		int[] tri4 = {6,1};
-		int[] tri5 = {6,3};
-		int[] tri6 = {6,5};
-		int[] tri7 = {1,0};
-		int[] tri8 = {3,0};
-		int[] tri9 = {5,0};
-		int[] tri10 = {1,6};
-		int[] tri11 = {3,6};
-		int[] tri12 = {5,6};
-		triangle.add(tri1);
-		triangle.add(tri2);
-		triangle.add(tri3);
-		triangle.add(tri4);
-		triangle.add(tri5);
-		triangle.add(tri6);
-		triangle.add(tri7);
-		triangle.add(tri8);
-		triangle.add(tri9);
-		triangle.add(tri10);
-		triangle.add(tri11);
-		triangle.add(tri12);*/
-	}
+	private ArrayList<int[]> token = new ArrayList<int[]>();
 
+	
+	//Constructor for tile type number not specified 
+	//use default 6,6,6,6,9
+	private void addTokenPosition(){
+		tokenPosition.add(tokenPos1);
+		tokenPosition.add(tokenPos2);
+		tokenPosition.add(tokenPos3);
+		tokenPosition.add(tokenPos4);
+		tokenPosition.add(tokenPos5);
+		tokenPosition.add(tokenPos6);
+		tokenPosition.add(tokenPos7);
+		tokenPosition.add(tokenPos8);
+		tokenPosition.add(tokenPos9);
+		tokenPosition.add(tokenPos10);
+		tokenPosition.add(tokenPos11);
+		tokenPosition.add(tokenPos12);
+		tokenPosition.add(tokenPos13);
+		tokenPosition.add(tokenPos14);
+		tokenPosition.add(tokenPos15);
+		tokenPosition.add(tokenPos16);
+		tokenPosition.add(tokenPos17);
+		tokenPosition.add(tokenPos18);
+		tokenPosition.add(tokenPos19);
+		tokenPosition.add(tokenPos20);
+		tokenPosition.add(tokenPos21);
+	}
+	public Board(){
+		n1 = 6;
+		n2 = 6;
+		n3 = 6;
+		n4 = 6;
+		n5 = 9;
+		addTokenPosition();
+		initialize();
+	
+	}
+	//Constructor for tile type number specified 
+	//if sum != 33, use default 6,6,6,6,9
 	public Board(int t1, int t2, int t3, int t4, int t5){
 		
-		if(t1+t2+t3+t4+t5 == 50){
+		if(t1+t2+t3+t4+t5 == 33){
 			n1 = t1;
 			n2 = t2;
 			n3 = t3;
@@ -128,43 +107,18 @@ public class Board {
 			n5 = t5;
 		}
 		else{
-			n1 = 10;
-			n2 = 10;
-			n3 = 10;
-			n4 = 10;
-			n5 = 10;
+			n1 = 6;
+			n2 = 6;
+			n3 = 6;
+			n4 = 6;
+			n5 = 9;
 		}
+		addTokenPosition();
 		initialize();
-		
-		/*int[] tri1 = {0,1};
-		int[] tri2 = {0,3};
-		int[] tri3 = {0,5};
-		int[] tri4 = {6,1};
-		int[] tri5 = {6,3};
-		int[] tri6 = {6,5};
-		int[] tri7 = {1,0};
-		int[] tri8 = {3,0};
-		int[] tri9 = {5,0};
-		int[] tri10 = {1,6};
-		int[] tri11 = {3,6};
-		int[] tri12 = {5,6};
-		triangle.add(tri1);
-		triangle.add(tri2);
-		triangle.add(tri3);
-		triangle.add(tri4);
-		triangle.add(tri5);
-		triangle.add(tri6);
-		triangle.add(tri7);
-		triangle.add(tri8);
-		triangle.add(tri9);
-		triangle.add(tri10);
-		triangle.add(tri11);
-		triangle.add(tri12);*/
-		
-		
+
 	}
 	
-	
+
 	public int[] get_pawnPosition(int playerNO){
 		
 			switch(playerNO){
@@ -201,142 +155,23 @@ public class Board {
 	}
 	
 	public int[] get_tokenPosition(int tokenNO){
-		switch(tokenNO){
-		case 1:
-			return token1;
-		case 2:
-			return token2;
-		case 3:
-			return token3;
-		case 4:
-			return token4;
-		case 5:
-			return token5;
-		case 6:
-			return token6;
-		case 7:
-			return token7;
-		case 8:
-			return token8;
-		case 9:
-			return token9;
-		case 10:
-			return token10;
-		case 11:
-			return token11;
-		case 12:
-			return token12;
-		case 13:
-			return token13;
-		case 14:
-			return token14;
-		case 15:
-			return token15;
-		case 16:
-			return token16;
-		case 17:
-			return token17;
-		case 18:
-			return token18;
-		case 19:
-			return token19;
-		case 20:
-			return token20;
-		case 21:
-			return token21;
+		if(tokenNO>=1 && tokenNO <=21){
+			return token.get(tokenNO-1);
 		}
+		
 		int[] error = {-1,-1};
 		return error;
 		
 	}
 	
 	public boolean set_tokenPosition(int tokenNO,int[] pos){
-		switch(tokenNO){
-		case 1:
-			token1 = pos;
-			return true;
-		case 2:
-			token2 = pos;
-			return true;
-		case 3:
-			token3 = pos;
-			return true;
-		case 4:
-			token4 = pos;
-			return true;
-		case 5:
-			token5 = pos;
-			return true;
-		case 6:
-			token6 = pos;
-			return true;
-		case 7:
-			token7 = pos;
-			return true;
-		case 8:
-			token8 = pos;
-			return true;
-		case 9:
-			token9 = pos;
-			return true;
-		case 10:
-			token10 = pos;
-			return true;
-		case 11:
-			token11 = pos;
-			return true;
-		case 12:
-			token12 = pos;
-			return true;
-		case 13:
-			token13 = pos;
-			return true;
-		case 14:
-			token14 = pos;
-			return true;
-		case 15:
-			token15 = pos;
-			return true;
-		case 16:
-			token16 = pos;
-			return true;
-		case 17:
-			token17 = pos;
-			return true;
-		case 18:
-			token18 = pos;
-			return true;
-		case 19:
-			token19 = pos;
-			return true;
-		case 20:
-			token20 = pos;
-			return true;
-		case 21:
-			token21 = pos;
-			return true;
+		if(tokenNO>=1 && tokenNO <=21){
+			 token.set(tokenNO-1,pos);
 		}
 		return false;
 		
 	}
 		
-	
-	public Tile placeOneTile(){
-		
-		int randomType;
-		int rotTime;
-		Tile output;
-		
-		randomType = (int)Math.round(Math.random()*5);
-		rotTime = (int)Math.round(Math.random()*4);
-		
-		output = new Tile(randomType);
-		for(int k=1; k<=rotTime; k++){
-			output.rotate();
-		}
-		return output;
-	}
-	
 	
 	public boolean isTile(Tile tile){
 		int type = tile.type();
@@ -355,14 +190,31 @@ public class Board {
 	
 	public boolean isTokenPosition(int[] position){
 		for(int[] place:tokenPosition){
-			if(place==position){
+			if(place[0]==position[0] && place[1]==position[1]){
 				return true;
 			}
 		}
 		return false;
 	}
+	public Tile pickOneTile(){
+		
+		int randomType;
+		int rotTime;
+		Tile output;
+		
+		randomType = (int)Math.round(Math.random()*5);
+		rotTime = (int)Math.round(Math.random()*4);
+		
+		output = new Tile(randomType);
+		for(int k=1; k<=rotTime; k++){
+			output.rotate();
+		}
+		return output;
+	}
+
 	public void initialize(){
 		//Run this code before starting.
+		
 		int count1 = 0;
 		int count2 = 0;
 		int count3 = 0;
@@ -370,12 +222,47 @@ public class Board {
 		int count5 = 0;
 		Tile candidate;
 		
+		//placing the 16 fixed tiles
+		int[] pos1 = {0,0};
+		set_Tile(pos1, 2, 1);
+		int[] pos2 = {0,2};
+		set_Tile(pos2, 4, 2);
+		int[] pos3 = {0,4};
+		set_Tile(pos3, 4, 2);
+		int[] pos4 = {0,6};
+		set_Tile(pos4, 2, 2);
+		int[] pos5 = {2,0};
+		set_Tile(pos5, 4, 1);
+		int[] pos6 = {2,2};
+		set_Tile(pos6, 4, 1);
+		int[] pos7 = {2,4};
+		set_Tile(pos7, 4, 2);
+		int[] pos8 = {2,6};
+		set_Tile(pos8, 4, 3);
+		int[] pos9 = {4,0};
+		set_Tile(pos9, 4, 1);
+		int[] pos10 = {4,2};
+		set_Tile(pos10, 4, 0);
+		int[] pos11 = {4,4};
+		set_Tile(pos11, 4, 3);
+		int[] pos12 = {4,6};
+		set_Tile(pos12, 4, 3);
+		int[] pos13 = {6,0};
+		set_Tile(pos13, 2, 0);
+		int[] pos14 = {6,2};
+		set_Tile(pos14, 4, 0);
+		int[] pos15 = {6,4};
+		set_Tile(pos15, 4, 0);
+		int[] pos16 = {6,6};
+		set_Tile(pos16, 2, 3);
+		
+		//placing the 33 flexible tiles
 		for(int i=0; i<=6; i++){
 			for(int j=0; j<=6;j++){
 
 				while(state[i][j]==null){
 
-					candidate = placeOneTile();
+					candidate = pickOneTile();
 
 					switch(candidate.type()){
 					case 1:
@@ -417,6 +304,8 @@ public class Board {
 
 		}
 		
+		
+		//find the extra tile
 		if(count1 < n1){
 			extra = new Tile(1);
 		}
@@ -433,7 +322,7 @@ public class Board {
 			extra = new Tile(5);
 		}
 	
-		
+		//ArrayList shown contains a sequence of random 1~21 integers
 		ArrayList<Integer> shown = new ArrayList<Integer>();
 		while(shown.size()<21){
 			Random random = new Random();
@@ -443,34 +332,12 @@ public class Board {
 			}
 		}
 		
-//		while(shown.size()<21){
-//			int index = (int)Math.round(Math.random()*21)-1; //0 ~ 20
-//			if(shown.contains(index) == false){
-//				shown.add(index);
-//			}
-//		}
-
-		token1 = tokenPosition.get(shown.get(0));
-		token2 = tokenPosition.get(shown.get(1));
-		token3 = tokenPosition.get(shown.get(2));
-		token4 = tokenPosition.get(shown.get(3));
-		token5 = tokenPosition.get(shown.get(4));
-		token6 = tokenPosition.get(shown.get(5));
-		token7 = tokenPosition.get(shown.get(6));
-		token8 = tokenPosition.get(shown.get(7));
-		token9 = tokenPosition.get(shown.get(8));
-		token10 = tokenPosition.get(shown.get(9));
-		token11 = tokenPosition.get(shown.get(10));
-		token12 = tokenPosition.get(shown.get(11));
-		token13 = tokenPosition.get(shown.get(12));
-		token14 = tokenPosition.get(shown.get(13));
-		token15 = tokenPosition.get(shown.get(14));
-		token16 = tokenPosition.get(shown.get(15));
-		token17 = tokenPosition.get(shown.get(16));
-		token18 = tokenPosition.get(shown.get(17));
-		token19 = tokenPosition.get(shown.get(18));
-		token20 = tokenPosition.get(shown.get(19));
-		token21 = tokenPosition.get(shown.get(20));
+		for(int i=0; i<shown.size(); i++){
+			Integer randomNum = shown.get(i);
+			int[] pos = tokenPosition.get(randomNum);
+			token.add(pos.clone());
+		}
+		
 		
 		
 	}
@@ -549,32 +416,13 @@ public class Board {
 				else{return false;}
 			}
 			else{return false;}
-			pushPlayer(tri,1);
-			pushPlayer(tri,2);
-			pushPlayer(tri,3);
-			pushPlayer(tri,4);
+			for(int i=1; i<=4; i++){
+				pushPlayer(tri,i);
+			}
 			
-			pushToken(tri,1);
-			pushToken(tri,2);
-			pushToken(tri,3);
-			pushToken(tri,4);
-			pushToken(tri,5);
-			pushToken(tri,6);
-			pushToken(tri,7);
-			pushToken(tri,8);
-			pushToken(tri,9);
-			pushToken(tri,10);
-			pushToken(tri,11);
-			pushToken(tri,12);
-			pushToken(tri,13);
-			pushToken(tri,14);
-			pushToken(tri,15);
-			pushToken(tri,16);
-			pushToken(tri,17);
-			pushToken(tri,18);
-			pushToken(tri,19);
-			pushToken(tri,20);
-			pushToken(tri,21);
+			for(int i=1; i<=21; i++){
+				pushToken(tri,i);
+			}
 			
 			return true;
 
@@ -583,7 +431,6 @@ public class Board {
 	public boolean pushPlayer(int[] tri, int playerNO){
 		int[] pos = get_pawnPosition(playerNO);
 		
-		//if(triangle.contains(tri)){
 			if(tri[0] == 0){
 				if(tri[1] == 1 || tri[1] == 3 || tri[1] == 5){
 					if(pos[1] == tri[1]){
@@ -818,7 +665,7 @@ public class Board {
 		
 	}
 	
-	public boolean containsArray(ArrayList<int[]> al, int[] arr){
+	private boolean containsArray(ArrayList<int[]> al, int[] arr){
 		for(int i=0; i<al.size(); i++){
 			if(al.get(i)[0] == arr[0] && al.get(i)[1] == arr[1]){
 				return true;

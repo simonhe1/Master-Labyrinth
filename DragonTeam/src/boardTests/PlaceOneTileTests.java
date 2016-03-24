@@ -10,7 +10,7 @@ import code.Tile;
 public class PlaceOneTileTests {
 	@Test public void test01(){
 		Board board = new Board();
-		Tile tile = board.placeOneTile();
+		Tile tile = board.pickOneTile();
 		boolean expected = true;
 		boolean actual = board.isTile(tile);
 		assertTrue("Expected: "+expected+" Actual: "+actual,expected==actual);

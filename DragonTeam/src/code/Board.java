@@ -35,27 +35,27 @@ public class Board {
 	
 	private ArrayList<int[]> tokenPosition = new ArrayList<int[]>();
 		
-	int[] tokenPos1={1,1};
-	int[] tokenPos2={1,2};
-	int[] tokenPos3={1,3};
-	int[] tokenPos4={1,4};
-	int[] tokenPos5={1,5};
-	int[] tokenPos6={2,1};
-	int[] tokenPos7={2,3};
-	int[] tokenPos8={2,5};
-	int[] tokenPos9={3,1};
-	int[] tokenPos10={3,2};
-	int[] tokenPos11={3,3};
-	int[] tokenPos12={3,4};
-	int[] tokenPos13={3,5};
-	int[] tokenPos14={4,1};
-	int[] tokenPos15={4,3};
-	int[] tokenPos16={4,5};
-	int[] tokenPos17={5,1};
-	int[] tokenPos18={5,2};
-	int[] tokenPos19={5,3};
-	int[] tokenPos20={5,4};
-	int[] tokenPos21={5,5};
+	private int[] tokenPos1={1,1};
+	private int[] tokenPos2={1,2};
+	private int[] tokenPos3={1,3};
+	private int[] tokenPos4={1,4};
+	private int[] tokenPos5={1,5};
+	private int[] tokenPos6={2,1};
+	private int[] tokenPos7={2,3};
+	private int[] tokenPos8={2,5};
+	private int[] tokenPos9={3,1};
+	private int[] tokenPos10={3,2};
+	private int[] tokenPos11={3,3};
+	private int[] tokenPos12={3,4};
+	private int[] tokenPos13={3,5};
+	private int[] tokenPos14={4,1};
+	private int[] tokenPos15={4,3};
+	private int[] tokenPos16={4,5};
+	private int[] tokenPos17={5,1};
+	private int[] tokenPos18={5,2};
+	private int[] tokenPos19={5,3};
+	private int[] tokenPos20={5,4};
+	private int[] tokenPos21={5,5};
 	
 	private ArrayList<int[]> token = new ArrayList<int[]>();
 
@@ -118,7 +118,7 @@ public class Board {
 
 	}
 	
-
+	//Returns the position of the player
 	public int[] get_pawnPosition(int playerNO){
 		
 			switch(playerNO){
@@ -136,6 +136,8 @@ public class Board {
 			return error;
 	}
 	
+	//Sets new designated position of player
+	//Used in mainly the move and insert method
 	public boolean set_pawnPosition(int playerNO, int[] pos){
 		switch(playerNO){
 		case 1:
@@ -154,6 +156,7 @@ public class Board {
 		return false;
 	}
 	
+	//Ranges from 1-21 and gets the position of the token number 
 	public int[] get_tokenPosition(int tokenNO){
 		if(tokenNO>=1 && tokenNO <=21){
 			return token.get(tokenNO-1);
@@ -164,6 +167,8 @@ public class Board {
 		
 	}
 	
+	//Sets the position of a token
+	//This method is mainly used in the insert method
 	public boolean set_tokenPosition(int tokenNO,int[] pos){
 		if(tokenNO>=1 && tokenNO <=21){
 			 token.set(tokenNO-1,pos);
@@ -172,22 +177,25 @@ public class Board {
 		
 	}
 		
-	
+	//This method was create solely for testing to check whether the input is a tile
 	public boolean isTile(Tile tile){
 		int type = tile.type();
 		boolean[] open = tile.open();
 		return type>=1&&type<=5&&open.length==4;
 	}
 	
-	
+	//This was created mainly for testing in order to access the board 
 	public Tile[][] get_StateOfBoard(){
 		return state;
 	}
 	
+	//This was created mainly for testing in order to access the extra tile
 	public Tile get_ExtraTile(){
 		return extra;
 	}
 	
+	//This was used for testing in order to check whether initially the tokens were placed
+	//Correctly in the 5 x 5 positions (Not including the players)
 	public boolean isTokenPosition(int[] position){
 		for(int[] place:tokenPosition){
 			if(place[0]==position[0] && place[1]==position[1]){
@@ -196,7 +204,9 @@ public class Board {
 		}
 		return false;
 	}
-	public Tile pickOneTile(){
+	
+	//Gets a random tile with random type and random amount of rotations
+	public Tile getRandomTile(){
 		
 		int randomType;
 		int rotTime;
@@ -211,7 +221,7 @@ public class Board {
 		}
 		return output;
 	}
-
+	
 	public void initialize(){
 		//Run this code before starting.
 		
@@ -262,7 +272,7 @@ public class Board {
 
 				while(state[i][j]==null){
 
-					candidate = pickOneTile();
+					candidate = getRandomTile();
 
 					switch(candidate.type()){
 					case 1:
@@ -428,6 +438,7 @@ public class Board {
 
 	}
 	
+	//Used when the insert method is called, moves player along with column or row
 	public boolean pushPlayer(int[] tri, int playerNO){
 		int[] pos = get_pawnPosition(playerNO);
 		
@@ -489,6 +500,7 @@ public class Board {
 
 	}
 	
+	//Used when the insert method is called, moves token along with column or row
 	public boolean pushToken(int[] tri, int tokenNO){
 		int[] pos = get_tokenPosition(tokenNO);
 		
@@ -551,6 +563,7 @@ public class Board {
 
 	}
 	
+	//Used to set the tile to a specific position on the board
 	public void set_Tile(int [] position, int type, int rotation){
 		int row = position[0];
 		int col = position[1];
@@ -560,24 +573,10 @@ public class Board {
 		}
 		state[row][col] = tile;
 	}
-	
-	
-	
-	
-	//The idea behind "move" is we first check all possible (legal) positions for a player, make a set to store those positions' (x,y)
-	//Then we see if the destination that player request is in the set. 
-	//If yes, move the pawn to that position. If no, throw exception.
-	
-		//input x,y refers to the position that a player's pawn is standing.
-		//this method returns an array containing x and y (x,y) which are the "legal" positions next to the pawn's current position.
 		
-		//check all the corresponding opens. If both open, then add that neighbor into output list.
-		//This method only check the four neighbors of a tile. Later on, we'll use an iterator to check all possible moves.
-	
-	
-	
-	//This method returns a set of all legal moves.
-	//It uses the previous method and a loop.
+	//check all the corresponding opens. If both open, then add that neighbor into output list.
+	//This method only check the four neighbors of a tile. 
+	//Later on, we'll use an iterator to check all possible moves.
 	public ArrayList<int[]> checkNeighbor(int[] pos){
 
 		ArrayList<int[]> output = new ArrayList<int[]>();
@@ -648,7 +647,10 @@ public class Board {
 
 	}
 	
-	
+	//input pos refers to the position that a player's pawn is standing.
+	//this method adds the possible positions to an ArrayList which contains all possible positions
+	//in which the player can move to
+	//It iterates checkNeighbor to explore all connected tiles
 	public ArrayList<int[]> legalMoves(int[] pos){
 		ArrayList<int[]> output = (checkNeighbor(pos));
 		ArrayList<int[]> neighbor;
@@ -665,7 +667,8 @@ public class Board {
 		
 	}
 	
-	private boolean containsArray(ArrayList<int[]> al, int[] arr){
+	//checks whether the int[] arr is inside the ArrayList al by "comparing" values
+	public boolean containsArray(ArrayList<int[]> al, int[] arr){
 		for(int i=0; i<al.size(); i++){
 			if(al.get(i)[0] == arr[0] && al.get(i)[1] == arr[1]){
 				return true;
@@ -674,6 +677,9 @@ public class Board {
 		return false;
 	}
 
+	//The idea behind "move" is we first check all possible (legal) positions for a player, make a set to store those positions' (x,y)
+	//Then we see if the destination that player request is in the set. 
+	//If yes, it returns true and moves the pawn to that position. If no, it returns false.
 	public boolean move(int playerNO, int[] request){
 
 		if(playerNO>= 1 && playerNO<=4){
@@ -723,7 +729,9 @@ public class Board {
 		}
 
 	}
-
+	
+	//adds the current eatable token to the player
+	//increments the current eat token
 	public void eat(int playerNO){
 		if(playerNO>=1 && playerNO<=4){
 				switch(playerNO){
@@ -748,6 +756,7 @@ public class Board {
 		
 	}
 	
+	//shows the score of the player
 	public ArrayList<Integer> showScore(int playerNO){
 		if(playerNO>=1 && playerNO<=4){
 			switch(playerNO){
@@ -765,6 +774,7 @@ public class Board {
 		return null;
 	}
 	
+	//gives the player an opportunity to go again
 	public Integer useMagicWand(int playerNO){
 		if(playerNO>=1 && playerNO<=4){
 		switch(playerNO){
@@ -811,6 +821,7 @@ public class Board {
 		return -1;
 	}
 	
+	//gets the amount of wands the player has left
 	public Integer getMagicWands(int playerNO){
 		if(playerNO>=1 && playerNO<=4){
 			switch(playerNO){

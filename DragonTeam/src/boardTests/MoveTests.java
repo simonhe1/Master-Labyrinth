@@ -52,12 +52,12 @@ public class MoveTests {
 		int [] tile1 = {1,1};
 		int [] tile2 = {2,1};
 		int [] tile3 = {3,1};
-		int [] tile4 = {2,3};
+		int [] tile4 = {2,2};
 		
-		b.set_Tile(tile1, 3,0);
+		b.set_Tile(tile1, 1,2);
 		b.set_Tile(tile2, 2,0);
 		b.set_Tile(tile3, 5,0);
-		b.set_Tile(tile4, 4, 1);
+		b.set_Tile(tile4, 4,1);
 		
 		
 		int[] pawn = {1,1};

@@ -10,10 +10,14 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import code.Board;
+import code.InsertTileHandler;
+import code.RotateExtraTileHandler;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class MultiLayers extends JFrame {
 	protected Board _board;
@@ -43,6 +47,7 @@ public class MultiLayers extends JFrame {
    */
   public void initualize(){
 	  
+	  lp.removeAll();
 	  //score table
 	  for(int i=0; i<p.length; i++){
 		  ScoreTable st = new ScoreTable(p[i], i, ButtonSize, FontSize);
@@ -50,21 +55,31 @@ public class MultiLayers extends JFrame {
 	  }
 	
 	  //create board
+	  
 	  for(int i=0;i<=6;i++){
 		  for(int j=0;j<=6;j++){
 			  GameBoard gb = new GameBoard(_board, ButtonSize,i, j);
+			  int[] pos = {i,j};
+			  InsertTileHandler ith = new InsertTileHandler(_board, pos.clone(),0);
+			  Update update = new Update();
+			  gb.getButton().addMouseListener(ith);
+			  gb.getButton().addMouseListener(update);
 			  lp.add(gb.getButton(), new Integer(0));
 		  }
 	  }
 		  
 	  //create extra
 	  Extra ex = new Extra( _board, ButtonSize);
+	  Update update = new Update();
+	  RotateExtraTileHandler reth = new RotateExtraTileHandler(_board.get_ExtraTile());
+	  ex.getButton().addMouseListener(reth);
+	  ex.getButton().addMouseListener(update);
 	  lp.add(ex.getButton(), new Integer(0));
 
 	  //creating pawns
 
 	  for(int i=0; i<p.length; i++){
-		  PawnLayer pl = new PawnLayer(i+1, FontSize, ButtonSize);
+		  PawnLayer pl = new PawnLayer(i+1, _board, FontSize, ButtonSize);
 		  lp.add(pl.getLabel(), new Integer(2));
 	  }
 
@@ -75,9 +90,49 @@ public class MultiLayers extends JFrame {
 	  }
   }
   
+  public class Update implements MouseListener{
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+		initualize();
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	  
+  }
+  
   public static void main(String[] args) {
 	String[] input = {"sa","dw","dwaw"};
     MultiLayers sl = new MultiLayers(input);
     sl.setVisible(true);
   }
+
+
+	
 }
+
+

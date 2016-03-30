@@ -17,12 +17,17 @@ public class InsertTileHandler implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(_board.insert(_triangle, _rotTime)==false){
+		boolean result = _board.insert(_triangle, _rotTime);
+		if(result){
+			
+			//switch to move stage
+		}
+		else{
 			System.out.println("Whoa there bub, you can't put that tile there.");
 		}
-		else if(_board.insert(_triangle, _rotTime)==true){
-			_board.insert(_triangle, _rotTime);
-		}
+//		else if(_board.insert(_triangle, _rotTime)==true){
+//			_board.insert(_triangle, _rotTime);
+//		}
 	}
 
 	@Override

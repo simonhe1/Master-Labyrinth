@@ -10,7 +10,7 @@ public class TurnTable {
 		whosturn = new JLabel();
 		whosturn.setText("Now it's "+ p[_play.CurrentPlayer()-1] + "'s turn   at " +_play.getState()+" stage.");
 		whosturn.setFont(new Font(whosturn.getName(), Font.BOLD, 2*FontSize));
-		whosturn.setBounds(3*ButtonSize, 0*ButtonSize, 10*ButtonSize, ButtonSize);
+		whosturn.setBounds(2*ButtonSize, 0*ButtonSize, 10*ButtonSize, ButtonSize);
 	}
 	
 	public JLabel getLabel(){

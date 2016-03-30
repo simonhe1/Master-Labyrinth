@@ -26,7 +26,7 @@ public class MultiLayers extends JFrame {
 	protected int FontSize = 30;
 	protected int windowSize = 2000; 
 	protected String[] p;
-	protected Play play = new Play();
+	protected Play play;
 
 	JLayeredPane lp = getLayeredPane();
 	
@@ -36,6 +36,7 @@ public class MultiLayers extends JFrame {
     super("LayeredPane Demonstration");
     _board = new Board();
     p = players;
+    play = new Play(p);
     setSize((int) windowSize, windowSize);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -50,6 +51,7 @@ public class MultiLayers extends JFrame {
   public void initualize(){
 	  
 	  lp.removeAll();
+	  
 	  //score table
 	  for(int i=0; i<p.length; i++){
 		  ScoreTable st = new ScoreTable(p[i], i, ButtonSize, FontSize);
@@ -65,9 +67,7 @@ public class MultiLayers extends JFrame {
 		  for(int j=0;j<=6;j++){
 			  GameBoard gb = new GameBoard(_board, ButtonSize,i, j);
 			  int[] pos = {i,j};
-			  //InsertTileHandler ith = new InsertTileHandler(_board, pos.clone(), 0, play, this);
 			  MovePawnHandler mph = new MovePawnHandler(_board, pos.clone(), play, this);
-			  //gb.getButton().addMouseListener(ith);
 			  gb.getButton().addMouseListener(mph);
 			  lp.add(gb.getButton(), new Integer(0));
 		  }
@@ -77,7 +77,6 @@ public class MultiLayers extends JFrame {
 	  for(int i=0; i<12; i++){
 		  lp.add(tri.getTri()[i]);
 	  }
-	  
 		  
 	  //create extra
 	  Extra ex = new Extra( _board, ButtonSize);

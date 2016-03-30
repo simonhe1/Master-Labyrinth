@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import code.Board;
 import code.InsertTileHandler;
+import code.MovePawnHandler;
 import code.RotateExtraTileHandler;
 
 import java.awt.FlowLayout;
@@ -23,8 +24,9 @@ public class MultiLayers extends JFrame {
 	protected Board _board;
 	protected int ButtonSize = 150;
 	protected int FontSize = 30;
-	protected int windowSize = 1500; 
+	protected int windowSize = 2000; 
 	protected String[] p;
+	protected Play play = new Play();
 
 	JLayeredPane lp = getLayeredPane();
 	
@@ -34,7 +36,7 @@ public class MultiLayers extends JFrame {
     super("LayeredPane Demonstration");
     _board = new Board();
     p = players;
-    setSize((int) (windowSize*(1.2)), windowSize);
+    setSize((int) windowSize, windowSize);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     initualize();
@@ -53,27 +55,34 @@ public class MultiLayers extends JFrame {
 		  ScoreTable st = new ScoreTable(p[i], i, ButtonSize, FontSize);
 		  lp.add(st.getLabel(), new Integer(0));
 	  }
+	  
+	  //turnTable
+	  TurnTable tt = new TurnTable(p, ButtonSize, FontSize, play);
+	  lp.add(tt.getLabel(), new Integer(0));
 	
 	  //create board
-	  
 	  for(int i=0;i<=6;i++){
 		  for(int j=0;j<=6;j++){
 			  GameBoard gb = new GameBoard(_board, ButtonSize,i, j);
 			  int[] pos = {i,j};
-			  InsertTileHandler ith = new InsertTileHandler(_board, pos.clone(),0);
-			  Update update = new Update();
-			  gb.getButton().addMouseListener(ith);
-			  gb.getButton().addMouseListener(update);
+			  //InsertTileHandler ith = new InsertTileHandler(_board, pos.clone(), 0, play, this);
+			  MovePawnHandler mph = new MovePawnHandler(_board, pos.clone(), play, this);
+			  //gb.getButton().addMouseListener(ith);
+			  gb.getButton().addMouseListener(mph);
 			  lp.add(gb.getButton(), new Integer(0));
 		  }
 	  }
+	  //create triangles
+	  Triangle tri = new Triangle(_board, ButtonSize, play, this);
+	  for(int i=0; i<12; i++){
+		  lp.add(tri.getTri()[i]);
+	  }
+	  
 		  
 	  //create extra
 	  Extra ex = new Extra( _board, ButtonSize);
-	  Update update = new Update();
-	  RotateExtraTileHandler reth = new RotateExtraTileHandler(_board.get_ExtraTile());
+	  RotateExtraTileHandler reth = new RotateExtraTileHandler(_board.get_ExtraTile(), this);
 	  ex.getButton().addMouseListener(reth);
-	  ex.getButton().addMouseListener(update);
 	  lp.add(ex.getButton(), new Integer(0));
 
 	  //creating pawns
@@ -90,46 +99,13 @@ public class MultiLayers extends JFrame {
 	  }
   }
   
-  public class Update implements MouseListener{
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		
-		initualize();
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	  
-  }
   
-  public static void main(String[] args) {
-	String[] input = {"sa","dw","dwaw"};
-    MultiLayers sl = new MultiLayers(input);
-    sl.setVisible(true);
-  }
+//  public static void main(String[] args) {
+//	String[] input = {"David","Simon","Joe","Camerl"};
+//    MultiLayers sl = new MultiLayers(input);
+//    sl.setVisible(true);
+//  }
 
 
 	

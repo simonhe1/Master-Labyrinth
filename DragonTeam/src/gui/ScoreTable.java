@@ -13,7 +13,7 @@ public class ScoreTable {
 		    	score = 0;
 		    	name.setText(p+"     "+score);
 		    	name.setFont(new Font(name.getName(), Font.BOLD, FontSize));
-		    	name.setBounds(9*ButtonSize, playerNO*ButtonSize+4*ButtonSize, ButtonSize, ButtonSize);
+		    	name.setBounds(11*ButtonSize, playerNO*ButtonSize+3*ButtonSize, 2*ButtonSize, ButtonSize);
 		    
 	}
 	

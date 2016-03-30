@@ -317,10 +317,10 @@ public class Board {
 		
 		//find the extra tile
 		if(count1 < n1){
-			extra = new Tile(1);
+			extra = new Tile(2);
 		}
 		else if(count2 < n2){
-			extra = new Tile(2);
+			extra = new Tile(1);
 		}
 		else if(count3 < n3){
 			extra = new Tile(3);

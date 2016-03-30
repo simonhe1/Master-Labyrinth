@@ -11,7 +11,7 @@ public class Extra {
 	public Extra(Board _board, int ButtonSize){
 		  extra = new JButton();
 		  extra.setText(Integer.toString(_board.get_ExtraTile().type()));
-		  extra.setBounds(9*ButtonSize, ButtonSize, ButtonSize, ButtonSize);
+		  extra.setBounds(11*ButtonSize, 1*ButtonSize, ButtonSize, ButtonSize);
 
 	}
 	

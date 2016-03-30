@@ -1,7 +1,9 @@
 package gui;
 
 import java.awt.FlowLayout;
+import javax.swing.JLayeredPane;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,6 +25,7 @@ public class GUI implements Runnable, Observer{
 	private JPanel _playerPanel = new JPanel();
 	private JPanel _boardPanel = new JPanel(); 
 	private JPanel _extraPanel = new JPanel();
+
 	private JButton _extra = new JButton();
 	private int _score1=-1,_score2=-1,_score3=-1,_score4=-1;
 	public GUI(String p1,String p2,String p3,String p4){
@@ -45,6 +48,7 @@ public class GUI implements Runnable, Observer{
 		_extra.setText(Integer.toString(_board.get_ExtraTile().type()));
 		_name1.setText(p1+"     "+(_score1+1));
 		_name2.setText(p2+"     "+(_score2+1));
+		
 	}
 	//public GUI(int n1,int n2,int n3,int n4,int n5){
 	//	_board = new Board(n1,n2,n3,n4,n5);
@@ -52,6 +56,7 @@ public class GUI implements Runnable, Observer{
 	
 	@Override
 	public void run() {
+		
 		_window = new JFrame("Master Labryinth Game");
 		_window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_window.getContentPane().setLayout(new FlowLayout());
@@ -70,6 +75,7 @@ public class GUI implements Runnable, Observer{
 				_boardPanel.add(temp);
 			}
 		}
+		
 		_window.add(_boardPanel);
 		_extraPanel.add(_extra);
 		_window.add(_extraPanel);

@@ -5,42 +5,22 @@ import java.awt.Font;
 
 import javax.swing.JLabel;
 
+import code.Board;
+
 public class PawnLayer {
 
 	JLabel pawn;
 
-	public PawnLayer(int playerNO, int FontSize, int ButtonSize){
-		switch(playerNO){
-		case 1:
+	public PawnLayer(int playerNO,Board _board, int FontSize, int ButtonSize){
+
+			int[] pos = _board.get_pawnPosition(playerNO);
+			Color[] colors= {Color.blue, Color.yellow, Color.red, Color.green};
 			pawn = new JLabel();
-			pawn.setText("P1");
+			pawn.setText("P"+playerNO);
 			pawn.setFont(new Font(pawn.getName(), Font.BOLD, FontSize));
-			pawn.setForeground(Color.blue);
-			pawn.setBounds((2+1)*ButtonSize+20, (2+1)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
-			break;
-		case 2:
-			pawn = new JLabel();
-			pawn.setText("P2");
-			pawn.setFont(new Font(pawn.getName(), Font.BOLD, FontSize));
-			pawn.setForeground(Color.yellow);
-			pawn.setBounds((2+1)*ButtonSize+20, (4+1)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
-			break;
-		case 3:
-			pawn = new JLabel();
-			pawn.setText("P3");
-			pawn.setFont(new Font(pawn.getName(), Font.BOLD, FontSize));
-			pawn.setForeground(Color.red);
-			pawn.setBounds((4+1)*ButtonSize+20, (2+1)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
-			break;
-		case 4:
-			pawn = new JLabel();
-			pawn.setText("P4");
-			pawn.setFont(new Font(pawn.getName(), Font.BOLD, FontSize));
-			pawn.setForeground(Color.green);
-			pawn.setBounds((4+1)*ButtonSize+20, (4+1)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
-			break;
-		}
-		
+			pawn.setForeground(colors[playerNO-1]);
+			pawn.setBounds((pos[1]+2)*ButtonSize+20, (pos[0]+2)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
+
 	}
 	
 	public JLabel getLabel(){

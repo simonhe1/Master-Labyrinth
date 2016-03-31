@@ -14,6 +14,7 @@ public class GameBoard {
 	public GameBoard(Board _board, int ButtonSize, int i, int j){
 
 		boardTile = new JButton(Integer.toString(_board.get_StateOfBoard()[i][j].type()));
+		boardTile.setIcon(_tile1rotate0);
 		boardTile.setBounds((j+2)*ButtonSize, (i+2)*ButtonSize, ButtonSize, ButtonSize);
 
 	}

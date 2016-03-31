@@ -11,7 +11,6 @@ public class Triangle {
 	private JButton[] tri;
 	public Triangle(Board _board, int ButtonSize, Play _play, MultiLayers m){
 		tri = new JButton[12];
-		
 		int[] pos1 = {0,1};
 		int[] pos2 = {0,3};
 		int[] pos3 = {0,5};

@@ -1,10 +1,13 @@
 package gui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import code.Board;
 
 public class GameBoard {
+	
+	ImageIcon _tile1rotate0 = new ImageIcon("C:\\Users\\Joe\\Desktop\\Tiles\\Tile1\\Tile1Rotate0.png");
 
 	JButton boardTile;
 

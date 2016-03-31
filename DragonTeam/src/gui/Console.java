@@ -15,7 +15,7 @@ public class Console {
 		console = new JLabel();
 		console.setText(message);
 		console.setFont(new Font(console.getName(), Font.BOLD, 2*FontSize));
-		console.setBounds(2*ButtonSize, 5*ButtonSize, 10*ButtonSize, ButtonSize);
+		console.setBounds(2*ButtonSize, 10*ButtonSize, 10*ButtonSize, ButtonSize);
 	}
 	
 	public JLabel getLabel(){

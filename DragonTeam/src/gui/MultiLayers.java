@@ -88,6 +88,10 @@ public class MultiLayers extends JFrame {
 	  RotateExtraTileHandler reth = new RotateExtraTileHandler(_board.get_ExtraTile(), this);
 	  ex.getButton().addMouseListener(reth);
 	  lp.add(ex.getButton(), new Integer(0));
+	  
+	  //create skip button
+	  SkipButton sb = new SkipButton(ButtonSize, FontSize, play, this);
+	  lp.add(sb.getButton(), 0);
 
 	  //creating pawns
 

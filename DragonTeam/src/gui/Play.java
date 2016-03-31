@@ -19,9 +19,7 @@ public class Play{
 				state = 2;
 				break;
 			case 2:
-				state = 3;
-				break;
-			case 3:
+
 				switch(player){
 				case 1:
 					player = 2;
@@ -49,9 +47,7 @@ public class Play{
 				state = 2;
 				break;
 			case 2:
-				state = 3;
-				break;
-			case 3:
+
 				switch(player){
 				case 1:
 					player = 2;
@@ -75,9 +71,7 @@ public class Play{
 				state = 2;
 				break;
 			case 2:
-				state = 3;
-				break;
-			case 3:
+
 				switch(player){
 				case 1:
 					player = 2;

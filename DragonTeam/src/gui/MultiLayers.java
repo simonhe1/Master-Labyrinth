@@ -24,14 +24,14 @@ import java.awt.event.MouseListener;
 
 public class MultiLayers extends JFrame {
 	protected Board _board;
-	protected int ButtonSize = 100;
+	protected int size =1;
+	protected int ButtonSize = 60;
 	protected int FontSize = 14;
 	protected int windowSizeX = 900;
 	protected int windowSizeY = 750;
 	protected String[] p;
 	protected Play play;
-
-	JLayeredPane lp = getLayeredPane();
+	JLayeredPane lp;
 	
 	//constructor
   public MultiLayers(String[] players) {
@@ -53,6 +53,7 @@ public class MultiLayers extends JFrame {
    */
   public void initualize(){
 	  
+	  lp = getLayeredPane();
 	  lp.removeAll();
 	  
 	  //score table
@@ -91,7 +92,7 @@ public class MultiLayers extends JFrame {
 	  lp.add(ex.getButton(), new Integer(0));
 	  
 	//create size Button
-	  SizeButton sizeb = new SizeButton(ButtonSize, FontSize, this);
+	  SizeButton sizeb = new SizeButton(ButtonSize, FontSize, size, this);
 	  lp.add(sizeb.getButton(), 0);
 	  
 	  //create skip button
@@ -124,29 +125,33 @@ public class MultiLayers extends JFrame {
 
   }
   
-  public int setSize(int size){
-	  if(size == 1){
+  public void setSize(int s){
+	  if(s == 1){
 		  ButtonSize = 60;
 		  FontSize = 14;
 		  windowSizeX = 900;
 		  windowSizeY = 750;
-		  return 1;
+		  size = 1;
+		  
+		  initualize();
 	  }
 	  
-	  else if(size == 2){
+	  else if(s == 2){
 		  ButtonSize = 100;
 		  FontSize = 20;
 		  windowSizeX = 2000;
 		  windowSizeY = 1500;
-		  return 2;
+		  size = 2;
+		  
+		  initualize();
 	  }
-//	  else if(size == 3){
-//		  ButtonSize = 100;
-//		  FontSize = 20;
-//		  windowSizeX = 2000;
-//		  windowSizeY = 1500;
-//	  }
+	  
 
+
+  }
+  
+  public int gameSize(){
+	  return size;
   }
   
 }

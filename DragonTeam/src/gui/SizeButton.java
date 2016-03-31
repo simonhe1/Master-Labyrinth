@@ -9,11 +9,11 @@ import code.SizeListener;
 public class SizeButton {
 
 	JButton sizeButton = new JButton();
-	public SizeButton(int ButtonSize, int FontSize, MultiLayers m){
+	public SizeButton(int ButtonSize, int FontSize, int size,MultiLayers m){
 		sizeButton.setText("sizeButton");
 		sizeButton.setFont(new Font(sizeButton.getName(), Font.BOLD, FontSize));
 		sizeButton.setBounds(13*ButtonSize, 1*ButtonSize, ButtonSize, ButtonSize);
-		SizeListener sl = new SizeListener(m);
+		SizeListener sl = new SizeListener(m, size);
 		sizeButton.addActionListener(sl);
 	}
 	

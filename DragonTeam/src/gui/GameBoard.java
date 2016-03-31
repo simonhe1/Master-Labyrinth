@@ -7,7 +7,7 @@ import code.Board;
 
 public class GameBoard {
 	
-	ImageIcon _tile1rotate0 = new ImageIcon("C:\\Users\\Joe\\Desktop\\Tiles\\Tile1\\Tile1Rotate0.png");
+	ImageIcon _tile1rotate0 = new ImageIcon(getClass().getResource("/Images/Tile1/Tile1Rotate0.png"));
 
 	JButton boardTile;
 

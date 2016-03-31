@@ -634,12 +634,11 @@ public class Board {
 		}
 		
 		//removing the current pos of player
-//		for(int[] coordinate: output){
-//			if(coordinate[0]==pos[0] && coordinate[1]==pos[1]){
-//				output.remove(coordinate);
-//			}
-//		}
-		
+				for(int i=0; i<output.size(); i++){
+					if(output.get(i)[0]==pos[0] && output.get(i)[1]==pos[1]){
+						output.remove(i);
+					}
+				}
 		
 		return output;
 		

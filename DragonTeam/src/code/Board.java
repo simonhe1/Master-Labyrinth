@@ -662,6 +662,15 @@ public class Board {
 				}
 			}
 		}
+		
+		//removing the current pos of player
+//		for(int[] coordinate: output){
+//			if(coordinate[0]==pos[0] && coordinate[1]==pos[1]){
+//				output.remove(coordinate);
+//			}
+//		}
+		
+		
 		return output;
 		
 		

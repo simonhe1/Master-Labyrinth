@@ -8,11 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import code.Board;
 import code.InsertTileHandler;
 import code.MovePawnHandler;
 import code.RotateExtraTileHandler;
+import gui.Console.DeleteConsole;
 
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -60,15 +62,18 @@ public class MultiLayers extends JFrame {
 	  
 	  //turnTable
 	  TurnTable tt = new TurnTable(p, ButtonSize, FontSize, play);
-	  lp.add(tt.getLabel(), new Integer(0));
+	  lp.add(tt.getLabel(), 0);
 	
+	  //Console
+	  updateConsole("");
+	  
 	  //create board
 	  for(int i=0;i<=6;i++){
 		  for(int j=0;j<=6;j++){
 			  GameBoard gb = new GameBoard(_board, ButtonSize,i, j);
 			  int[] pos = {i,j};
 			  MovePawnHandler mph = new MovePawnHandler(_board, pos.clone(), play, this);
-			  gb.getButton().addMouseListener(mph);
+			  gb.getButton().addActionListener(mph);
 			  lp.add(gb.getButton(), new Integer(0));
 		  }
 	  }
@@ -98,16 +103,18 @@ public class MultiLayers extends JFrame {
 	  }
   }
   
+  public void updateConsole(String message){
+	  Console console = new Console(message, ButtonSize, FontSize);
+	  lp.add(console.getLabel(), new Integer(3));
 
+	  DeleteConsole dc = console.new DeleteConsole(this);
+	  Timer timer = new Timer(5000, dc);
+	  timer.setRepeats(false);
+	  timer.start();
+
+
+  }
   
-//  public static void main(String[] args) {
-//	String[] input = {"David","Simon","Joe","Camerl"};
-//    MultiLayers sl = new MultiLayers(input);
-//    sl.setVisible(true);
-//  }
-
-
-	
 }
 
 

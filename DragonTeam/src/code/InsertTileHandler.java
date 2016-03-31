@@ -1,18 +1,21 @@
 package code;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import gui.MultiLayers;
 import gui.Play;
 
-public class InsertTileHandler implements MouseListener {
+public class InsertTileHandler implements ActionListener {
 	
 	private Board _board;
 	private int[] _triangle;
 	private int _rotTime;
 	private Play play;
 	private MultiLayers ml;
+	private String message;
 
 	
 	public InsertTileHandler(Board board, int[] triangle, int rotTime, Play _play, MultiLayers m){
@@ -23,8 +26,9 @@ public class InsertTileHandler implements MouseListener {
 		ml=m;
 	}
 
+
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void actionPerformed(ActionEvent e) {
 		if(play.getState() == 1){
 			boolean result = _board.insert(_triangle, _rotTime);
 			if(result){
@@ -33,23 +37,12 @@ public class InsertTileHandler implements MouseListener {
 				//switch to move stage
 			}
 			else{
-				System.out.println("Whoa there bub, you can't put that tile there.");
+				message = "Whoa there bub, you can't put that tile there.";
+				ml.updateConsole(message);
 			}
 		}
 
+		
 	}
-
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseExited(MouseEvent e) {}
-
-	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
 
 }

@@ -1,18 +1,21 @@
 package code;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import code.Board;
 import gui.MultiLayers;
 import gui.Play;
 
-public class MovePawnHandler implements MouseListener {
+public class MovePawnHandler implements ActionListener {
 	
 	private Board _board;
 	private int _playerNO;
 	private int[] _request;
 	private Play play;
 	private MultiLayers ml;
+	private String message;
 	
 	public MovePawnHandler(Board board, int[] request, Play _play, MultiLayers m){
 		_board=board;
@@ -23,33 +26,21 @@ public class MovePawnHandler implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		if(play.getState() == 2){
 			boolean result = _board.move(_playerNO, _request);
 			if(result==false){
-				System.out.println("Whoops! You can't move there!");
+				message = "Whoops! You can't move there!";
+				ml.updateConsole(message);
 			}
 			else if(result==true){
 				play.NextTurn();
 				play.NextTurn();
 				ml.initualize();
-				//to eating
 			}
 		}
 		
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {}
 	
 
 }

@@ -19,7 +19,21 @@ public class PawnLayer {
 			pawn.setText("P"+playerNO);
 			pawn.setFont(new Font(pawn.getName(), Font.BOLD, FontSize));
 			pawn.setForeground(colors[playerNO-1]);
-			pawn.setBounds((pos[1]+2)*ButtonSize+20, (pos[0]+2)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
+			switch(playerNO){
+			case 1:
+				pawn.setBounds((pos[1]+2)*ButtonSize+20, (pos[0]+2)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
+				break;
+			case 2:
+				pawn.setBounds((pos[1]+2)*ButtonSize+80, (pos[0]+2)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
+				break;
+			case 3:
+				pawn.setBounds((pos[1]+2)*ButtonSize+20, (pos[0]+2)*ButtonSize+80, ButtonSize/2, ButtonSize/2);
+				break;
+			case 4:
+				pawn.setBounds((pos[1]+2)*ButtonSize+80, (pos[0]+2)*ButtonSize+80, ButtonSize/2, ButtonSize/2);
+				break;
+			}
+			
 
 	}
 	

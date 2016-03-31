@@ -34,7 +34,7 @@ public class Triangle {
 			tri[i].setBackground(Color.gray);
 			tri[i].setBounds((posArray[i][1]+2)*ButtonSize, (posArray[i][0]+1)*ButtonSize, ButtonSize, ButtonSize);
 			InsertTileHandler ith1 = new InsertTileHandler(_board, posArray[i].clone(), 0, _play, m);
-			tri[i].addMouseListener(ith1);
+			tri[i].addActionListener(ith1);
 		}
 		//putting right triangles
 		for(int i=3; i<6; i++){
@@ -43,7 +43,8 @@ public class Triangle {
 			tri[i].setBackground(Color.gray);
 			tri[i].setBounds((posArray[i][1]+3)*ButtonSize, (posArray[i][0]+2)*ButtonSize, ButtonSize, ButtonSize);
 			InsertTileHandler ith1 = new InsertTileHandler(_board, posArray[i].clone(), 0, _play, m);
-			tri[i].addMouseListener(ith1);
+			tri[i].addActionListener(ith1);
+			//System.out.println(i);
 		}
 		//putting down triangles
 		for(int i=6; i<9; i++){
@@ -52,7 +53,7 @@ public class Triangle {
 			tri[i].setBackground(Color.gray);
 			tri[i].setBounds((posArray[i][1]+2)*ButtonSize, (posArray[i][0]+3)*ButtonSize, ButtonSize, ButtonSize);
 			InsertTileHandler ith1 = new InsertTileHandler(_board, posArray[i].clone(), 0, _play, m);
-			tri[i].addMouseListener(ith1);
+			tri[i].addActionListener(ith1);
 		}
 		//putting left triangles
 		for(int i=9; i<12; i++){
@@ -61,7 +62,7 @@ public class Triangle {
 			tri[i].setBackground(Color.gray);
 			tri[i].setBounds((posArray[i][1]+1)*ButtonSize, (posArray[i][0]+2)*ButtonSize, ButtonSize, ButtonSize);
 			InsertTileHandler ith1 = new InsertTileHandler(_board, posArray[i].clone(), 0, _play, m);
-			tri[i].addMouseListener(ith1);
+			tri[i].addActionListener(ith1);
 		}
 	}
 	

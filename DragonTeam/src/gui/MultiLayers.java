@@ -24,9 +24,9 @@ import java.awt.event.MouseListener;
 
 public class MultiLayers extends JFrame {
 	protected Board _board;
-	protected int ButtonSize = 150;
-	protected int FontSize = 30;
-	protected int windowSize = 2000; 
+	protected int ButtonSize = 70;
+	protected int FontSize = 20;
+	protected int windowSize = 1000; 
 	protected String[] p;
 	protected Play play;
 

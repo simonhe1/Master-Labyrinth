@@ -7,7 +7,7 @@ public class Tile{
 	 											//open[0] = false  open[1] = false...
 	
 	public Tile(int k) {
-		if(k>=1 && k<=5){
+		if(k>=1 && k<=3){
 			type = k;
 		}
 		else{
@@ -18,16 +18,9 @@ public class Tile{
 		initial();
 	}
 	
-	//type 1~5 , correspond to the 5 kinds of tiles
-	//type one refers to the tile with an open on the top.
-	
-//		||||  ||||
-//		||      ||
-//		||      ||
-//		||      ||
-//		||||||||||
+	//type 1~3 , correspond to the 3 kinds of tiles
 
-	//type two refers to the tile with an open on the top and an open on the side.
+	//type one refers to the tile with an open on the top and an open on the side.
 	
 //		||||  ||||
 //		||      ||
@@ -35,7 +28,7 @@ public class Tile{
 //		||      ||
 //		||||||||||
 	
-	//type three refers to the tile with an open on the top and an open on the other side.
+	//type two refers to the tile with an open on the top and an open on the other side.
 	
 //		||||  ||||
 //		||      ||
@@ -43,23 +36,14 @@ public class Tile{
 //		||      ||
 //		||||  ||||
 	
-	//type four refers to the tile with an open on the top and two opens on the side.
+	//type three refers to the tile with an open on the top and two opens on the side.
 	
 //		||||  ||||
 //		||      ||
 //	      
 //		||      ||
 //		||||||||||
-	
-	//type five refers to the tile with opens on all sides.
-	//Not sure if there is type five in this game...
-	
-//		||||  ||||
-//		||      ||
-//	      
-//		||      ||
-//		||||  ||||	
-	
+
 	public int type(){
 		return type;
 	}
@@ -73,25 +57,17 @@ public class Tile{
 
 		switch (type){
 			case 1: 
-				boolean[] initialOpen1 = {true,false,false,false};
-				open = initialOpen1;
-				break;
-			case 2: 
 				boolean[] initialOpen2 = {true,true,false,false};
 				open = initialOpen2;
 				break;
-			case 3: 
+			case 2: 
 				boolean[] initialOpen3 = {true,false,true,false};
 				open = initialOpen3;
 				break;
-			case 4: 
+			case 3: 
 				boolean[] initialOpen4 = {true,true,false,true};
 				open = initialOpen4;
 				break;
-			case 5: 
-				boolean[] initialOpen5 = {true,true,true,true};
-				open = initialOpen5;
-				
 				}
 		
 		return curOpen();

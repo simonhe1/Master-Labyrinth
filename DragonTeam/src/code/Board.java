@@ -13,8 +13,6 @@ public class Board {
 	private int n1;
 	private int n2;
 	private int n3;
-	private int n4;
-	private int n5;
 	
 	private int[] pawn1 = {2,2};
 	private int[] pawn2 = {2,4};
@@ -86,32 +84,26 @@ public class Board {
 		tokenPosition.add(tokenPos21);
 	}
 	public Board(){
-		n1 = 6;
-		n2 = 6;
-		n3 = 6;
-		n4 = 6;
-		n5 = 9;
+		n1 = 11;
+		n2 = 11;
+		n3 = 11;
 		addTokenPosition();
 		initialize();
 	
 	}
 	//Constructor for tile type number specified 
-	//if sum != 33, use default 6,6,6,6,9
-	public Board(int t1, int t2, int t3, int t4, int t5){
+	//if sum != 33, use default 11,11,11
+	public Board(int t1, int t2, int t3){
 		
-		if(t1+t2+t3+t4+t5 == 33){
+		if(t1+t2+t3 == 33){
 			n1 = t1;
 			n2 = t2;
 			n3 = t3;
-			n4 = t4;
-			n5 = t5;
 		}
 		else{
-			n1 = 6;
-			n2 = 6;
-			n3 = 6;
-			n4 = 6;
-			n5 = 9;
+			n1 = 11;
+			n2 = 11;
+			n3 = 11;
 		}
 		addTokenPosition();
 		initialize();
@@ -212,7 +204,7 @@ public class Board {
 		int rotTime;
 		Tile output;
 		
-		randomType = (int)Math.round(Math.random()*5);
+		randomType = (int)Math.round(Math.random()*3);
 		rotTime = (int)Math.round(Math.random()*4);
 		
 		output = new Tile(randomType);
@@ -228,8 +220,6 @@ public class Board {
 		int count1 = 0;
 		int count2 = 0;
 		int count3 = 0;
-		int count4 = 0;
-		int count5 = 0;
 		Tile candidate;
 		
 		//placing the 16 fixed tiles
@@ -293,21 +283,7 @@ public class Board {
 							count3++;
 						}
 						break;
-					case 4:
-						if(count4<n4){
-							state[i][j] = candidate;
-							count4++;
-						}
-						break;
-					case 5:
-						if(count5<n5){
-							state[i][j] = candidate;
-							count5++;
-						}
-						break;
-
 					}
-
 				}
 
 			}
@@ -324,12 +300,6 @@ public class Board {
 		}
 		else if(count3 < n3){
 			extra = new Tile(3);
-		}
-		else if(count4 < n4){
-			extra = new Tile(4);
-		}
-		else if(count5 < n5){
-			extra = new Tile(5);
 		}
 	
 		//ArrayList shown contains a sequence of random 1~21 integers

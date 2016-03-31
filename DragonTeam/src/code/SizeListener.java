@@ -17,12 +17,14 @@ public class SizeListener implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		if(size == 1){
 			ml.setSize(2);
-		
 		}
 		else if(size == 2){
-			ml.setSize(1);
-			
+			ml.setSize(3);
 		}
+		else if(size == 3){
+			ml.setSize(1);
+		}
+		
 		
 	}
 }

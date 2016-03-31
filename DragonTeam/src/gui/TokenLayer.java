@@ -40,7 +40,8 @@ public class TokenLayer {
 		  token.setFont(new Font(token.getName(), Font.PLAIN, FontSize));
 		  token.setForeground(Color.gray);*/
 		  int[] pos =_board.get_tokenPosition(tokenNO);
-		  token.setBounds((pos[1]+2)*ButtonSize+35, (pos[0]+2)*ButtonSize+20, ButtonSize/2, ButtonSize/2);
+		  int position = (int)Math.round(ButtonSize*0.3);
+		  token.setBounds((pos[1]+2)*ButtonSize+position, (pos[0]+2)*ButtonSize+position, ButtonSize/2, ButtonSize/2);
 		  switch(tokenNO){
 		  case 1:
 			  token.setIcon(_token1);

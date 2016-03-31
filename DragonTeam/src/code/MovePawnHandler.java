@@ -35,7 +35,6 @@ public class MovePawnHandler implements ActionListener {
 			}
 			else if(result==true){
 				play.NextTurn();
-				play.NextTurn();
 				ml.initualize();
 			}
 		}

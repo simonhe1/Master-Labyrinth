@@ -52,7 +52,7 @@ public class MultiLayers extends JFrame {
    * it uses classes ScoreTable, GameBoard, Extra, PawnLayer, and TokenLayer.
    */
   public void initualize(){
-	  
+	  setSize((int) windowSizeX, windowSizeY);
 	  lp = getLayeredPane();
 	  lp.removeAll();
 	  
@@ -128,25 +128,30 @@ public class MultiLayers extends JFrame {
   public void setSize(int s){
 	  if(s == 1){
 		  ButtonSize = 60;
-		  FontSize = 14;
+		  FontSize = 8;
 		  windowSizeX = 900;
 		  windowSizeY = 750;
 		  size = 1;
-		  
 		  initualize();
 	  }
-	  
+
 	  else if(s == 2){
 		  ButtonSize = 100;
 		  FontSize = 20;
-		  windowSizeX = 2000;
-		  windowSizeY = 1500;
+		  windowSizeX = 1500;
+		  windowSizeY = 1200;
 		  size = 2;
-		  
+		  initualize();	
+	  }
+
+	  else if(s == 3){
+		  ButtonSize = 170;
+		  FontSize = 40;
+		  windowSizeX = 2500;
+		  windowSizeY = 2000;
+		  size = 3;
 		  initualize();
 	  }
-	  
-
 
   }
   

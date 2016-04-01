@@ -72,7 +72,7 @@ public class MultiLayers extends JFrame {
 	  //create board
 	  for(int i=0;i<=6;i++){
 		  for(int j=0;j<=6;j++){
-			  GameBoard gb = new GameBoard(_board, ButtonSize,i, j);
+			  GameBoard gb = new GameBoard(_board, size, ButtonSize,i, j);
 			  int[] pos = {i,j};
 			  MovePawnHandler mph = new MovePawnHandler(_board, pos.clone(), play, this);
 			  gb.getButton().addActionListener(mph);

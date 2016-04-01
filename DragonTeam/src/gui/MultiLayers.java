@@ -58,7 +58,7 @@ public class MultiLayers extends JFrame {
 	  
 	  //score table
 	  for(int i=0; i<p.length; i++){
-		  ScoreTable st = new ScoreTable(p[i], i, ButtonSize, FontSize);
+		  ScoreTable st = new ScoreTable(p[i], _board, i+1, ButtonSize, FontSize);
 		  lp.add(st.getLabel(), new Integer(0));
 	  }
 	  
@@ -108,7 +108,7 @@ public class MultiLayers extends JFrame {
 
 	  //create tokens
 	  for(int i=0; i<21; i++){
-		  TokenLayer tl = new TokenLayer(i+1, _board, FontSize, ButtonSize);
+		  TokenLayer tl = new TokenLayer(i+1, _board, ButtonSize);
 		  lp.add(tl.getLabel(), new Integer(1));
 	  }
   }

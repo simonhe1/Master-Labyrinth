@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -34,11 +32,9 @@ public class TokenLayer {
 
 
 	JLabel token;
-	public TokenLayer(int tokenNO, Board _board, int FontSize, int ButtonSize){
+	public TokenLayer(int tokenNO, Board _board, int ButtonSize){
 		token = new JLabel();
-		  /*token.setText("T"+tokenNO);
-		  token.setFont(new Font(token.getName(), Font.PLAIN, FontSize));
-		  token.setForeground(Color.gray);*/
+
 		  int[] pos =_board.get_tokenPosition(tokenNO);
 		  int position = (int)Math.round(ButtonSize*0.3);
 		  token.setBounds((pos[1]+2)*ButtonSize+position, (pos[0]+2)*ButtonSize+position, ButtonSize/2, ButtonSize/2);

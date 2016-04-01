@@ -685,18 +685,25 @@ public class Board {
 				switch(playerNO){
 				case 1:
 					pawn1 = request;
-					return true;
+					break;
 				case 2:
 					pawn2 = request;
-					return true;
+					break;
 				case 3:
 					pawn3 = request;
-					return true;
+					break;
 				case 4:
 					pawn4 = request;
-					return true;
+					break;
 				}
-				return false;
+				
+				//eat
+				if(request[0] == get_tokenPosition(curToken)[0] &&
+						request[1] == get_tokenPosition(curToken)[1]){
+					eat(playerNO);
+				}
+				
+				return true;
 			}
 			else{
 				return false;
@@ -712,6 +719,9 @@ public class Board {
 	//increments the current eat token
 	public void eat(int playerNO){
 		if(playerNO>=1 && playerNO<=4){
+			int[] a = {-100,-100};
+			token.set(curToken-1, a);
+			
 				switch(playerNO){
 			case 1:
 				score1.add(curToken);

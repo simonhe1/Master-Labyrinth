@@ -19,7 +19,7 @@ public class Tile{
 	}
 	
 	//type 1~4 , correspond to the 4 kinds of tiles
-	//Note that type 4(which has no open) is used in Board.isLinked() only.
+	//Note that type 4 (which has no open) is used in Board.isLinked() only.
 
 	//type one refers to the tile with an open on the top and an open on the side.
 	

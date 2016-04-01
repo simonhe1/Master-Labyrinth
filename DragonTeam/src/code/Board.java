@@ -110,6 +110,17 @@ public class Board {
 
 	}
 	
+	public Board clone(){
+		Board output = new Board();
+		
+		for(int i=0; i<7; i++){
+			for(int j=0; j<7; j++){
+				output.state[i][j] = (Tile) state[i][j].clone();
+			}
+		}
+		return output;
+	}
+	
 	//Returns the position of the player
 	public int[] get_pawnPosition(int playerNO){
 		
@@ -224,37 +235,37 @@ public class Board {
 		
 		//placing the 16 fixed tiles
 		int[] pos1 = {0,0};
-		set_Tile(pos1, 2, 1);
+		set_Tile(pos1, 1, 1);
 		int[] pos2 = {0,2};
-		set_Tile(pos2, 4, 2);
+		set_Tile(pos2, 3, 2);
 		int[] pos3 = {0,4};
-		set_Tile(pos3, 4, 2);
+		set_Tile(pos3, 3, 2);
 		int[] pos4 = {0,6};
-		set_Tile(pos4, 2, 2);
+		set_Tile(pos4, 1, 2);
 		int[] pos5 = {2,0};
-		set_Tile(pos5, 4, 1);
+		set_Tile(pos5, 3, 1);
 		int[] pos6 = {2,2};
-		set_Tile(pos6, 4, 1);
+		set_Tile(pos6, 3, 1);
 		int[] pos7 = {2,4};
-		set_Tile(pos7, 4, 2);
+		set_Tile(pos7, 3, 2);
 		int[] pos8 = {2,6};
-		set_Tile(pos8, 4, 3);
+		set_Tile(pos8, 3, 3);
 		int[] pos9 = {4,0};
-		set_Tile(pos9, 4, 1);
+		set_Tile(pos9, 3, 1);
 		int[] pos10 = {4,2};
-		set_Tile(pos10, 4, 0);
+		set_Tile(pos10, 3, 0);
 		int[] pos11 = {4,4};
-		set_Tile(pos11, 4, 3);
+		set_Tile(pos11, 3, 3);
 		int[] pos12 = {4,6};
-		set_Tile(pos12, 4, 3);
+		set_Tile(pos12, 3, 3);
 		int[] pos13 = {6,0};
-		set_Tile(pos13, 2, 0);
+		set_Tile(pos13, 1, 0);
 		int[] pos14 = {6,2};
-		set_Tile(pos14, 4, 0);
+		set_Tile(pos14, 3, 0);
 		int[] pos15 = {6,4};
-		set_Tile(pos15, 4, 0);
+		set_Tile(pos15, 3, 0);
 		int[] pos16 = {6,6};
-		set_Tile(pos16, 2, 3);
+		set_Tile(pos16, 1, 3);
 		
 		//placing the 33 flexible tiles
 		for(int i=0; i<=6; i++){
@@ -714,6 +725,45 @@ public class Board {
 		}
 
 	}
+	//Tell if two points are linked in a given path 
+	public boolean isLinked(int[] point1, int[] point2, ArrayList<int[]> set){
+		Board _board = clone();
+		
+		for(int i=0; i<7; i++){
+			for(int j=0; j<7; j++){
+				if(!containsArray(set, new int[]{i,j})){
+					_board.set_Tile(new int[]{i,j}, 4, 0);
+				}
+			}
+		}
+		
+		return _board.containsArray(_board.legalMoves(point1), point2);
+		
+	}
+	
+	public ArrayList<int[]> findPath(int playerNO, int[] point2, ArrayList<int[]> path, int i){
+		ArrayList<int[]> t = (ArrayList<int[]>) path.clone();
+		if(i == path.size()-1){
+			return path;
+		}
+		else{
+			t.remove(i);
+			if(isLinked(get_pawnPosition(playerNO), point2, t)){
+				System.out.println("if1");
+				findPath(playerNO, point2, t, i);
+				
+			}
+			else{
+				System.out.println("else1");
+				i++;
+				System.out.println(i);
+				return findPath(playerNO, point2, path, i);
+			}
+			return null;
+		}
+		
+		
+	}
 	
 	//adds the current eatable token to the player
 	//increments the current eat token
@@ -824,6 +874,46 @@ public class Board {
 			}
 		}
 	return -1;
+	}
+
+	public static void main(String[] arg){
+		Board _board = new Board();
+
+		int[] a = new int[]{1,0};
+		int[] b = new int[]{1,1};
+		int[] c = new int[]{1,2};
+		int[] d = new int[]{1,3};
+		int[] e = new int[]{0,1};
+		int[] f = new int[]{0,3};
+		_board.set_Tile(a, 2,1);
+		_board.set_Tile(b, 3,0);
+		_board.set_Tile(c, 2,1);
+		_board.set_Tile(d, 2,1);
+		_board.set_Tile(e, 2,0);
+		_board.set_Tile(f, 2,0);
+		ArrayList<int[]> al = new ArrayList<int[]>();
+		al.add(a);
+		al.add(b);
+		al.add(c);
+		al.add(d);
+		al.add(e);
+		_board.set_pawnPosition(1, a);
+
+		ArrayList<int[]> result = _board.findPath(1, d, al, 0);
+		ArrayList<int[]> legalm = _board.legalMoves(a);
+		for(int i=0; i<result.size(); i++){
+			System.out.print(result.get(i)[0]);
+			System.out.print(result.get(i)[1]);
+			System.out.println("");
+		}
+		
+		for(int i=0; i<legalm.size(); i++){
+			System.out.print(legalm.get(i)[0]);
+			System.out.print(legalm.get(i)[1]);
+			System.out.println("");
+		}
+	
+		
 	}
 	
 }

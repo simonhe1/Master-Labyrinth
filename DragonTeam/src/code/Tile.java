@@ -7,7 +7,7 @@ public class Tile{
 	 											//open[0] = false  open[1] = false...
 	
 	public Tile(int k) {
-		if(k>=1 && k<=3){
+		if(k>=1 && k<=4){
 			type = k;
 		}
 		else{
@@ -18,7 +18,8 @@ public class Tile{
 		initial();
 	}
 	
-	//type 1~3 , correspond to the 3 kinds of tiles
+	//type 1~4 , correspond to the 4 kinds of tiles
+	//Note that type 4(which has no open) is used in Board.isLinked() only.
 
 	//type one refers to the tile with an open on the top and an open on the side.
 	
@@ -43,7 +44,21 @@ public class Tile{
 //	      
 //		||      ||
 //		||||||||||
-
+	
+	//type four refers to the tile with no open.
+	
+//	||||||||||
+//	||      ||
+//  ||      ||
+//	||      ||
+//	||||||||||
+	
+	public Tile clone(){
+		Tile output = new Tile(type);
+		output.open = open.clone();
+		return output;
+	}
+	
 	public int type(){
 		return type;
 	}
@@ -68,6 +83,10 @@ public class Tile{
 				boolean[] initialOpen4 = {true,true,false,true};
 				open = initialOpen4;
 				break;
+			case 4: 
+				boolean[] initialOpen5 = {false,false,false,false};
+				open = initialOpen5;
+				break;
 				}
 		
 		return curOpen();
@@ -89,8 +108,6 @@ public class Tile{
 		open = newOpen;
 
 	}
-
-	
 	
 	
 }

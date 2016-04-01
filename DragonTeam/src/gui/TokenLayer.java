@@ -37,7 +37,7 @@ public class TokenLayer {
 
 		  int[] pos =_board.get_tokenPosition(tokenNO);
 		  int position = (int)Math.round(ButtonSize*0.3);
-		  token.setBounds((pos[1]+2)*ButtonSize+position, (pos[0]+2)*ButtonSize+position, ButtonSize/2, ButtonSize/2);
+		  token.setBounds((pos[1]+2)*ButtonSize+position-6, (pos[0]+2)*ButtonSize+position-3, ButtonSize/2, ButtonSize/2);
 		  switch(tokenNO){
 		  case 1:
 			  token.setIcon(_token1);

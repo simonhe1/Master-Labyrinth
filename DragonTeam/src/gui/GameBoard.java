@@ -51,7 +51,6 @@ public class GameBoard {
 	public GameBoard(Board _board, int size, int ButtonSize, int i, int j){
 		boardTile = new JButton(Integer.toString(_board.get_StateOfBoard()[i][j].type()));
 		boardTile.setBounds((j+2)*ButtonSize, (i+2)*ButtonSize, ButtonSize, ButtonSize);
-		int state = 0;
 		curTile = _board.get_StateOfBoard()[i][j].curOpen();
 		bs = ButtonSize;
 		updateImageSize(size);

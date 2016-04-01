@@ -1,7 +1,5 @@
 package gui;
 
-import code.Board;
-
 public class Play{
 	private int state;
 	private int player;

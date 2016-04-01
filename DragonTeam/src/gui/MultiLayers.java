@@ -1,29 +1,18 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Component;
-
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import code.Board;
-import code.InsertTileHandler;
 import code.MovePawnHandler;
 import code.RotateExtraTileHandler;
 import gui.Console.DeleteConsole;
 
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class MultiLayers extends JFrame {
 	protected Board _board;
+	protected int extraRot = 0;
 	protected int size =1;
 	protected int ButtonSize = 60;
 	protected int FontSize = 14;
@@ -86,7 +75,7 @@ public class MultiLayers extends JFrame {
 	  }
 		  
 	  //create extra
-	  Extra ex = new Extra( _board, ButtonSize);
+	  Extra ex = new Extra( _board, ButtonSize , size, extraRot%4);
 	  RotateExtraTileHandler reth = new RotateExtraTileHandler(_board.get_ExtraTile(), this);
 	  ex.getButton().addMouseListener(reth);
 	  lp.add(ex.getButton(), new Integer(0));
@@ -123,6 +112,9 @@ public class MultiLayers extends JFrame {
 	  timer.start();
 
 
+  }
+  public void addExtraRotation(){
+	  extraRot++;
   }
   
   public void setSize(int s){

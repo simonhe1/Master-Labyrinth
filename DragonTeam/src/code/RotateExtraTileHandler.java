@@ -18,6 +18,7 @@ public class RotateExtraTileHandler implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		_tile.rotate();
+		ml.addExtraRotation();
 		ml.initualize();
 	}
 

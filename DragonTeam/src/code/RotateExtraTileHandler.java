@@ -1,11 +1,13 @@
 package code;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import code.Tile;
 import gui.MultiLayers;
 
-public class RotateExtraTileHandler implements MouseListener {
+public class RotateExtraTileHandler implements ActionListener {
 	
 	private Tile _tile;
 	private MultiLayers ml;
@@ -16,22 +18,15 @@ public class RotateExtraTileHandler implements MouseListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void actionPerformed(ActionEvent arg0) {
+		System.out.println("extra pressed");
 		_tile.rotate();
-		ml.addExtraRotation();
+		System.out.print(_tile.curOpen()[0]);
+		System.out.print(_tile.curOpen()[1]);
+		System.out.print(_tile.curOpen()[2]);
+		System.out.print(_tile.curOpen()[3]);
 		ml.initualize();
+		
 	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseExited(MouseEvent e) {}
-
-	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
 
 }

@@ -876,44 +876,6 @@ public class Board {
 	return -1;
 	}
 
-	public static void main(String[] arg){
-		Board _board = new Board();
 
-		int[] a = new int[]{1,0};
-		int[] b = new int[]{1,1};
-		int[] c = new int[]{1,2};
-		int[] d = new int[]{1,3};
-		int[] e = new int[]{0,1};
-		int[] f = new int[]{0,3};
-		_board.set_Tile(a, 2,1);
-		_board.set_Tile(b, 3,0);
-		_board.set_Tile(c, 2,1);
-		_board.set_Tile(d, 2,1);
-		_board.set_Tile(e, 2,0);
-		_board.set_Tile(f, 2,0);
-		ArrayList<int[]> al = new ArrayList<int[]>();
-		al.add(a);
-		al.add(b);
-		al.add(c);
-		al.add(d);
-		al.add(e);
-		_board.set_pawnPosition(1, a);
-
-		ArrayList<int[]> result = _board.findPath(1, d, al, 0);
-		ArrayList<int[]> legalm = _board.legalMoves(a);
-		for(int i=0; i<result.size(); i++){
-			System.out.print(result.get(i)[0]);
-			System.out.print(result.get(i)[1]);
-			System.out.println("");
-		}
-		
-		for(int i=0; i<legalm.size(); i++){
-			System.out.print(legalm.get(i)[0]);
-			System.out.print(legalm.get(i)[1]);
-			System.out.println("");
-		}
-	
-		
-	}
 	
 }

@@ -12,7 +12,6 @@ import gui.Console.DeleteConsole;
 
 public class MultiLayers extends JFrame {
 	protected Board _board;
-	protected int extraRot = 0;
 	protected int size =1;
 	protected int ButtonSize = 60;
 	protected int FontSize = 14;
@@ -75,9 +74,9 @@ public class MultiLayers extends JFrame {
 	  }
 		  
 	  //create extra
-	  Extra ex = new Extra( _board, ButtonSize , size, extraRot%4);
+	  Extra ex = new Extra( _board, ButtonSize , size);
 	  RotateExtraTileHandler reth = new RotateExtraTileHandler(_board.get_ExtraTile(), this);
-	  ex.getButton().addMouseListener(reth);
+	  ex.getButton().addActionListener(reth);
 	  lp.add(ex.getButton(), new Integer(0));
 	  
 	//create size Button
@@ -112,9 +111,6 @@ public class MultiLayers extends JFrame {
 	  timer.start();
 
 
-  }
-  public void addExtraRotation(){
-	  extraRot++;
   }
   
   public void setSize(int s){

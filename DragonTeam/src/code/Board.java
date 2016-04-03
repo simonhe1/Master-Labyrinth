@@ -118,6 +118,12 @@ public class Board {
 				output.state[i][j] = (Tile) state[i][j].clone();
 			}
 		}
+		for(int i=1; i<=4; i++){
+			output.get_pawnPosition(i)[0] = get_pawnPosition(i)[0];
+			output.get_pawnPosition(i)[1] = get_pawnPosition(i)[1];
+		}
+		
+		
 		return output;
 	}
 	
@@ -741,29 +747,25 @@ public class Board {
 		
 	}
 	
-	public ArrayList<int[]> findPath(int playerNO, int[] point2, ArrayList<int[]> path, int i){
+	public ArrayList<int[]> findPath(int playerNO, int[] point2, ArrayList<int[]> path){
 		ArrayList<int[]> t = (ArrayList<int[]>) path.clone();
-		if(i == path.size()-1){
-			return path;
-		}
-		else{
+		int[] pos = get_pawnPosition(playerNO);
+		int i = 0;
+		while(i < path.size()){
 			t.remove(i);
-			if(isLinked(get_pawnPosition(playerNO), point2, t)){
-				System.out.println("if1");
-				findPath(playerNO, point2, t, i);
-				
+			if(isLinked(pos, point2, t)){
+				path.remove(i);
 			}
 			else{
-				System.out.println("else1");
+				t = (ArrayList<int[]>) path.clone();
 				i++;
-				System.out.println(i);
-				return findPath(playerNO, point2, path, i);
 			}
-			return null;
 		}
-		
-		
+		return path;
 	}
+		
+		
+	
 	
 	//adds the current eatable token to the player
 	//increments the current eat token
@@ -876,6 +878,10 @@ public class Board {
 	return -1;
 	}
 
-
+//	public static void main(String[] arg){
+//		
+//	}
+	
+	
 	
 }

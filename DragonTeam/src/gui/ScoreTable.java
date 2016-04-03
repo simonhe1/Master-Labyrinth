@@ -27,7 +27,7 @@ public class ScoreTable {
 		    	
 		    	name.setText(p+"     "+message);
 		    	name.setFont(new Font(name.getName(), Font.BOLD, FontSize));
-		    	name.setBounds(11*ButtonSize, (playerNO+2)*ButtonSize, 2*ButtonSize, ButtonSize);
+		    	name.setBounds(11*ButtonSize, (playerNO+2)*ButtonSize, 3*ButtonSize, ButtonSize);
 		    	
 		    
 	}

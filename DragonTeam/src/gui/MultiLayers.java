@@ -1,7 +1,10 @@
 package gui;
 
+import java.awt.Component;
+
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import code.Board;
@@ -20,6 +23,7 @@ public class MultiLayers extends JFrame {
 	protected String[] p;
 	protected Play play;
 	JLayeredPane lp;
+	JPanel a = new JPanel();
 	
 	//constructor
   public MultiLayers(String[] players) {
@@ -44,20 +48,16 @@ public class MultiLayers extends JFrame {
 	  lp = getLayeredPane();
 	  lp.removeAll();
 	  
-	  //score table
-	  for(int i=0; i<p.length; i++){
-		  ScoreTable st = new ScoreTable(p[i], _board, i+1, ButtonSize, FontSize);
-		  lp.add(st.getLabel(), new Integer(0));
-	  }
+	  //score table 1
+	  initualizeScoreBoard();
 	  
-	  //turnTable
-	  TurnTable tt = new TurnTable(p, ButtonSize, FontSize, play);
-	  lp.add(tt.getLabel(), 0);
+	  //turnTable 2
+	  initualizeTurnTable();
 	
-	  //Console
+	  //Console 3
 	  updateConsole("");
 	  
-	  //create board
+	  //create board 0
 	  for(int i=0;i<=6;i++){
 		  for(int j=0;j<=6;j++){
 			  GameBoard gb = new GameBoard(_board, size, ButtonSize,i, j);
@@ -67,50 +67,103 @@ public class MultiLayers extends JFrame {
 			  lp.add(gb.getButton(), new Integer(0));
 		  }
 	  }
-	  //create triangles
+	  //create triangles 4
 	  Triangle tri = new Triangle(_board, ButtonSize, play, this);
 	  for(int i=0; i<12; i++){
-		  lp.add(tri.getTri()[i]);
+		  lp.add(tri.getTri()[i], new Integer(4));
 	  }
 		  
-	  //create extra
+	  //create extra 5
 	  Extra ex = new Extra( _board, ButtonSize , size);
 	  RotateExtraTileHandler reth = new RotateExtraTileHandler(_board.get_ExtraTile(), this);
 	  ex.getButton().addActionListener(reth);
-	  lp.add(ex.getButton(), new Integer(0));
+	  lp.add(ex.getButton(), new Integer(5));
 	  
-	//create size Button
+	  //create size Button 6
 	  SizeButton sizeb = new SizeButton(ButtonSize, FontSize, size, this);
-	  lp.add(sizeb.getButton(), 0);
+	  lp.add(sizeb.getButton(), new Integer(6));
 	  
-	  //create skip button
+	  //create skip button 7
 	  SkipButton sb = new SkipButton(ButtonSize, FontSize, play, this);
-	  lp.add(sb.getButton(), 0);
+	  lp.add(sb.getButton(), new Integer(7));
 
-	  //creating pawns
-
+	  //create tokens 8
+	  initualizeToken();
+	  
+	  //creating pawns 9
 	  for(int i=0; i<p.length; i++){
 		  PawnLayer pl = new PawnLayer(i+1, _board, FontSize, ButtonSize);
-		  lp.add(pl.getLabel(), new Integer(2));
+		  lp.add(pl.getLabel(), new Integer(9));
 	  }
 
-	  //create tokens
-	  for(int i=0; i<21; i++){
-		  TokenLayer tl = new TokenLayer(i+1, _board, ButtonSize);
-		  lp.add(tl.getLabel(), new Integer(1));
-	  }
   }
   
+  public void initualizeScoreBoard(){
+	  lp = getLayeredPane();
+	  removeLayer(lp, 1);
+	  
+	  for(int i=0; i<p.length; i++){
+		  ScoreTable st = new ScoreTable(p[i], _board, i+1, ButtonSize, FontSize);
+		  lp.add(st.getLabel(), new Integer(1));
+	  }
+	  setSize((int) windowSizeX-1, windowSizeY);
+	  setSize((int) windowSizeX, windowSizeY);
+  }
+
+  public void initualizeToken(){
+	  lp = getLayeredPane();
+	  removeLayer(lp, 8);
+	  
+	  for(int i=0; i<21; i++){
+		  TokenLayer tl = new TokenLayer(i+1, _board, ButtonSize, size);
+		  lp.add(tl.getLabel(), new Integer(8));
+	  }
+	  setSize((int) windowSizeX-1, windowSizeY);
+	  setSize((int) windowSizeX, windowSizeY);
+  }
+  
+  public void initualizePawn(){
+
+	  lp = getLayeredPane();
+	  removeLayer(lp, 9);
+	  
+	  for(int i=0; i<p.length; i++){
+		  PawnLayer pl = new PawnLayer(i+1, _board, FontSize, ButtonSize);
+		  lp.add(pl.getLabel(), new Integer(9));
+	  }
+	  System.out.println(lp.getComponentCountInLayer(2));
+	  setSize((int) windowSizeX-1, windowSizeY);
+	  setSize((int) windowSizeX, windowSizeY);
+  }
+  
+  public void initualizeTurnTable(){
+	  lp = getLayeredPane();
+	  removeLayer(lp, 2);
+	  
+	  TurnTable tt = new TurnTable(p, ButtonSize, FontSize, play);
+	  lp.add(tt.getLabel(), new Integer(2));
+	  
+	  setSize((int) windowSizeX-1, windowSizeY);
+	  setSize((int) windowSizeX, windowSizeY);
+  }
+  
+   public static int removeLayer(JLayeredPane pane, int layer) {
+	  Component[] comps = pane.getComponentsInLayer(layer);
+	  for(int i = 0; i < comps.length; i++) {
+		  pane.remove(pane.getIndexOf(comps[i]));    
+	  }
+	  return comps.length;
+  } 
   public void updateConsole(String message){
 	  Console console = new Console(message, ButtonSize, FontSize);
 	  lp.add(console.getLabel(), new Integer(3));
 
-	  DeleteConsole dc = console.new DeleteConsole(this);
-	  Timer timer = new Timer(5000, dc);
-	  timer.setRepeats(false);
-	  timer.start();
-
-
+	  if(message!=""){
+		  DeleteConsole dc = console.new DeleteConsole(this);
+		  Timer timer = new Timer(5000, dc);
+		  timer.setRepeats(false);
+		  timer.start();
+	  }
   }
   
   public void setSize(int s){

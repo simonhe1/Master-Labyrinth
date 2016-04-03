@@ -20,6 +20,7 @@ public class SkipButtonHandler implements ActionListener, MouseListener{
 	public void actionPerformed(ActionEvent e) {
 		if(play.getState() == 2){
 			play.NextTurn();
+			ml.initualize();
 		}
 		else{
 			ml.updateConsole("You cannot skip Shifting Maze!");
@@ -32,7 +33,7 @@ public class SkipButtonHandler implements ActionListener, MouseListener{
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		if(play.getState() == 1){
+		if(play.getState() == 2){
 			ml.updateConsole("You cannot skip Shifting Maze!");
 		}
 		

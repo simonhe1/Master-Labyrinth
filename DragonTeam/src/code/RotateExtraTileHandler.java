@@ -19,12 +19,7 @@ public class RotateExtraTileHandler implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("extra pressed");
 		_tile.rotate();
-		System.out.print(_tile.curOpen()[0]);
-		System.out.print(_tile.curOpen()[1]);
-		System.out.print(_tile.curOpen()[2]);
-		System.out.print(_tile.curOpen()[3]);
 		ml.initualize();
 		
 	}

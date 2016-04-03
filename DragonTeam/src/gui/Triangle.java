@@ -1,7 +1,7 @@
 package gui;
 
 import java.awt.Color;
-
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import code.Board;
@@ -48,11 +48,14 @@ public class Triangle {
 		//putting down triangles
 		for(int i=6; i<9; i++){
 			tri[i] = new JButton();
-			tri[i].setText("Tri");
+			tri[i].setIcon(new ImageIcon("/Images/Triangleinsertions/Triangle.png"));
+			tri[i].validate();
 			tri[i].setBackground(Color.gray);
 			tri[i].setBounds((posArray[i][1]+2)*ButtonSize, (posArray[i][0]+3)*ButtonSize, ButtonSize, ButtonSize);
 			InsertTileHandler ith1 = new InsertTileHandler(_board, posArray[i].clone(), 0, _play, m);
 			tri[i].addActionListener(ith1);
+			
+			
 		}
 		//putting left triangles
 		for(int i=9; i<12; i++){

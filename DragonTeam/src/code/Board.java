@@ -56,6 +56,8 @@ public class Board {
 	private int[] tokenPos21={5,5};
 	
 	private ArrayList<int[]> token = new ArrayList<int[]>();
+	
+	private int[] preTriangle = {-1,-1};
 
 	
 	//Constructor for tile type number not specified 
@@ -346,9 +348,16 @@ public class Board {
 		Tile out;
 		int triRow = tri[0];
 		int triCol = tri[1];
+		
+		//check if tri is the reverse of previous insertion
+			if(triRow == preTriangle[0] && triCol == preTriangle[1]){
+				return false;
+			}
 			
 			if(triRow == 0){
 				if(triCol == 1 || triCol == 3 || triCol == 5){
+				preTriangle[0] = 6;
+				preTriangle[1] = triCol;
 				out = state[triRow + 6][triCol];
 				for(int i=6; i>0;i--){
 					state[triRow + i][triCol] = state[triRow + (i-1)][triCol];
@@ -361,11 +370,14 @@ public class Board {
 				state[triRow][triCol] = extra;
 				extra = out;
 				
+				
 				}
 				else{return false;}
 			}
 			else if(triRow == 6){
 				if(triCol == 1 || triCol == 3 || triCol == 5){
+					preTriangle[0] = 0;
+					preTriangle[1] = triCol;
 				out = state[triRow - 6][triCol];
 				for(int i=6; i>0;i--){
 					state[triRow  - i][triCol] = state[triRow  - (i-1)][triCol];
@@ -378,11 +390,14 @@ public class Board {
 				state[triRow][triCol] = extra;
 				extra = out;
 				
+				
 				}
 				else{return false;}
 			}
 			else if(triCol == 0){
 				if(triRow == 1 || triRow == 3 || triRow == 5){
+					preTriangle[0] = triRow;
+					preTriangle[1] = 6;
 				out = state[triRow][triCol + 6];
 				for(int i=6; i>0; i--){
 					state[triRow][triCol + i] = state[triRow][triCol + (i-1)];
@@ -394,11 +409,14 @@ public class Board {
 				state[triRow][triCol] = extra;
 				extra = out;
 				
+				
 				}
 				else{return false;}
 			}
 			else if(triCol == 6){
 				if(triRow == 1 || triRow == 3 || triRow == 5){
+					preTriangle[0] = triRow;
+					preTriangle[1] = 0;
 				out = state[triRow][triCol-6];
 				for(int i=6; i>0; i--){
 					state[triRow][triCol - i] = state[triRow][triCol - (i-1)];
@@ -409,6 +427,7 @@ public class Board {
 
 				state[triRow][triCol] = extra;
 				extra = out;
+				
 				}
 				else{return false;}
 			}
@@ -877,10 +896,6 @@ public class Board {
 		}
 	return -1;
 	}
-
-//	public static void main(String[] arg){
-//		
-//	}
 	
 	
 	

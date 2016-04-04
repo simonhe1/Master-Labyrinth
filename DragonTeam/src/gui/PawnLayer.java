@@ -15,7 +15,7 @@ public class PawnLayer {
 			
 			int[] pos = _board.get_pawnPosition(playerNO);
 			
-			Color[] colors= {Color.blue, Color.yellow, Color.red, Color.green};
+			Color[] colors= {Color.blue, Color.orange, Color.red, Color.green};
 			pawn = new JLabel();
 			pawn.setText("P"+playerNO);
 			pawn.setFont(new Font(pawn.getName(), Font.BOLD, FontSize));

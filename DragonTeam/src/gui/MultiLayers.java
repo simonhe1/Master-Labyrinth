@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -27,8 +29,8 @@ public class MultiLayers extends JFrame {
 	
 	//constructor
   public MultiLayers(String[] players) {
-	
     super("LayeredPane Demonstration");
+    
     _board = new Board();
     p = players;
     play = new Play(p);
@@ -36,7 +38,23 @@ public class MultiLayers extends JFrame {
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     initualize();
-
+    
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    double width = screenSize.getWidth();
+    double height = screenSize.getHeight();
+    //
+    //size 1
+    if(width<1400){
+    	setSize(1);
+    }	
+    //size 2
+    else if(width>=1400 && width<2000){
+    	setSize(2);
+    }
+    //size 3
+    else if(width>=2000){
+    	setSize(3);
+    }
   }
  
   /*
@@ -95,7 +113,7 @@ public class MultiLayers extends JFrame {
 		  PawnLayer pl = new PawnLayer(i+1, _board, FontSize, ButtonSize);
 		  lp.add(pl.getLabel(), new Integer(9));
 	  }
-
+	  repaint();
   }
   
   public void initualizeScoreBoard(){
@@ -106,8 +124,7 @@ public class MultiLayers extends JFrame {
 		  ScoreTable st = new ScoreTable(p[i], _board, i+1, ButtonSize, FontSize);
 		  lp.add(st.getLabel(), new Integer(1));
 	  }
-	  setSize((int) windowSizeX-1, windowSizeY);
-	  setSize((int) windowSizeX, windowSizeY);
+
   }
 
   public void initualizeToken(){
@@ -118,8 +135,8 @@ public class MultiLayers extends JFrame {
 		  TokenLayer tl = new TokenLayer(i+1, _board, ButtonSize, size);
 		  lp.add(tl.getLabel(), new Integer(8));
 	  }
-	  setSize((int) windowSizeX-1, windowSizeY);
-	  setSize((int) windowSizeX, windowSizeY);
+	  repaint();
+
   }
   
   public void initualizePawn(){
@@ -132,8 +149,7 @@ public class MultiLayers extends JFrame {
 		  lp.add(pl.getLabel(), new Integer(9));
 	  }
 	  System.out.println(lp.getComponentCountInLayer(2));
-	  setSize((int) windowSizeX-1, windowSizeY);
-	  setSize((int) windowSizeX, windowSizeY);
+
   }
   
   public void initualizeTurnTable(){
@@ -143,8 +159,6 @@ public class MultiLayers extends JFrame {
 	  TurnTable tt = new TurnTable(p, ButtonSize, FontSize, play);
 	  lp.add(tt.getLabel(), new Integer(2));
 	  
-	  setSize((int) windowSizeX-1, windowSizeY);
-	  setSize((int) windowSizeX, windowSizeY);
   }
   
    public static int removeLayer(JLayeredPane pane, int layer) {

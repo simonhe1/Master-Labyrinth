@@ -48,7 +48,7 @@ public class Triangle {
 		//putting down triangles
 		for(int i=6; i<9; i++){
 			tri[i] = new JButton();
-			tri[i].setIcon(new ImageIcon("/Images/Triangleinsertions/Triangle.png"));
+			//tri[i].setIcon(new ImageIcon(getClass().getResource("/Images/Triangleinsertions/Triangle.png")));
 			tri[i].validate();
 			tri[i].setBackground(Color.gray);
 			tri[i].setBounds((posArray[i][1]+2)*ButtonSize, (posArray[i][0]+3)*ButtonSize, ButtonSize, ButtonSize);

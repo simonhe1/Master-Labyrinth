@@ -42,8 +42,7 @@ public class MovePawnHandler implements ActionListener {
 				int[] pos = _board.get_pawnPosition(_playerNO);
 				ArrayList<int[]> allPath = _board.legalMoves(pos);
 				allPath.add(pos);
-				ArrayList<int[]> set = _board.findPath(_playerNO, _request, 
-						allPath);
+				ArrayList<int[]> set = _board.findPath(_playerNO, _request, allPath);
 				set.remove(set.size()-1);
 				
 				TimeLag tl = new TimeLag(_board, _playerNO, ml, set);

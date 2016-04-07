@@ -20,8 +20,10 @@ public class TimeLag implements Runnable{
 
 	@Override
 	public void run() {
+		//call move so player can eat token
 		board.move(playerNO, set.get(set.size()-1));
 		
+		//Make pawn move to each of tiles on the path.
 		for(int i=0; i<set.size(); i++){
 
 			try {
@@ -31,10 +33,12 @@ public class TimeLag implements Runnable{
 			}
 			board.set_pawnPosition(playerNO, set.get(i));
 			ml.initualizePawn();
+			ml.repaint();
 		}
 		ml.initualizeToken();
 		ml.initualizeScoreBoard();
 		ml.initualizeTurnTable();
+		ml.repaint();
 	}
 
 }

@@ -19,7 +19,7 @@ public class MultiLayers extends JFrame {
 	protected Board _board;
 	protected int size =1;
 	protected int ButtonSize = 60;
-	protected int FontSize = 14;
+	protected int FontSize = 20;
 	protected int windowSizeX = 900;
 	protected int windowSizeY = 750;
 	protected String[] p;
@@ -110,7 +110,7 @@ public class MultiLayers extends JFrame {
 	  
 	  //creating pawns 9
 	  for(int i=0; i<p.length; i++){
-		  PawnLayer pl = new PawnLayer(i+1, _board, FontSize, ButtonSize);
+		  PawnLayer pl = new PawnLayer(i+1, _board, size, ButtonSize);
 		  lp.add(pl.getLabel(), new Integer(9));
 	  }
 	  repaint();
@@ -145,7 +145,7 @@ public class MultiLayers extends JFrame {
 	  removeLayer(lp, 9);
 	  
 	  for(int i=0; i<p.length; i++){
-		  PawnLayer pl = new PawnLayer(i+1, _board, FontSize, ButtonSize);
+		  PawnLayer pl = new PawnLayer(i+1, _board, size, ButtonSize);
 		  lp.add(pl.getLabel(), new Integer(9));
 	  }
 	  System.out.println(lp.getComponentCountInLayer(2));
@@ -183,7 +183,7 @@ public class MultiLayers extends JFrame {
   public void setSize(int s){
 	  if(s == 1){
 		  ButtonSize = 60;
-		  FontSize = 8;
+		  FontSize = 14;
 		  windowSizeX = 900;
 		  windowSizeY = 750;
 		  size = 1;

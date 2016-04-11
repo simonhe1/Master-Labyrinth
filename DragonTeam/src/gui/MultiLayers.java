@@ -37,12 +37,9 @@ public class MultiLayers extends JFrame {
     setSize((int) windowSizeX, windowSizeY);
     setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-    initualize();
-    
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     double width = screenSize.getWidth();
-    double height = screenSize.getHeight();
-    //
+
     //size 1
     if(width<1400){
     	setSize(1);

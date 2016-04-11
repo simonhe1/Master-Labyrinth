@@ -28,6 +28,12 @@ public class Board {
 	private ArrayList<Integer> score2 = new ArrayList<Integer>();
 	private ArrayList<Integer> score3 = new ArrayList<Integer>();
 	private ArrayList<Integer> score4 = new ArrayList<Integer>();
+	
+	private ArrayList<Integer> formula1 = new ArrayList<Integer>();
+	private ArrayList<Integer> formula2 = new ArrayList<Integer>();
+	private ArrayList<Integer> formula3 = new ArrayList<Integer>();
+	private ArrayList<Integer> formula4 = new ArrayList<Integer>();
+	
 	private int curToken = 1;
 	
 	
@@ -814,6 +820,56 @@ public class Board {
 		}
 		
 	}
+	
+	public int computeScore(int playerNO){
+		int totalScore = 0;
+		int pawnWand = 0;
+		ArrayList<Integer> scoreList = new ArrayList<Integer>();
+		ArrayList<Integer> formula = new ArrayList<Integer>();
+		switch(playerNO){
+		case 1:
+			scoreList = score1;
+			formula = formula1;
+			pawnWand = pawn1Wands;
+			break;
+		case 2:
+			scoreList = score2;
+			formula = formula2;
+			pawnWand = pawn2Wands;
+			break;
+		case 3:
+			scoreList = score3;
+			formula = formula3;
+			pawnWand = pawn3Wands;
+			break;
+		case 4:
+			scoreList = score4;
+			formula = formula4;
+			pawnWand = pawn4Wands;
+			break;
+		}
+		
+		//add token scores
+		for(Integer ele:scoreList){
+			totalScore += ele;	
+		}
+		
+		//add secret formula score
+		for(Integer ele2:formula){
+			for(Integer ele:scoreList){
+				if(ele.equals(ele2)){
+					totalScore +=20;
+				}
+			}
+		}
+		
+		//add wand score
+		totalScore += 3*pawnWand;
+		
+		return totalScore;
+	}
+	
+	
 	
 	//shows the score of the player
 	public ArrayList<Integer> showScore(int playerNO){

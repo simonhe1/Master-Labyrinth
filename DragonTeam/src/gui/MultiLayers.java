@@ -86,7 +86,7 @@ public class MultiLayers extends JFrame {
 		  }
 	  }
 	  //create triangles 4
-	  Triangle tri = new Triangle(_board, ButtonSize, play, this);
+	  Triangle tri = new Triangle(_board, ButtonSize, size, play, this);
 	  for(int i=0; i<12; i++){
 		  lp.add(tri.getTri()[i], new Integer(4));
 	  }

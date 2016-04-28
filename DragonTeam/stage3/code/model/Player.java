@@ -65,6 +65,12 @@ public class Player {
 	 */
 	private int _score; //sum of token values
 	
+	private int _playerWands;
+	
+	private int _tracker;
+
+	
+	private FormulaCards _formulaCard;
 	
 	/**
 	 * The constructor Player assigns the instance variable _color to the String c
@@ -76,6 +82,9 @@ public class Player {
 		_color = c;		
 		_myTokens = new ArrayList<Token>();
 		_score = 0;
+		_playerWands = 3;
+		_formulaCard = new FormulaCards();
+		_tracker = 0;
 	}
 	
 	/**
@@ -235,6 +244,12 @@ public class Player {
 			at.removeToken();
 			//t.setTile(null);
 			_score = _score + t.getValue();
+			if (_formulaCard.getToken1()==t.getValue())
+				_score = _score+20;
+			if (_formulaCard.getToken2()==t.getValue())
+				_score = _score+20;
+			if (_formulaCard.getToken3()==t.getValue())
+				_score = _score+20;
 			_gb.toggleNextToken();
 			_gb.playerHasAlteredBoard();
 			
@@ -276,6 +291,9 @@ public class Player {
 	 * @param name 
 	 * @author Ian, Weijin
 	 */
+	public int getWands(){
+		return _playerWands;
+	}
 	public void setName(String name){
 		_playerName = name;
 	}
@@ -348,6 +366,7 @@ public class Player {
 	public void endMyTurn(){
 		_hasInsertedThisTurn = false;
 		_hasMovedThisTurn = false;
+		_tracker = 0;
 	}
 	
 	/**
@@ -356,5 +375,20 @@ public class Player {
 	 */
 	public void addToken(Token t){
 		_myTokens.add(t);
+	}
+	
+	public void useMagicWand(){
+		if(_playerWands >0&&_tracker == 0 ){
+		_hasInsertedThisTurn = false;
+		_hasMovedThisTurn = false;
+		_playerWands = _playerWands - 1;
+		_tracker=1;
+		}
+		else {
+			System.out.println("You don't have any magic wands left!");
+		}
+	}
+	public FormulaCards getFormulaCards(){
+		return _formulaCard;
 	}
 }

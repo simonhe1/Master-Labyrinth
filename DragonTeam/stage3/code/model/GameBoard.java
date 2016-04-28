@@ -73,11 +73,14 @@ public class GameBoard {
 	 * An array of type Player[] holding the references to player objects in the game/on the board
 	 */
 	private Player[] _players;
+	
+	private Token[] _formulaTokens;
 
 	/**
 	 * Observer of this GameBoard, of type GameBoardGUI
 	 */
 	private GameBoardGUI _observer;
+	
 	
 //	private int _turns;
 	
@@ -106,6 +109,7 @@ public class GameBoard {
 			_players = new Player[_numOfPlayers];
 			_tokens = new ArrayList<Token>();
 			currentPlayerIndex = 0;
+			
 	}
 	/**
 	 * This method populates the board
@@ -1032,7 +1036,9 @@ public class GameBoard {
 		}
 	}
 	
-	
-	
+	public void shuffleFormulaCards(){
+		Collections.shuffle(_tokens);
+		
+	}
 	
 } //end of Game Board class definition

@@ -124,6 +124,16 @@ public class GameBoardGUI implements Runnable, Observer{
 	private JButton _endTurnButton;
 	
 	/**
+	 * Button that is pressed when a player wishes to use a magic wand.
+	 */
+	private JButton _useMagicWand;
+	
+	/**
+	 * Shows a particular players formula card
+	 */
+	private JTextPane _formulaCard;
+	
+	/**
 	 * This method sets the observer for the gameboard
 	 * gb refers to the GameBoard object
 	 * @param gb refers to GameBoard
@@ -215,7 +225,10 @@ public class GameBoardGUI implements Runnable, Observer{
 							+ "\n\n" + t1);
 					_playerInfo.setFont(new Font("Garamond", Font.BOLD, 14));
 				}
-			}	
+				_useMagicWand.setText("<html>You Have : <br/>"+GameBoard.CURRENTPLAYER.getWands()+" wands left<br/>"+"Use a Magic Wand!</html>");
+
+			}
+			
 		});
 		
 		_leftPanel.setLayout(new GridLayout(1,1));
@@ -388,39 +401,37 @@ public class GameBoardGUI implements Runnable, Observer{
 		_shiftableTileButton = new JButton();
 		_rotateCounterClockwise = new JButton();
 		_rotateClockwise = new JButton();
+		_useMagicWand = new JButton();
+		_formulaCard = new JTextPane();
 		_shiftableTileButton.setPreferredSize(new Dimension(80,80));
+		_useMagicWand.setPreferredSize(new Dimension(80,80));
+		_formulaCard.setPreferredSize(new Dimension(80,80));
 		_rotateCounterClockwise.setPreferredSize(new Dimension(80,80));
 		_rotateClockwise.setPreferredSize(new Dimension(80,80));
 		_shiftableTileButton.setBackground(new Color(245,245,220));
+		_formulaCard.setBackground(new Color(245,245,220));
+		_useMagicWand.setBackground(new Color(245,245,220));
+		_useMagicWand.setText("<html>You Have : <br/>"+GameBoard.CURRENTPLAYER.getWands()+" wands left<br/>"+"Use a Magic Wand!</html>");
+		_useMagicWand.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		_formulaCard.setText(GameBoard.CURRENTPLAYER.getName()+"'s "+"Formula Card\n\n"+
+		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken1()+"\n"+
+		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken2()+"\n"+
+		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken3()+"\n");
 		_rotateCounterClockwise.setBackground(new Color(245,245,220));
 		_rotateClockwise.setBackground(new Color(245,245,220));
-		_rotateCounterClockwise.addActionListener(new ActionListener(){
-			
-			
-			/**
-			 * This method adds ActionListener to the _rotateCounterClockwise button, so
-			 * when a player clicks that button, the shiftable tile will shift counterclockwise
-			 * by 90 degree.
-			 * @param e action event generated when counterclockwise button clicked
-			 * @author Ian,Ken 04-10-16
-			 */
+		
+		_useMagicWand.addActionListener(new ActionListener(){
+
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(GameBoard.CURRENTPLAYER.getHasInsertedThisTurn()){
-					_gameFeedback.setText("\t\t\t\tGAME INFO\n\nIt is now " + GameBoard.CURRENTPLAYER.getName() +
-							"'s (" + GameBoard.CURRENTPLAYER.getColor() + " pawn) turn."+
-							"\nCurrent Collectible Token Number: " + _gb.getCurrentTargetTokenValue()+"\n\nYou cannot rotate the shiftable tile because you have"
-							+" already inserted this turn.");
-					_gameFeedback.setFont(new Font("Garamond", Font.BOLD, 14));
-				}
-				if(!GameBoard.CURRENTPLAYER.getHasInsertedThisTurn()){
-					GameBoard.CURRENTPLAYER.rotateShiftableTile(90);
-					update();
-				}
-			}}
-		);
-		_rotateClockwise.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				GameBoard.CURRENTPLAYER.useMagicWand();
+				_useMagicWand.setText("<html>You Have : <br/>"+GameBoard.CURRENTPLAYER.getWands()+" wands left<br/>"+"Use a Magic Wand!</html>");
+				
+			}
+			
+		});
+		
+		_shiftableTileButton.addActionListener(new ActionListener(){
 			
 			/**
 			 * This method add ActionListener to the _rotateClockwise button, so
@@ -446,25 +457,16 @@ public class GameBoardGUI implements Runnable, Observer{
 			}}
 		);
 		try{
-			Image rotateLeft = ImageIO.read(getClass().getResourceAsStream("images/rotateLeft1.gif"));
-			Image rotateRight = ImageIO.read(getClass().getResourceAsStream("images/rotateRight1.gif"));
-			//_rotateCounterClockwise.setText("Rotate 90 Degrees");
-			_rotateCounterClockwise.setIcon(new ImageIcon(rotateLeft));
-			
+			Image rotateRight = ImageIO.read(getClass().getResourceAsStream("images/rotateRight1.gif"));			
 			_rotateClockwise.setIcon(new ImageIcon(rotateRight));
 			//_rotateClockwise.setText("Rotate -90 degrees");
 		}
 		catch (IOException ex){}
 		MoveableTile shiftableTile = _gb.getMoveableTileArray().get(0);
 		_shiftableTileButton.setIcon(new ImageIcon(generateImageForTile(shiftableTile)));
-		_shiftableTilePanel.add(_rotateCounterClockwise);
+		_shiftableTilePanel.add(_useMagicWand);
 		_shiftableTilePanel.add(_shiftableTileButton);
-		_shiftableTilePanel.add(_rotateClockwise);
-		
-		
-		_shiftableTilePanel.add(_rotateCounterClockwise);
-		_shiftableTilePanel.add(_shiftableTileButton);
-		_shiftableTilePanel.add(_rotateClockwise);
+		_shiftableTilePanel.add(_formulaCard);
 	}
 	
 	/**

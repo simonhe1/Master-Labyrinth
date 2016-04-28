@@ -1,6 +1,5 @@
 package code.gui;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,8 +17,6 @@ public class TokenButtonHandler implements ActionListener {
 	private int _row;
 	private int _col;
 	private GameBoard _gb;
-	private JButton _jb;
-	
 	/**
 	 * This method takes in the the value of row and column
 	 * and reference to the gameboard and jbutton
@@ -33,7 +30,6 @@ public class TokenButtonHandler implements ActionListener {
 		_row = r;
 		_col = c;
 		_gb = gb;
-		_jb = jb;
 	}
 	
 	/**

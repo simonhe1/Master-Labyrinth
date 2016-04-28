@@ -2,10 +2,7 @@ package code.gui;
 
 import code.model.*;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,10 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -35,11 +29,6 @@ import javax.swing.SwingConstants;
  *
  */
 public class GameBoardGUI implements Runnable, Observer{
-	/**
-	 * collection of 21 references to token JButtons 
-	 */
-	private ArrayList<JButton> _tokenButtons;
-	
 	/**
 	 * reference to the main window of the game that holds 
 	 * _leftPanel and _rightPanel
@@ -220,8 +209,8 @@ public class GameBoardGUI implements Runnable, Observer{
 						tokens = tokens + t.getValue() + " ";
 					}
 					_playerInfo.setText("\t\t\t\tPLAYER INFO\n\nCurrent Player (" + cp +"): " + p.getName() + " (" + 
-							p.getColor() + " Pawn) \n" /*Current Score: "+
-							p.getScore() + "\n" */+ "My Tokens Collected: " + tokens
+							p.getColor() + " Pawn) \n" + "Current Score: "+
+							p.getScore() + "\n" + "My Tokens Collected: " + tokens
 							+ "\n\n" + t1);
 					_playerInfo.setFont(new Font("Garamond", Font.BOLD, 14));
 				}
@@ -334,8 +323,8 @@ public class GameBoardGUI implements Runnable, Observer{
 			tokens = tokens + t.getValue() + " ";
 		}
 		_playerInfo.setText("\t\t\t\tPLAYER INFO\n\nCurrent Player (" + cp +"): " + p.getName() + " (" + 
-				p.getColor() + " Pawn) \n" /*Current Score: "+
-				p.getScore() + "\n" */+ "My Tokens Collected: " + tokens
+				p.getColor() + " Pawn) \n" + "Current Score: "+
+				p.getScore() + "\n" + "My Tokens Collected: " + tokens
 				+ "\n\n" + t1);
 		_playerInfo.setFont(new Font("Garamond", Font.BOLD, 14));
 	}
@@ -351,7 +340,7 @@ public class GameBoardGUI implements Runnable, Observer{
 		_boardPanel = new JPanel();
 		_boardPanel.setSize(560,560);
 		_boardPanel.setLayout(new GridLayout(7,7));
-		_tokenButtons = new ArrayList<JButton>();
+		new ArrayList<JButton>();
 		for(int i = 0; i < 7; i++){	
 			for(int j = 0; j < 7; j++){	
 				JButton button = new JButton();
@@ -364,14 +353,6 @@ public class GameBoardGUI implements Runnable, Observer{
 				button.setLayout(new FlowLayout());
 				button.addActionListener(new GameBoardButtonHandler(i,j,_gb, this));
 				_boardPanel.add(button);
-//				button.add(tokenLabel);
-//				tokenButton.setPreferredSize(new Dimension(30,30));
-				//tokenButton.setText("t");
-				AbstractTile at = _gb.getBoard()[i][j];
-//				tokenLabel.setVisible(true);
-//				if(!at.hasToken()){
-//					tokenLabel.setVisible(false);
-//				}
 				
 			}
 		}
@@ -458,7 +439,6 @@ public class GameBoardGUI implements Runnable, Observer{
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if(GameBoard.CURRENTPLAYER.getHasInsertedThisTurn()){
 					_gameFeedback.setText("\t\t\t\tGAME INFO\n\nIt is now " + GameBoard.CURRENTPLAYER.getName() +
 							"'s (" + GameBoard.CURRENTPLAYER.getColor() + " pawn) turn."+
@@ -655,8 +635,8 @@ public class GameBoardGUI implements Runnable, Observer{
 			tokens = tokens + t.getValue() + " ";
 		}
 		_playerInfo.setText("\t\t\t\tPLAYER INFO\n\nCurrent Player (" + cp +"): " + p.getName() + " (" + 
-				p.getColor() + " Pawn) \n" /*Current Score: "+
-				p.getScore() + "\n" */+ "My Tokens Collected: " + tokens
+				p.getColor() + " Pawn) \n" +"Current Score: "+
+				p.getScore() + "\n" + "My Tokens Collected: " + tokens
 				+ "\n\n" + t1);
 		_playerInfo.setFont(new Font("Garamond", Font.BOLD, 14));
 		

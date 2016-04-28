@@ -35,12 +35,6 @@ public class GameBoard {
 	public static int currentPlayerIndex;
 	
 	/**
-	 * true if the current player has ended its turn; false otherwise; is reset to false between
-	 * switching current players
-	 */
-	private boolean _turnIsOver;
-	
-	/**
 	 * ArrayList of type Token that holds references to all the tokens in the game
 	 */
 	private ArrayList<Token> _tokens; 
@@ -74,8 +68,6 @@ public class GameBoard {
 	 */
 	private Player[] _players;
 	
-	private Token[] _formulaTokens;
-
 	/**
 	 * Observer of this GameBoard, of type GameBoardGUI
 	 */

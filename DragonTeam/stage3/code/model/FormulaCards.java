@@ -43,7 +43,6 @@ public class FormulaCards {
 			shown.add(rand);
 			}
 	}
-		System.out.println(shown.toString());
 		_token1 = shown.get(0);
 		_token2 = shown.get(1);
 		_token3 = shown.get(2);

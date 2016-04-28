@@ -226,7 +226,16 @@ public class GameBoardGUI implements Runnable, Observer{
 					_playerInfo.setFont(new Font("Garamond", Font.BOLD, 14));
 				}
 				_useMagicWand.setText("<html>You Have : <br/>"+GameBoard.CURRENTPLAYER.getWands()+" wands left<br/>"+"Use a Magic Wand!</html>");
-
+				_formulaCard.setText(GameBoard.CURRENTPLAYER.getName()+"'s "+"Formula Card\n\n"+
+						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken1()+"\n"+
+						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken1())+
+						"\n"+
+						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken2()+"\n"+
+						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken2())+
+						"\n"+
+						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken3()+"\n"+
+						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken3())+
+						"\n");
 			}
 			
 		});
@@ -413,10 +422,17 @@ public class GameBoardGUI implements Runnable, Observer{
 		_useMagicWand.setBackground(new Color(245,245,220));
 		_useMagicWand.setText("<html>You Have : <br/>"+GameBoard.CURRENTPLAYER.getWands()+" wands left<br/>"+"Use a Magic Wand!</html>");
 		_useMagicWand.setFont(new Font("TimesRoman", Font.BOLD, 20));
+		_formulaCard.setFont(new Font("TimesRoman", Font.BOLD, 12));
 		_formulaCard.setText(GameBoard.CURRENTPLAYER.getName()+"'s "+"Formula Card\n\n"+
 		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken1()+"\n"+
+		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken1())+
+		"\n"+
 		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken2()+"\n"+
-		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken3()+"\n");
+		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken2())+
+		"\n"+
+		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken3()+"\n"+
+		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken3())+
+		"\n");
 		_rotateCounterClockwise.setBackground(new Color(245,245,220));
 		_rotateClockwise.setBackground(new Color(245,245,220));
 		

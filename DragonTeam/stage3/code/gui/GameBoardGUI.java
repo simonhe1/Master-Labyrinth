@@ -136,7 +136,6 @@ public class GameBoardGUI implements Runnable, Observer{
 		_window.setBackground(new Color(245,245,220));
 		_window.getContentPane().setLayout(new GridLayout(1,2));
 		_leftPanel = new JPanel();
-		//JPanel _leftPanelBack = new JPanel();
 		
 		try{
 			Image img = ImageIO.read(getClass().getResourceAsStream("images/GameBoardBorder.bmp"));
@@ -149,7 +148,6 @@ public class GameBoardGUI implements Runnable, Observer{
 		_leftPanel.setBackground(new Color(245,245,220));
 		_leftPanel.setSize(560,560);
 		_leftPanelBehind.setSize(720,720);
-		//_leftPanelBack.setSize(720,720);
 		_rightPanel.setSize(720,720);
 		
 		_endTurnButton = new JButton("End Turn");
@@ -221,14 +219,9 @@ public class GameBoardGUI implements Runnable, Observer{
 		_leftPanelBehind.add(_leftPanel);
 		_leftPanelBehind.setLayout(new GridBagLayout());
 		_leftPanelBehind.setBackground(new Color(245,245,220));
-		//_leftPanelBack.add(_leftPanelBehind);
-		//_leftPanelBack.setLayout(new GridBagLayout());
 		_leftPanelBehind.setVerticalAlignment(SwingConstants.CENTER);;
 		_leftPanel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		_leftPanel.setAlignmentY(JComponent.CENTER_ALIGNMENT);
-//		_leftPanel.setVerticalAlignment(SwingConstants.CENTER);
-//		_leftPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		
 		_window.add(_leftPanelBehind);
 		_window.add(_rightPanel);
 		
@@ -342,8 +335,8 @@ public class GameBoardGUI implements Runnable, Observer{
 
 	/**
 	 * This method creates and populates the shiftable tile panel. It sets the size,
-	 * background, and layout of the panel. This method also creates three JButtons, 
-	 * and add ActionsListeners to _rotateCounterClockwise and _rotateClockwise buttons.
+	 * background, and layout of the panel. This method also creates a JButton, 
+	 * and add an ActionsListener to shiftableTile button.
 	 * @author Ian,Ken 04-10-16
 	 */
 	private void createAndPopulateShiftableTilePanel() {
@@ -388,11 +381,9 @@ public class GameBoardGUI implements Runnable, Observer{
 		_shiftableTileButton.addActionListener(new ActionListener(){
 			
 			/**
-			 * This method add ActionListener to the _rotateClockwise button, so
-			 * when a player clicks that button, the shiftable tile will shift clockwise
-			 * by 90 degree. And catch the exception if it occurs. 
-			 * @param e action event generated when counterclockwise button clicked
-			 * @author Ian,Ken 04-10-16
+			 * This method causes the shiftableTileButton to rotate clockwise
+			 * 90 degrees whenever it's clicked.
+			 * @author SimonHe 5-2-16
 			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -404,7 +395,7 @@ public class GameBoardGUI implements Runnable, Observer{
 					_gameFeedback.setFont(new Font("Garamond", Font.BOLD, 14));
 				}
 				if(!GameBoard.CURRENTPLAYER.getHasInsertedThisTurn()){
-					GameBoard.CURRENTPLAYER.rotateShiftableTile(-90);
+					GameBoard.CURRENTPLAYER.rotateShiftableTile(90);
 					update();
 				}
 			}}

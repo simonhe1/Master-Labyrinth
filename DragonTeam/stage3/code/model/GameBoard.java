@@ -261,7 +261,7 @@ public class GameBoard {
 	public void populateBoardWithFixedTiles(){
 		//populate game board with fixed tiles (16) & rotate by appropriate angle
 		_board[0][0] = new FixedTile("L");
-		_board[0][0].rotate(-90);
+		_board[0][0].rotate(90);
 		_board[0][2] = new FixedTile("T");
 		_board[0][2].rotate(180);
 		_board[0][4] = new FixedTile("T");
@@ -270,22 +270,22 @@ public class GameBoard {
 		_board[0][6].rotate(180);
 		
 		_board[2][0] = new FixedTile("T");
-		_board[2][0].rotate(-90);
+		_board[2][0].rotate(90);
 		_board[2][2] = new FixedTile("T");
-		_board[2][2].rotate(-90);
+		_board[2][2].rotate(90);
 		_board[2][4] = new FixedTile("T");
 		_board[2][4].rotate(180);
 		_board[2][6] = new FixedTile("T");
-		_board[2][6].rotate(90);
+		_board[2][6].rotate(-90);
 		
 		_board[4][0] = new FixedTile("T");
-		_board[4][0].rotate(-90);
+		_board[4][0].rotate(90);
 		_board[4][2] = new FixedTile("T");
 		_board[4][2].rotate(0);
 		_board[4][4] = new FixedTile("T");
-		_board[4][4].rotate(90);
+		_board[4][4].rotate(-90);
 		_board[4][6] = new FixedTile("T");
-		_board[4][6].rotate(90);
+		_board[4][6].rotate(-90);
 		
 		_board[6][0] = new FixedTile("L");
 		_board[6][0].rotate(0);
@@ -294,7 +294,7 @@ public class GameBoard {
 		_board[6][4] = new FixedTile("T");
 		_board[6][4].rotate(0);
 		_board[6][6] = new FixedTile("L");
-		_board[6][6].rotate(90);
+		_board[6][6].rotate(-90);
 	}
 	
 	/**
@@ -773,12 +773,9 @@ public class GameBoard {
 	  * @author Ian, Satya 04-10-16
 	  */
 	public boolean checkIfMoveLegal(AbstractTile originTile, AbstractTile destinationTile){
-		//int originTileNum = getTileNumFromTileReference(originTile);
-		//int destinationTileNum = getTileNumFromTileReference(destinationTile);
 		ArrayList<AbstractTile> tobechecked  = new ArrayList<AbstractTile>();
 		tobechecked.add(originTile);
 		ArrayList<AbstractTile> possibleDestinations = new ArrayList<AbstractTile>();
-		//possibleDestinations.add(originTile);
 		while(tobechecked.size()>0){
 			AbstractTile currentTile = tobechecked.get(0);
 			tobechecked.remove(currentTile);
@@ -843,19 +840,6 @@ public class GameBoard {
 			}
 		
 		}
-//		System.out.println("The origin tile number is: "+originTileNum+"\nThe destination tile number is: "+ 
-//							destinationTileNum);
-//		System.out.println("\nThe tile numbers of the destination tiles are: ");
-//		for(AbstractTile aT: possibleDestinations){
-//			System.out.println(getTileNumFromTileReference(aT));
-//		}
-//		System.out.print("\n");
-		if(possibleDestinations.contains(destinationTile)){
-//			System.out.println("Valid Move: There exists a path between origin and destination!");
-		}
-		else{
-//			System.out.println("Invalid Move: There exists NO path between origin and destination.");
-		}
 		possibleDestinations.remove(originTile);
 		return(possibleDestinations.contains(destinationTile));
 
@@ -876,9 +860,9 @@ public class GameBoard {
 	 * @param players array
 	 * @author weijin,Satya 04-03-16 5:28pm
 	 */
-//	public void setPlayers(Player[] players){
-//		_players = players;
-//	}
+	public void setPlayers(Player[] players){
+		_players = players;
+	}
 
 //	OUR STAGE 1 CODE DOES NOT NEED THIS PRINTBOARD METHOD -- IT WAS USEFUL IN DEBUGGING,
 //	AND MAY BE USEFUL LATER, SO WE LEAVE IT IN.
@@ -956,23 +940,6 @@ public class GameBoard {
 	
 	}
 	/**
-	 * This method assigns the turn
-	 * @param turns whose turn is it
-	 * @author ken,Josh (April 3,2016)(8:20pm)
-	 */
-//	public void setTurn(int turns){
-//		_turns = turns;
-//	}
-	/**
-	 * This method determines whose turn is it
-	 * @param turns whose turn it is 
-	 * @author ken,Josh (April 3,2016)(8:20pm)
-	 */
-//	public int getCurrentTurn(){
-//		return _turns;
-//	}
-	
-	/**
 	 * This method keeps each player's order of his/her turn
 	 * @param turns
 	 * @author ken,Josh (April 3,2016)(8:20pm)
@@ -1035,11 +1002,6 @@ public class GameBoard {
 	
 	public String[][] line1array(){
 		String[][] Data = new String[_numOfPlayers][5];
-		Data[0][0] = CURRENTPLAYER.getName();
-		Data[0][0] = CURRENTPLAYER.getColor();
-		Data[0][0] = CURRENTPLAYER.getWands()+"";
-		Data[0][0] = CURRENTPLAYER.getFormulaCards().tokensToString();
-		Data[0][0] = CURRENTPLAYER.getTokensToString();
 		for(int i=0; i<_numOfPlayers;i++){
 			Data[i][0]= _players[(currentPlayerIndex + i) % _players.length].getName();
 			Data[i][1]= _players[(currentPlayerIndex + i) % _players.length].getColor();
@@ -1049,9 +1011,34 @@ public class GameBoard {
 		}
 		return Data;
 	}
+	
+	public String[][] line2array(){
+		String[][] Data = new String[49][3];
+		int tileNum = 0;
+		for(int i=0;i<=6;i++){
+			for(int j=0;j<=6;j++){
+				if(_board[i][j].getToken() == null){
+					Data[tileNum][0] = _board[i][j].getIdentity() +
+						_board[i][j].getRotation();
+					Data[tileNum][1] = 0+"";
+					Data[tileNum][2] = _board[i][j].getPlayersToString();
+					tileNum++;
+				}
+				else{
+					Data[tileNum][0] = _board[i][j].getIdentity() +
+						_board[i][j].getRotation();
+					Data[tileNum][1] = _board[i][j].getToken().getValue() + "";
+					Data[tileNum][2] = _board[i][j].getPlayersToString();
+					tileNum++;
+					}
+				}
+			}
+		return Data;
+	}
 	public String saveData(){
 		String Data = "";
 		Data = Data + Arrays.deepToString(line1array());
+		Data = Data + Arrays.deepToString(line2array());
 		
 		return Data;
 	}
@@ -1063,6 +1050,7 @@ public class GameBoard {
 		players[1].setName("Bob");
 		players[2].setName("George");
 		players[3].setName("Patrick");
-		System.out.println(gb.saveData());
+		System.out.println(Arrays.deepToString(gb.line1array()));
+		System.out.println(Arrays.deepToString(gb.line2array()));
 	}
 } //end of Game Board class definition

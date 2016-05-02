@@ -53,8 +53,9 @@ public abstract class AbstractTile {
 	 */
 	protected boolean _initialized;
 	
-	//protected int _rotationTotal;
+	private int _rotationTotal;
 	
+	private String _identity;
 	/**
 	 * Parameterless constructor of AbstractTile class. Assigns newly created ArrayList of type
 	 * Player to _players instance variable.
@@ -63,6 +64,8 @@ public abstract class AbstractTile {
 	public AbstractTile(){
 		_players = new ArrayList<Player>();
 		_initialized = false;
+		_rotationTotal = 0;
+		_identity="";
 	}
 	
 	/**
@@ -89,6 +92,7 @@ public abstract class AbstractTile {
 		if (identity == "I"){
 			setDirections(0,0,1,1);
 		}
+		_identity = identity;
 	}
 	
 	/**
@@ -108,6 +112,12 @@ public abstract class AbstractTile {
 		return false;
 	}
 	
+	public int getRotation(){
+		return _rotationTotal;
+	}
+	public String getIdentity(){
+		return _identity;
+	}
 	/**
 	 * This method returns a reference to the Token object currently 
 	 * residing on this tile.  
@@ -143,6 +153,15 @@ public abstract class AbstractTile {
 		return temp;
 	}
 	
+	public String getPlayersToString(){
+		String players = "";
+		players = players + "[";
+		for(int i = 0;i<_players.size();i++){
+			players = players + _players.get(i).getColor() + ",";
+		}
+		players = players + "]";
+		return players;
+	}
 	/**
 	 * This method returns true if the tile currently has at least one player on it
 	 * and false if it does not.  
@@ -249,8 +268,8 @@ public abstract class AbstractTile {
 	 * variable assignments for rotation of the tile before. The value
 	 * r = ( d % 360 ) normalizes the input d to a range of 0 to 359.
 	 * If r = 0, there is no rotation; r = 90 or r = -270, correspond
-	 * to a counter-clockwise quarter turn, while r = -90 or r = 270,
-	 * correspond to clockwise quarter turns; r = 180 or r = -180 
+	 * to a clockwise quarter turn, while r = -90 or r = 270,
+	 * correspond to counter-clockwise quarter turns; r = 180 or r = -180 
 	 * correspond to two quarter turns either clockwise or counterclockwise.
 	 * No rotation is performed if r is not in the set {0,90,-90,180,-180,270,-270}.
 	 * 
@@ -263,20 +282,20 @@ public abstract class AbstractTile {
 		int r = d%360;
 		if(r==0){} 
 		else if(r==90 || r==-270){
-			int temp = _right;
-			_right = _bottom;
-			_bottom = _left;
-			_left = _top;
-			_top = temp;
-			
-		}
-		else if(r==-90 || r==270){
 			int temp = _left;
 			_left = _bottom;
 			_bottom = _right;
 			_right = _top;
 			_top = temp;
-			
+			_rotationTotal = (_rotationTotal%4) +1;
+		}
+		else if(r==-90 || r==270){
+			int temp = _right;
+			_right = _bottom;
+			_bottom = _left;
+			_left = _top;
+			_top = temp;
+			_rotationTotal = (_rotationTotal%4) +1;
 		}
 		else if(r==180 || r==-180) {
 			int temp = _left;
@@ -285,7 +304,7 @@ public abstract class AbstractTile {
 			temp = _top;
 			_top = _bottom;
 			_bottom = temp;
-			
+			_rotationTotal = (_rotationTotal%4) +1;
 		}
 		else {} // d%90!=0;
 	}

@@ -83,19 +83,6 @@ public class GameBoardGUI implements Runnable, Observer{
 	 * the JButton that used to hold the shiftable tile
 	 */
 	private JButton _shiftableTileButton;
-	
-	/**
-	 * the JButton that is used to rotate the shiftable 
-	 * tile counterclockwise by 90 degree
-	 */
-	private JButton _rotateCounterClockwise;
-	
-	/**
-	 * the JButton that is used to rotate the shiftable 
-	 * tile clockwise by 90 degree
-	 */
-	private JButton _rotateClockwise;
-	
 	/**
 	 * the JTextPane that displays the players' information
 	 */
@@ -216,14 +203,14 @@ public class GameBoardGUI implements Runnable, Observer{
 				}
 				_useMagicWand.setText("<html>You Have : <br/>"+GameBoard.CURRENTPLAYER.getWands()+" wands left<br/>"+"Use a Magic Wand!</html>");
 				_formulaCard.setText(GameBoard.CURRENTPLAYER.getName()+"'s "+"Formula Card\n\n"+
-						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken1()+"\n"+
-						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken1())+
+						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[0]+"\n"+
+						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[0])+
 						"\n"+
-						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken2()+"\n"+
-						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken2())+
+						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[1]+"\n"+
+						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[1])+
 						"\n"+
-						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken3()+"\n"+
-						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken3())+
+						"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[2]+"\n"+
+						GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[2])+
 						"\n");
 			}
 			
@@ -344,11 +331,6 @@ public class GameBoardGUI implements Runnable, Observer{
 		for(int i = 0; i < 7; i++){	
 			for(int j = 0; j < 7; j++){	
 				JButton button = new JButton();
-//				JButton tokenButton = new JButton();
-//				JLabel tokenLabel = new JLabel();
-//				_tokenButtons.add(tokenButton);
-//				tokenButton.setPreferredSize(new Dimension(30,30));
-//				tokenButton.addActionListener(new TokenButtonHandler(i,j,_gb,tokenButton));
 				button.setPreferredSize(new Dimension(80,80));
 				button.setLayout(new FlowLayout());
 				button.addActionListener(new GameBoardButtonHandler(i,j,_gb, this));
@@ -356,24 +338,6 @@ public class GameBoardGUI implements Runnable, Observer{
 				
 			}
 		}
-//		 for(int i =1; i<=5; i= i+2 ){
-//			 for(int j =1; j<=5; j++){
-//				JButton token = new JButton();
-//				token.setPreferredSize(new Dimension(30,30));
-//				_tokenButtons.add(token);
-//				JButton bp =(JButton)_boardPanel.getComponent(i*7 + j);
-//				bp.add(token);
-//			 }
-//		 }
-//		 for(int i = 2; i<=4; i= i+2 ){
-//			 for(int j =1; j<=5; j= j+2){
-//				 JButton token = new JButton();
-//					token.setPreferredSize(new Dimension(30,30));
-//					_tokenButtons.add(token);
-//					JButton bp =(JButton)_boardPanel.getComponent(i*7 + j);
-//					bp.add(token);
-//			 }
-//		 }
 	}
 
 	/**
@@ -389,15 +353,11 @@ public class GameBoardGUI implements Runnable, Observer{
 		_shiftableTilePanel.setLayout(new GridLayout(1,3));
 		
 		_shiftableTileButton = new JButton();
-		_rotateCounterClockwise = new JButton();
-		_rotateClockwise = new JButton();
 		_useMagicWand = new JButton();
 		_formulaCard = new JTextPane();
 		_shiftableTileButton.setPreferredSize(new Dimension(80,80));
 		_useMagicWand.setPreferredSize(new Dimension(80,80));
 		_formulaCard.setPreferredSize(new Dimension(80,80));
-		_rotateCounterClockwise.setPreferredSize(new Dimension(80,80));
-		_rotateClockwise.setPreferredSize(new Dimension(80,80));
 		_shiftableTileButton.setBackground(new Color(245,245,220));
 		_formulaCard.setBackground(new Color(245,245,220));
 		_useMagicWand.setBackground(new Color(245,245,220));
@@ -405,18 +365,15 @@ public class GameBoardGUI implements Runnable, Observer{
 		_useMagicWand.setFont(new Font("TimesRoman", Font.BOLD, 20));
 		_formulaCard.setFont(new Font("TimesRoman", Font.BOLD, 12));
 		_formulaCard.setText(GameBoard.CURRENTPLAYER.getName()+"'s "+"Formula Card\n\n"+
-		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken1()+"\n"+
-		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken1())+
+		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[0]+"\n"+
+		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[0])+
 		"\n"+
-		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken2()+"\n"+
-		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken2())+
+		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[1]+"\n"+
+		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[1])+
 		"\n"+
-		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken3()+"\n"+
-		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken3())+
+		"Token "+GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[2]+"\n"+
+		GameBoard.CURRENTPLAYER.getFormulaCards().getNameToken(GameBoard.CURRENTPLAYER.getFormulaCards().getToken()[2])+
 		"\n");
-		_rotateCounterClockwise.setBackground(new Color(245,245,220));
-		_rotateClockwise.setBackground(new Color(245,245,220));
-		
 		_useMagicWand.addActionListener(new ActionListener(){
 
 			@Override
@@ -452,12 +409,6 @@ public class GameBoardGUI implements Runnable, Observer{
 				}
 			}}
 		);
-		try{
-			Image rotateRight = ImageIO.read(getClass().getResourceAsStream("images/rotateRight1.gif"));			
-			_rotateClockwise.setIcon(new ImageIcon(rotateRight));
-			//_rotateClockwise.setText("Rotate -90 degrees");
-		}
-		catch (IOException ex){}
 		MoveableTile shiftableTile = _gb.getMoveableTileArray().get(0);
 		_shiftableTileButton.setIcon(new ImageIcon(generateImageForTile(shiftableTile)));
 		_shiftableTilePanel.add(_useMagicWand);
@@ -763,8 +714,6 @@ public class GameBoardGUI implements Runnable, Observer{
 	public void gameOver() {
 		
 		updateGameIsOver();
-		_rotateClockwise.setEnabled(false);
-		_rotateCounterClockwise.setEnabled(false);
 		_endTurnButton.setEnabled(false);
 		//_shiftableTileButton.setEnabled(false);
 		

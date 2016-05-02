@@ -244,11 +244,11 @@ public class Player {
 			at.removeToken();
 			//t.setTile(null);
 			_score = _score + t.getValue();
-			if (_formulaCard.getToken1()==t.getValue())
+			if (_formulaCard.getToken()[0]==t.getValue())
 				_score = _score+20;
-			if (_formulaCard.getToken2()==t.getValue())
+			if (_formulaCard.getToken()[1]==t.getValue())
 				_score = _score+20;
-			if (_formulaCard.getToken3()==t.getValue())
+			if (_formulaCard.getToken()[2]==t.getValue())
 				_score = _score+20;
 			_gb.toggleNextToken();
 			_gb.playerHasAlteredBoard();
@@ -332,6 +332,16 @@ public class Player {
 	 */
 	public ArrayList<Token> getTokens(){
 		return _myTokens;
+	}
+	
+	public String getTokensToString(){
+		String tokens = "";
+		tokens = tokens + "[";
+		for(int i = 0;i<_myTokens.size();i++){
+			tokens = tokens + _myTokens.get(i) + ",";
+		}
+		tokens = tokens + "]";
+		return tokens;
 	}
 	
 	/**

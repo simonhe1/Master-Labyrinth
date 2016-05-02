@@ -1,16 +1,16 @@
 package code.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class FormulaCards {
 	
-	private int _token1;
-	private int _token2;
-	private int _token3;
+	private int[] _tokens;
 	private String[] _names = new String[21];
 	
 	public FormulaCards(){
+		_tokens = new int[3];
 		_names[0]= "Crab Apple";
 		_names[1]= "Pine Cone";
 		_names[2]= "Oak Leaf";
@@ -43,22 +43,17 @@ public class FormulaCards {
 			shown.add(rand);
 			}
 	}
-		_token1 = shown.get(0);
-		_token2 = shown.get(1);
-		_token3 = shown.get(2);
+		_tokens[0] = shown.get(0);
+		_tokens[1] = shown.get(1);
+		_tokens[2] = shown.get(2);
 	}
 	
-	public int getToken1(){
-		
-		return _token1;
+	public int[] getToken(){
+		return _tokens;
 	}
 	
-	public int getToken2(){
-		return _token2;
-	}
-	
-	public int getToken3(){
-		return _token3;
+	public String tokensToString(){
+		return Arrays.toString(_tokens);
 	}
 	public String getNameToken(int tokenNo){
 		if(tokenNo == 25){

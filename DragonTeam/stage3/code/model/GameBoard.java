@@ -1,6 +1,7 @@
 package code.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import code.model.Token;
@@ -1030,7 +1031,38 @@ public class GameBoard {
 	
 	public void shuffleFormulaCards(){
 		Collections.shuffle(_tokens);
-		
 	}
 	
+	public String[][] line1array(){
+		String[][] Data = new String[_numOfPlayers][5];
+		Data[0][0] = CURRENTPLAYER.getName();
+		Data[0][0] = CURRENTPLAYER.getColor();
+		Data[0][0] = CURRENTPLAYER.getWands()+"";
+		Data[0][0] = CURRENTPLAYER.getFormulaCards().tokensToString();
+		Data[0][0] = CURRENTPLAYER.getTokensToString();
+		for(int i=0; i<_numOfPlayers;i++){
+			Data[i][0]= _players[(currentPlayerIndex + i) % _players.length].getName();
+			Data[i][1]= _players[(currentPlayerIndex + i) % _players.length].getColor();
+			Data[i][2]= _players[(currentPlayerIndex + i) % _players.length].getWands()+"";
+			Data[i][3]= _players[(currentPlayerIndex + i) % _players.length].getFormulaCards().tokensToString();
+			Data[i][4]= _players[(currentPlayerIndex + i) % _players.length].getTokensToString();
+		}
+		return Data;
+	}
+	public String saveData(){
+		String Data = "";
+		Data = Data + Arrays.deepToString(line1array());
+		
+		return Data;
+	}
+	public static void main(String[]args){
+		GameBoard gb = new GameBoard(4);
+		gb.setupRandomBoard();
+		Player[] players = gb.getPlayers();
+		players[0].setName("Simon");
+		players[1].setName("Bob");
+		players[2].setName("George");
+		players[3].setName("Patrick");
+		System.out.println(gb.saveData());
+	}
 } //end of Game Board class definition

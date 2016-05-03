@@ -1035,11 +1035,63 @@ public class GameBoard {
 			}
 		return Data;
 	}
+	
+	public String line3array(){
+		String number = "";
+		if(_arrayOfMoveTiles.size() != 1){
+			number = "0";
+			return number;
+		}
+		MoveableTile shiftable = _arrayOfMoveTiles.get(0);
+		int triangle = shiftable.getLastTileNum();
+		switch(triangle){
+		case -1:
+			number = "0";
+			break;
+		case 1:
+			number = "1";
+			break;
+		case 3:
+			number = "2";
+			break;
+		case 5:
+			number = "3";
+			break;
+		case 7:
+			number = "12";
+			break;
+		case 13:
+			number = "4";
+			break;
+		case 21:
+			number = "11";
+			break;
+		case 27:
+			number = "5";
+			break;
+		case 35:
+			number = "10";
+			break;
+		case 41:
+			number = "6";
+			break;
+		case 43:
+			number = "9";
+			break;
+		case 45:
+			number = "8";
+			break;
+		case 47:
+			number = "7";
+			break;
+		}
+		return number;
+	}
 	public String saveData(){
 		String Data = "";
 		Data = Data + Arrays.deepToString(line1array());
 		Data = Data + Arrays.deepToString(line2array());
-		
+		Data = Data + line3array();
 		return Data;
 	}
 	public static void main(String[]args){
@@ -1052,5 +1104,6 @@ public class GameBoard {
 		players[3].setName("Patrick");
 		System.out.println(Arrays.deepToString(gb.line1array()));
 		System.out.println(Arrays.deepToString(gb.line2array()));
+		System.out.println(gb.line3array());
 	}
 } //end of Game Board class definition

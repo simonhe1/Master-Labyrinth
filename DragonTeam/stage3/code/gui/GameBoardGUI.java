@@ -75,6 +75,11 @@ public class GameBoardGUI implements Runnable, Observer{
 	private JPanel _gameFeedbackPanel;
 	
 	/**
+	 * the panel that holds the save, restore, and end turn buttons
+	 */
+	private JPanel _saveRestoreEndPanel;
+	
+	/**
 	 * reference to the GameBoard class
 	 */
 	private GameBoard _gb;
@@ -98,6 +103,16 @@ public class GameBoardGUI implements Runnable, Observer{
 	 * the JButton that is used to end each player's turn
 	 */
 	private JButton _endTurnButton;
+	
+	/**
+	 * the JButton that is used to save the state of the game.
+	 */
+	private JButton _saveButton;
+	
+	/**
+	 * the JButton that is used to restore the state of a previously saved game.
+	 */
+	private JButton _restoreButton;
 	
 	/**
 	 * Button that is pressed when a player wishes to use a magic wand.
@@ -149,12 +164,29 @@ public class GameBoardGUI implements Runnable, Observer{
 		_leftPanel.setSize(560,560);
 		_leftPanelBehind.setSize(720,720);
 		_rightPanel.setSize(720,720);
+		_saveRestoreEndPanel = new JPanel();
+		_saveRestoreEndPanel.setSize(720, 720);
+		_saveRestoreEndPanel.setBackground(new Color(245,245,220));
 		
+		
+		_saveButton = new JButton("Save");
+		_saveButton.setFont(new Font("Garamond", Font.BOLD, 40));
+		_saveButton.setForeground(new Color(255,201,14));
+		_saveButton.setPreferredSize(new Dimension(83,180));
+		_saveButton.setBackground(new Color(0,0,0));
+		_restoreButton = new JButton("Restore");
+		_restoreButton.setFont(new Font("Garamond", Font.BOLD, 40));
+		_restoreButton.setForeground(new Color(255,201,14));
+		_restoreButton.setPreferredSize(new Dimension(83,180));
+		_restoreButton.setBackground(new Color(0,0,0));
 		_endTurnButton = new JButton("End Turn");
 		_endTurnButton.setFont(new Font("Garamond", Font.BOLD, 40));
 		_endTurnButton.setForeground(new Color(255,201,14));
 		_endTurnButton.setPreferredSize(new Dimension(250,180));
 		_endTurnButton.setBackground(new Color(0,0,0));
+		_saveRestoreEndPanel.add(_endTurnButton);
+		_saveRestoreEndPanel.add(_saveButton);
+		_saveRestoreEndPanel.add(_restoreButton);
 		_endTurnButton.addActionListener(new ActionListener(){
 			
 			/**
@@ -216,6 +248,7 @@ public class GameBoardGUI implements Runnable, Observer{
 		
 		_leftPanel.setLayout(new GridLayout(1,1));
 		_rightPanel.setLayout(new GridLayout(4,1));
+		_saveRestoreEndPanel.setLayout(new GridLayout(1,3));
 		_leftPanelBehind.add(_leftPanel);
 		_leftPanelBehind.setLayout(new GridBagLayout());
 		_leftPanelBehind.setBackground(new Color(245,245,220));
@@ -224,6 +257,7 @@ public class GameBoardGUI implements Runnable, Observer{
 		_leftPanel.setAlignmentY(JComponent.CENTER_ALIGNMENT);
 		_window.add(_leftPanelBehind);
 		_window.add(_rightPanel);
+		
 		
 		createAndPopulateBoardPanel();
 		createAndPopulatePlayerInfoPanel();
@@ -238,7 +272,7 @@ public class GameBoardGUI implements Runnable, Observer{
 		_rightPanel.add(_playerInfoPanel);
 		_rightPanel.add(_shiftableTilePanel);
 		_rightPanel.add(_gameFeedbackPanel);
-		_rightPanel.add(_endTurnButton);
+		_rightPanel.add(_saveRestoreEndPanel);
 		
 		_window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_window.pack();

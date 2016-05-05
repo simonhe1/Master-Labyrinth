@@ -14,6 +14,8 @@ import code.model.Token;
  */
 public class Player {  
 	
+	public boolean _cam = false;
+	
 	/**
 	 * static final int value that stores the maximum number of players during a game.
 	 * It is final because the max# can not change
@@ -236,7 +238,7 @@ public class Player {
 			_gb.updateGameFeedBack(s);
 		}
 		
-		if(_hasMovedThisTurn && _gb.getCurrentTargetToken() == t 
+		if(_cam || _hasMovedThisTurn && _gb.getCurrentTargetToken() == t 
 				&& _currentTile == t.getTile()){
 			System.out.println("It is " + (_currentTile == t.getTile()) + " that my tile is the same as the token's");
 			_myTokens.add(t);
@@ -293,6 +295,10 @@ public class Player {
 	 */
 	public int getWands(){
 		return _playerWands;
+	}
+	
+	public void setWands(int i){
+		_playerWands = i;
 	}
 	public void setName(String name){
 		_playerName = name;
@@ -401,4 +407,5 @@ public class Player {
 	public FormulaCards getFormulaCards(){
 		return _formulaCard;
 	}
+	
 }

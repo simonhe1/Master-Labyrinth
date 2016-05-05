@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 import code.model.Token;
+import code.fileIO.FileIO;
 import code.gui.GameBoardGUI;
 
 /**
@@ -1087,13 +1088,34 @@ public class GameBoard {
 		}
 		return number;
 	}
-	public String saveData(){
-		String Data = "";
-		Data = Data + Arrays.deepToString(line1array());
-		Data = Data + Arrays.deepToString(line2array());
-		Data = Data + line3array();
-		return Data;
+	public void saveData(){
+		String line = "";
+	
+		for(int i=0; i<line1array().length; i++){
+			line = line + Arrays.deepToString(line1array()[i]);
+			line = line + ",";
+		}
+		line = line.substring(0,line.length()-1);
+		//line = line + System.lineSeparator();
+		for(int i=0; i<line2array().length; i++){
+			line = line + Arrays.deepToString(line2array()[i]);
+			line = line + ",";
+		}
+		line = line.substring(0,line.length()-1);
+		//line = line + System.lineSeparator();
+		line = line + line3array();
+		
+		String output = "";
+		for(int i=0; i<line.length(); i++){
+			if(line.charAt(i)!=' '){
+				output = output + line.charAt(i);
+			}
+		}
+		FileIO fi = new FileIO();
+		fi.writeStringToFile("CSEstage3", output);
+
 	}
+
 	public static void main(String[]args){
 		GameBoard gb = new GameBoard(4);
 		gb.setupRandomBoard();
@@ -1102,8 +1124,10 @@ public class GameBoard {
 		players[1].setName("Bob");
 		players[2].setName("George");
 		players[3].setName("Patrick");
-		System.out.println(Arrays.deepToString(gb.line1array()));
-		System.out.println(Arrays.deepToString(gb.line2array()));
-		System.out.println(gb.line3array());
+
+
+		gb.saveData();
+		Load l = new Load("CSEstage3");
+		System.out.println(l.getIllegalInsert());
 	}
 } //end of Game Board class definition

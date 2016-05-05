@@ -1118,14 +1118,206 @@ public class GameBoard {
 	
 	public void load(){
 		Load l = new Load("CSEstage3");
+		populateFixedTiles();
+		populateBoardWithMoveableTiles();
+		
+		setPlayerPosition();
+		setTokenPosition();
+		//put line1 info in
 		_players = new Player[l.getName().size()];
-		for(int i=0; i<_players.length; i++){
+		for(int i=0; i<_numOfPlayers; i++){
 			_players[i] = new Player(l.getColor().get(i));
 			_players[i].setName(l.getName().get(i));
+			_players[i].setWands(Integer.parseInt(l.getWand().get(i)));
 			
+			int[] f = new int[3];
+			for(int j=0; j<3; j++){
+				f[j] = Integer.parseInt(l.getFormula().get(i).get(j));
+			}
+			_players[i].getFormulaCards().setToken(f);
+			 
 			
+			for(String t:l.getTokensGot().get(i)){
+				System.out.println(t);
+				_players[i]._cam = true;
+				_players[i].pickUpToken(_tokens.get(Integer.parseInt(t)));
+			}
+		}
+		
+		System.out.println(_players[0].getColor());
+		
+		Integer[] l1 = new Integer[_players.length];
+		ArrayList<ArrayList<String>> al = l.getTokensGot();
+		for(int i=0; i<l1.length; i++){
+			l1[i] = Integer.parseInt(al.get(i).get(al.get(i).size()-1));
+		}
+		
+		int cur = Math.max(Math.max(l1[0], l1[1]), Math.max(l1[0], l1[1]))+1;
+		_currentTargetToken = _tokens.get(cur);
+		
+	}
+	
+	public void setTokenPosition(){
+		Load load = new Load("CSEstage3");
+		for(int i=0; i<=6; i++){
+			for(int j=0; j<=6; j++){
+				if(load.getToken().get(i*6+j)==25){
+					System.out.println(load.getToken().get(i*6+j));
+					_board[i][j].setToken(_tokens.get(20));
+				}
+				
+			else if (load.getToken().get(i*6+j)!=0){
+					System.out.println(load.getToken().get(i*6+j));
+					_board[i][j].setToken(_tokens.get(load.getToken().get(i*6+j)-1));
+				}
+			}
+		}	
+	}
+	
+	public void setPlayerPosition(){
+		Load load = new Load("CSEstage3");
+		for(int i=0; i<=6; i++){
+			for(int j=0; j<=6; j++){
+				if (load.getPlayer().get(i*6+j)!=null){
+					for(String s:load.getPlayer().get(i*6+j)){
+						_board[i][j].addPlayer(new Player(s));
+					}
+				}
+			}
+
+
 		}
 	}
+
+	
+	public void populateFixedTiles(){
+		Load l = new Load("CSEstage3");
+		populateBoardWithFixedTiles();
+		_arrayOfMoveTiles.removeAll(_arrayOfMoveTiles);
+		//6T 13L 15I
+		int I=0;
+		int L=0;
+		int T=0;
+		for(int i=0;i<49;i=i+1){
+		switch(l.getTypes().get(i)){
+		case "T0":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("T"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(0);
+			T++;
+			}
+			break;
+		case "T1":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("T"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(90);
+			T++;
+			}
+			break;
+		case "T2":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("T"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(180);
+			T++;
+			}
+			break;
+		case "T3":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("T"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(-90);
+			T++;
+			}
+			break;
+		case "L0":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("L"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(0);
+			L++;
+			}
+			break;
+		case "L1":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("L"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(90);
+			L++;
+			}
+			break;
+		case "L2":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("L"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(180);
+			L++;
+			}
+			break;
+		case "L3":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("L"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(-90);
+			L++;
+			}
+			break;
+		case "I0":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("I"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(0);
+			I++;
+			}
+			break;
+		case "I1":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("I"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(90);
+			I++;
+			}
+			break;
+		case "I2":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("I"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(180);
+			I++;
+			}
+			break;
+		case "I3":
+			if(i==0||i==2||i==4||i==6||i==14||i==16||i==18||
+			i==20||i==28||i==30||i==32||i==34||i==42||i==44||i==46||i==48){}
+			else{
+			_arrayOfMoveTiles.add(new MoveableTile("I"));
+			_arrayOfMoveTiles.get(_arrayOfMoveTiles.size()-1).rotate(-90);
+			I++;
+			}
+			break;
+			}
+		}
+		//6T 13L 15I
+		if(I!=15){_arrayOfMoveTiles.add(new MoveableTile("I"));}
+		if(L!=13){_arrayOfMoveTiles.add(new MoveableTile("L"));}
+		if(T!=6){_arrayOfMoveTiles.add(new MoveableTile("T"));}
+	}
+	
+	
+	
 
 	public static void main(String[]args){
 		GameBoard gb = new GameBoard(4);
@@ -1138,7 +1330,8 @@ public class GameBoard {
 
 
 		gb.saveData();
+		gb.load();
 		Load l = new Load("CSEstage3");
-	
+		//System.out.println(l.getToken());
 	}
 } //end of Game Board class definition

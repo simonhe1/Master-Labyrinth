@@ -167,18 +167,34 @@ public class GameBoardGUI implements Runnable, Observer{
 		_saveRestoreEndPanel = new JPanel();
 		_saveRestoreEndPanel.setSize(720, 720);
 		_saveRestoreEndPanel.setBackground(new Color(245,245,220));
-		
-		
 		_saveButton = new JButton("Save");
 		_saveButton.setFont(new Font("Garamond", Font.BOLD, 40));
 		_saveButton.setForeground(new Color(255,201,14));
 		_saveButton.setPreferredSize(new Dimension(83,180));
 		_saveButton.setBackground(new Color(0,0,0));
+		_saveButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_gb.saveData();
+			}
+			
+		});
 		_restoreButton = new JButton("Restore");
 		_restoreButton.setFont(new Font("Garamond", Font.BOLD, 40));
 		_restoreButton.setForeground(new Color(255,201,14));
 		_restoreButton.setPreferredSize(new Dimension(83,180));
 		_restoreButton.setBackground(new Color(0,0,0));
+		_restoreButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				_gb.load();
+				update();
+			}
+			
+		});
+		
 		_endTurnButton = new JButton("End Turn");
 		_endTurnButton.setFont(new Font("Garamond", Font.BOLD, 40));
 		_endTurnButton.setForeground(new Color(255,201,14));

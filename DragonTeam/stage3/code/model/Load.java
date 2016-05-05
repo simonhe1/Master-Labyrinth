@@ -12,7 +12,7 @@ public class Load {
 	private ArrayList<ArrayList<String>> formula = new ArrayList<ArrayList<String>>();
 	private ArrayList<ArrayList<String>> tokensGot = new ArrayList<ArrayList<String>>();
 	private ArrayList<String> types = new ArrayList<String>();
-	private ArrayList<String> token = new ArrayList<String>();
+	private ArrayList<Integer> token = new ArrayList<Integer>();
 	private ArrayList<ArrayList<String>> player = new ArrayList<ArrayList<String>>();
 	private String IllegalInsert = "0";
 	
@@ -40,7 +40,7 @@ public class Load {
 	public ArrayList<String> getTypes(){
 		return types;
 	}
-	public ArrayList<String> getToken(){
+	public ArrayList<Integer> getToken(){
 		return token;
 	}
 	public ArrayList<ArrayList<String>> getPlayer(){
@@ -98,6 +98,9 @@ public class Load {
 			if(t.length()>2){
 				toArrayList(t, tokensGot);
 			}
+			else{
+				tokensGot.add(null);
+			}
 
 		}
 
@@ -105,12 +108,17 @@ public class Load {
 
 		for(int i=0; i<49; i++){
 			String element = line2.substring(0, line2.indexOf("]]")+2);
-
 			types.add(element.substring(1, 3));
-			token.add(element.substring(element.indexOf(',')+1, element.lastIndexOf(",[")));
-			String p = element.substring(element.indexOf(",[")+2, element.indexOf("]]"));
-			toArrayList(p, player);
-
+			token.add(Integer.decode(element.substring(element.indexOf(',')+1, element.lastIndexOf(",["))));
+			String p = element.substring(element.indexOf(",[")+1, element.indexOf("]]")+1);
+			if(p.length()>2){
+				toArrayList(p, player);
+				player.get(i).remove(player.get(i).size()-1);
+			}
+			else{
+				player.add(null);
+			}
+			
 			if(i < 48){
 				line2 = line2.substring(line2.indexOf("]]")+3);
 			}
@@ -120,6 +128,16 @@ public class Load {
 		//Put line3 in a String
 		IllegalInsert = line3;
 		
+		
+	}
+	
+	public String getPlayerName(String _color){
+		for(int i=0;i<color.size();i++){
+			if(color.get(i)==_color){
+				return name.get(i);
+			}
+		}
+		return null;
 		
 	}
 	

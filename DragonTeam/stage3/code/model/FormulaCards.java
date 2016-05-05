@@ -52,6 +52,10 @@ public class FormulaCards {
 		return _tokens;
 	}
 	
+	public void setToken(int[] i){
+		 _tokens = i;
+	}	
+	
 	public String tokensToString(){
 		return Arrays.toString(_tokens);
 	}

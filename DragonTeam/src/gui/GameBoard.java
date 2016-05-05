@@ -1,6 +1,10 @@
 package gui;
 
 
+import java.awt.Color;
+import java.awt.Image;
+
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
@@ -44,8 +48,7 @@ public class GameBoard {
 
 	JButton boardTile;
 	boolean[] curTile;
-	
-	//MultiLayers _ml;
+
 	int bs;
 
 	public GameBoard(Board _board, int size, int ButtonSize, int i, int j){
@@ -58,6 +61,9 @@ public class GameBoard {
 	}
 	
 	public JButton getButton(){
+		boardTile.setBorder(BorderFactory.createEmptyBorder());
+		//Image img = boardTile.getIcon().getIma;
+		//Image newImg = img.getScaledInstance(boardTile, height, hints)
 		return boardTile;
 	}
 	

@@ -9,11 +9,11 @@ public class Load {
 	private ArrayList<String> name = new ArrayList<String>();
 	private ArrayList<String> color = new ArrayList<String>();
 	private ArrayList<String> wand = new ArrayList<String>();
-	private ArrayList<String> formula = new ArrayList<String>();
-	private ArrayList<String> tokensGot = new ArrayList<String>();
+	private ArrayList<ArrayList<String>> formula = new ArrayList<ArrayList<String>>();
+	private ArrayList<ArrayList<String>> tokensGot = new ArrayList<ArrayList<String>>();
 	private ArrayList<String> types = new ArrayList<String>();
 	private ArrayList<String> token = new ArrayList<String>();
-	private ArrayList<String> player = new ArrayList<String>();
+	private ArrayList<ArrayList<String>> player = new ArrayList<ArrayList<String>>();
 	private String IllegalInsert = "0";
 	
 	public Load(String filename){
@@ -31,10 +31,10 @@ public class Load {
 	public ArrayList<String> getWand(){
 		return wand;
 	}
-	public ArrayList<String> getFormula(){
+	public ArrayList<ArrayList<String>> getFormula(){
 		return formula;
 	}
-	public ArrayList<String> getTokensGot(){
+	public ArrayList<ArrayList<String>> getTokensGot(){
 		return tokensGot;
 	}
 	public ArrayList<String> getTypes(){
@@ -43,7 +43,7 @@ public class Load {
 	public ArrayList<String> getToken(){
 		return token;
 	}
-	public ArrayList<String> getPlayer(){
+	public ArrayList<ArrayList<String>> getPlayer(){
 		return player;
 	}
 	public String getIllegalInsert(){
@@ -92,11 +92,15 @@ public class Load {
 			wand.add(element.substring(comma.get(1)+1, comma.get(2)));
 			
 			ArrayList<Integer> bracket = IndexofPattern(element, ",[");
-			formula.add(element.substring(bracket.get(0)+1, bracket.get(1)));
-			tokensGot.add(element.substring(bracket.get(1)+1, element.length()-1));
+			String f = element.substring(bracket.get(0)+1, bracket.get(1));
+			toArrayList(f, formula);
+			String t = element.substring(bracket.get(1)+1, element.length()-1);
+			if(t.length()>2){
+				toArrayList(t, tokensGot);
 			}
 
-		
+		}
+
 		//Put line2's info into three ArrayLists
 
 		for(int i=0; i<49; i++){
@@ -104,7 +108,8 @@ public class Load {
 
 			types.add(element.substring(1, 3));
 			token.add(element.substring(element.indexOf(',')+1, element.lastIndexOf(",[")));
-			player.add(element.substring(element.indexOf(",[")+2, element.indexOf("]]")));
+			String p = element.substring(element.indexOf(",[")+2, element.indexOf("]]"));
+			toArrayList(p, player);
 
 			if(i < 48){
 				line2 = line2.substring(line2.indexOf("]]")+3);
@@ -116,6 +121,24 @@ public class Load {
 		IllegalInsert = line3;
 		
 		
+	}
+	
+	private void toArrayList(String s, ArrayList<ArrayList<String>> list){
+		ArrayList<Integer> comma = IndexofPattern(s, ",");
+		ArrayList<String> formulaList = new ArrayList<String>();
+		for(int j=0; j<=comma.size(); j++){
+			if(j==0){
+				formulaList.add(s.substring(1, comma.get(j)));
+			}
+			else if(j==comma.size()){
+				formulaList.add(s.substring(comma.get(j-1)+1, s.length()-1));
+			}
+			else{
+				formulaList.add(s.substring(comma.get(j-1)+1, comma.get(j)));
+			}
+			
+		}
+		list.add(formulaList);
 	}
 
 }

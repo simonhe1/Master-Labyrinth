@@ -1115,6 +1115,17 @@ public class GameBoard {
 		fi.writeStringToFile("CSEstage3", output);
 
 	}
+	
+	public void load(){
+		Load l = new Load("CSEstage3");
+		_players = new Player[l.getName().size()];
+		for(int i=0; i<_players.length; i++){
+			_players[i] = new Player(l.getColor().get(i));
+			_players[i].setName(l.getName().get(i));
+			
+			
+		}
+	}
 
 	public static void main(String[]args){
 		GameBoard gb = new GameBoard(4);
@@ -1128,6 +1139,6 @@ public class GameBoard {
 
 		gb.saveData();
 		Load l = new Load("CSEstage3");
-		System.out.println(l.getIllegalInsert());
+	
 	}
 } //end of Game Board class definition

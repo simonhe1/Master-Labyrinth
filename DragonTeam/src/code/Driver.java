@@ -6,7 +6,7 @@ import gui.MultiLayers;
 
 public class Driver {
 	public static void main(String[]args){	
-		if(args.length>=1&&args.length<=4){
+		if(args.length>1&&args.length<=4){
 		MultiLayers ml = new MultiLayers(args);
 		ml.setVisible(true);
 		}

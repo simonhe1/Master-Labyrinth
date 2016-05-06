@@ -189,8 +189,10 @@ public class GameBoardGUI implements Runnable, Observer{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				if(GameBoard.CURRENTPLAYER.getHasInsertedThisTurn()==false){
 				_gb.load();
 				update();
+				}
 			}
 			
 		});

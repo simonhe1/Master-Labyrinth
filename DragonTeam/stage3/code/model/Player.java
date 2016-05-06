@@ -211,7 +211,7 @@ public class Player {
 	 * @author Ian, Satya 04-10-16
 	 */
 	public boolean pickUpToken(Token t){
-		
+		System.out.println(_gb.getCurrentTargetTokenValue());
 		
 		if(!_hasMovedThisTurn){
 			String s = "\t\t\t\tGAME INFO\n\nIt is now " + GameBoard.CURRENTPLAYER.getName() +

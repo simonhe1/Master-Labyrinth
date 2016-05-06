@@ -144,18 +144,24 @@ public class Load {
 	private void toArrayList(String s, ArrayList<ArrayList<String>> list){
 		ArrayList<Integer> comma = IndexofPattern(s, ",");
 		ArrayList<String> formulaList = new ArrayList<String>();
-		for(int j=0; j<=comma.size(); j++){
-			if(j==0){
-				formulaList.add(s.substring(1, comma.get(j)));
-			}
-			else if(j==comma.size()){
-				formulaList.add(s.substring(comma.get(j-1)+1, s.length()-1));
-			}
-			else{
-				formulaList.add(s.substring(comma.get(j-1)+1, comma.get(j)));
-			}
-			
+		if(comma.size()==0){
+			formulaList.add(s.substring(1, s.length()-1));
 		}
+		else{
+			for(int j=0; j<=comma.size(); j++){
+				if(j==0){
+					formulaList.add(s.substring(1, comma.get(j)));
+				}
+				else if(j==comma.size()){
+					formulaList.add(s.substring(comma.get(j-1)+1, s.length()-1));
+				}
+				else{
+					formulaList.add(s.substring(comma.get(j-1)+1, comma.get(j)));
+				}
+
+			}
+		}
+
 		list.add(formulaList);
 	}
 

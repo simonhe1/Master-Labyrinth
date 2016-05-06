@@ -1135,26 +1135,30 @@ public class GameBoard {
 				f[j] = Integer.parseInt(l.getFormula().get(i).get(j));
 			}
 			_players[i].getFormulaCards().setToken(f);
-			 
-			
-			for(String t:l.getTokensGot().get(i)){
-				System.out.println(t);
-				_players[i]._cam = true;
-				_players[i].pickUpToken(_tokens.get(Integer.parseInt(t)));
+			if(l.getTokensGot().get(i)!=null){
+				for(String st:l.getTokensGot().get(i)){
+				_players[i].getTokens().add(_tokens.get(Integer.parseInt(st)));
 			}
+			}
+
+			
+			
 		}
 		
-		System.out.println(_players[0].getColor());
 		
-		Integer[] l1 = new Integer[_players.length];
-		ArrayList<ArrayList<String>> al = l.getTokensGot();
-		for(int i=0; i<l1.length; i++){
-			l1[i] = Integer.parseInt(al.get(i).get(al.get(i).size()-1));
+		
+		//set current eatable token 
+		_currentTargetToken = _tokens.get(min(l.getToken()));
+		
+	}
+	
+	private int min(ArrayList<Integer> al){
+		int sm = 1;
+		for(int i:al){
+			if(i!=0 && sm>i)
+				sm = i;
 		}
-		
-		int cur = Math.max(Math.max(l1[0], l1[1]), Math.max(l1[0], l1[1]))+1;
-		_currentTargetToken = _tokens.get(cur);
-		
+		return sm;
 	}
 	
 	public void setTokenPosition(){
@@ -1162,12 +1166,12 @@ public class GameBoard {
 		for(int i=0; i<=6; i++){
 			for(int j=0; j<=6; j++){
 				if(load.getToken().get(i*6+j)==25){
-					System.out.println(load.getToken().get(i*6+j));
+					//System.out.println(load.getToken().get(i*6+j));
 					_board[i][j].setToken(_tokens.get(20));
 				}
 				
 			else if (load.getToken().get(i*6+j)!=0){
-					System.out.println(load.getToken().get(i*6+j));
+					//System.out.println(load.getToken().get(i*6+j));
 					_board[i][j].setToken(_tokens.get(load.getToken().get(i*6+j)-1));
 				}
 			}
@@ -1329,9 +1333,9 @@ public class GameBoard {
 		players[3].setName("Patrick");
 
 
-		gb.saveData();
+		//gb.saveData();
 		gb.load();
-		Load l = new Load("CSEstage3");
-		//System.out.println(l.getToken());
+//		Load l = new Load("CSEstage3");
+//		System.out.println(l.getTokensGot().get(3));
 	}
 } //end of Game Board class definition

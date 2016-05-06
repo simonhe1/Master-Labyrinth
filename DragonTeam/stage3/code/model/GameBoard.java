@@ -1118,11 +1118,7 @@ public class GameBoard {
 	
 	public void load(){
 		Load l = new Load("CSEstage3");
-		populateFixedTiles();
-		populateBoardWithMoveableTiles();
-		
-		setPlayerPosition();
-		setTokenPosition();
+
 		//put line1 info in
 		_players = new Player[l.getName().size()];
 		for(int i=0; i<_numOfPlayers; i++){
@@ -1144,11 +1140,14 @@ public class GameBoard {
 			
 			
 		}
-		
-		
-		
+
 		//set current eatable token 
 		_currentTargetToken = _tokens.get(min(l.getToken()));
+		
+		populateFixedTiles(l);
+		populateBoardWithMoveableTiles();
+		setPlayerPosition(l);
+		setTokenPosition(l);
 		
 	}
 	
@@ -1161,8 +1160,7 @@ public class GameBoard {
 		return sm;
 	}
 	
-	public void setTokenPosition(){
-		Load load = new Load("CSEstage3");
+	public void setTokenPosition(Load load){
 		for(int i=0; i<=6; i++){
 			for(int j=0; j<=6; j++){
 				if(load.getToken().get(i*6+j)==25){
@@ -1178,13 +1176,17 @@ public class GameBoard {
 		}	
 	}
 	
-	public void setPlayerPosition(){
-		Load load = new Load("CSEstage3");
+	public void setPlayerPosition(Load load){
 		for(int i=0; i<=6; i++){
 			for(int j=0; j<=6; j++){
-				if (load.getPlayer().get(i*6+j)!=null){
-					for(String s:load.getPlayer().get(i*6+j)){
-						_board[i][j].addPlayer(new Player(s));
+				ArrayList<String> p = load.getPlayer().get(i*6+j);
+				if (p!=null){
+					for(String s:p){
+						for(Player pl:_players){
+							if(pl.getColor().equals(s))
+							_board[i][j].addPlayer(pl);
+						}
+						
 					}
 				}
 			}
@@ -1194,8 +1196,7 @@ public class GameBoard {
 	}
 
 	
-	public void populateFixedTiles(){
-		Load l = new Load("CSEstage3");
+	public void populateFixedTiles(Load l){
 		populateBoardWithFixedTiles();
 		_arrayOfMoveTiles.removeAll(_arrayOfMoveTiles);
 		//6T 13L 15I
@@ -1334,8 +1335,8 @@ public class GameBoard {
 
 
 		//gb.saveData();
-		gb.load();
+		;
 //		Load l = new Load("CSEstage3");
-//		System.out.println(l.getTokensGot().get(3));
+//		System.out.println(l.getPlayer());
 	}
 } //end of Game Board class definition

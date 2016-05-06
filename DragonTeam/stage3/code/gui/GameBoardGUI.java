@@ -189,7 +189,7 @@ public class GameBoardGUI implements Runnable, Observer{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(GameBoard.CURRENTPLAYER.getHasInsertedThisTurn()==false){
+				if(GameBoard.CURRENTPLAYER.getHasMovedThisTurn()==false){
 				_gb.load();
 				update();
 				}

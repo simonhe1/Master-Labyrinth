@@ -370,7 +370,6 @@ public class GameBoardGUI implements Runnable, Observer{
 		_boardPanel = new JPanel();
 		_boardPanel.setSize(560,560);
 		_boardPanel.setLayout(new GridLayout(7,7));
-		new ArrayList<JButton>();
 		for(int i = 0; i < 7; i++){	
 			for(int j = 0; j < 7; j++){	
 				JButton button = new JButton();

@@ -396,7 +396,7 @@ public class GameBoard {
 				//int lastIndex = _arrayOfMoveTiles.size()-1;
 				MoveableTile mT = _arrayOfMoveTiles.get(0);
 				_board[j][i] = mT;
-				_arrayOfMoveTiles.remove(mT);
+				_arrayOfMoveTiles.remove(0);
 			}
 		}		
 
@@ -405,7 +405,7 @@ public class GameBoard {
 				//int lastIndex = _arrayOfMoveTiles.size()-1;
 				MoveableTile mT = _arrayOfMoveTiles.get(0);
 				_board[i][j] = mT;
-				_arrayOfMoveTiles.remove(mT);
+				_arrayOfMoveTiles.remove(0);
 			}
 		}
 
@@ -1118,7 +1118,9 @@ public class GameBoard {
 	
 	public void load(){
 		Load l = new Load("CSEstage3");
-
+		_board = new AbstractTile[7][7];
+		_arrayOfMoveTiles = new ArrayList<MoveableTile>();
+		_numOfPlayers = l.getName().size();
 		//put line1 info in
 		_players = new Player[l.getName().size()];
 		for(int i=0; i<_numOfPlayers; i++){
@@ -1140,17 +1142,89 @@ public class GameBoard {
 			
 			
 		}
-
+		CURRENTPLAYER = _players[0];
+		currentPlayerIndex = 0;
 		//set current eatable token 
 		_currentTargetToken = _tokens.get(min(l.getToken()));
 		
 		populateFixedTiles(l);
-		populateBoardWithMoveableTiles();
+		//populateBoardWithMoveableTiles is causing the thing to mess up because 
+		//it doesn't do left to right in order.
+		//populateBoardWithMoveableTiles();
+		hardCodeMoveableTiles();
 		setPlayerPosition(l);
 		setTokenPosition(l);
 		
 	}
 	
+	public void hardCodeMoveableTiles(){
+		_board[0][1] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[0][3] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[0][5] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[1][0] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[1][1] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[1][2] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[1][3] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[1][4] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[1][5] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[1][6] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[2][1] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[2][3] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[2][5] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[3][0] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[3][1] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[3][2] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[3][3] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[3][4] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[3][5] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[3][6] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[4][1] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[4][3] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[4][5] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[5][0] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[5][1] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[5][2] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[5][3] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[5][4] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[5][5] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[5][6] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[6][1] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[6][3] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+		_board[6][5] = _arrayOfMoveTiles.get(0);
+		_arrayOfMoveTiles.remove(0);
+	}
 	private int min(ArrayList<Integer> al){
 		int sm = 1;
 		for(int i:al){
@@ -1163,14 +1237,14 @@ public class GameBoard {
 	public void setTokenPosition(Load load){
 		for(int i=0; i<=6; i++){
 			for(int j=0; j<=6; j++){
-				if(load.getToken().get(i*6+j)==25){
+				if(load.getToken().get(i*7+j)==25){
 					//System.out.println(load.getToken().get(i*6+j));
 					_board[i][j].setToken(_tokens.get(20));
 				}
 				
-			else if (load.getToken().get(i*6+j)!=0){
+			else if (load.getToken().get(i*7+j)!=0){
 					//System.out.println(load.getToken().get(i*6+j));
-					_board[i][j].setToken(_tokens.get(load.getToken().get(i*6+j)-1));
+					_board[i][j].setToken(_tokens.get(load.getToken().get(i*7+j)-1));
 				}
 			}
 		}	
@@ -1179,7 +1253,7 @@ public class GameBoard {
 	public void setPlayerPosition(Load load){
 		for(int i=0; i<=6; i++){
 			for(int j=0; j<=6; j++){
-				ArrayList<String> p = load.getPlayer().get(i*6+j);
+				ArrayList<String> p = load.getPlayer().get(i*7+j);
 				if (p!=null){
 					for(String s:p){
 						for(Player pl:_players){
@@ -1198,8 +1272,7 @@ public class GameBoard {
 	
 	public void populateFixedTiles(Load l){
 		populateBoardWithFixedTiles();
-		_arrayOfMoveTiles.removeAll(_arrayOfMoveTiles);
-		//6T 13L 15I
+		//6T 15L 13I
 		int I=0;
 		int L=0;
 		int T=0;
@@ -1315,9 +1388,9 @@ public class GameBoard {
 			break;
 			}
 		}
-		//6T 13L 15I
-		if(I!=15){_arrayOfMoveTiles.add(new MoveableTile("I"));}
-		if(L!=13){_arrayOfMoveTiles.add(new MoveableTile("L"));}
+		//6T 15L 13I
+		if(I!=13){_arrayOfMoveTiles.add(new MoveableTile("I"));}
+		if(L!=15){_arrayOfMoveTiles.add(new MoveableTile("L"));}
 		if(T!=6){_arrayOfMoveTiles.add(new MoveableTile("T"));}
 	}
 	
@@ -1333,6 +1406,7 @@ public class GameBoard {
 		players[2].setName("George");
 		players[3].setName("Patrick");
 		System.out.print(Arrays.deepToString(gb.line2array()));
+		System.out.println();
 		for(int i = 0;i<=6;i++){
 			for(int j=0; j<=6;j++){
 				System.out.print(gb.getBoard()[i][j].getIdentity()+gb.getBoard()[i][j].getRotation()+" ");
@@ -1341,8 +1415,16 @@ public class GameBoard {
 		}
 
 		gb.saveData();
-		;
-//		Load l = new Load("CSEstage3");
-//		System.out.println(l.getPlayer());
+		Load l = new Load("CSEstage3");
+		gb.load();
+		System.out.println(gb.getPlayers().length);
+		System.out.println();
+		for(int i = 0;i<=6;i++){
+			for(int j=0; j<=6;j++){
+				System.out.print(gb.getBoard()[i][j].getIdentity()+gb.getBoard()[i][j].getRotation()+" ");
+				if(j==6){System.out.println();}
+			}
+		}
+		System.out.println(gb.getMoveableTileArray().size());
 	}
 } //end of Game Board class definition

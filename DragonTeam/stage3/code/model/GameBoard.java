@@ -1332,9 +1332,15 @@ public class GameBoard {
 		players[1].setName("Bob");
 		players[2].setName("George");
 		players[3].setName("Patrick");
+		System.out.print(Arrays.deepToString(gb.line2array()));
+		for(int i = 0;i<=6;i++){
+			for(int j=0; j<=6;j++){
+				System.out.print(gb.getBoard()[i][j].getIdentity()+gb.getBoard()[i][j].getRotation()+" ");
+				if(j==6){System.out.println();}
+			}
+		}
 
-
-		//gb.saveData();
+		gb.saveData();
 		;
 //		Load l = new Load("CSEstage3");
 //		System.out.println(l.getPlayer());

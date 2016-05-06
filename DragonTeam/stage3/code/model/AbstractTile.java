@@ -85,12 +85,15 @@ public abstract class AbstractTile {
 		_players = new ArrayList<Player>();
 		if (identity == "T"){
 			setDirections(1,0,1,1);
+			_rotationTotal=0;
 		}
 		if (identity == "L"){
 			setDirections(1,0,0,1);
+			_rotationTotal=0;
 		}
 		if (identity == "I"){
 			setDirections(0,0,1,1);
+			_rotationTotal=0;
 		}
 		_identity = identity;
 	}
@@ -295,7 +298,7 @@ public abstract class AbstractTile {
 			_bottom = _left;
 			_left = _top;
 			_top = temp;
-			_rotationTotal = (_rotationTotal%4) +1;
+			_rotationTotal = (_rotationTotal%4) +3;
 		}
 		else if(r==180 || r==-180) {
 			int temp = _left;
@@ -304,7 +307,7 @@ public abstract class AbstractTile {
 			temp = _top;
 			_top = _bottom;
 			_bottom = temp;
-			_rotationTotal = (_rotationTotal%4) +1;
+			_rotationTotal = (_rotationTotal%4) +2;
 		}
 		else {} // d%90!=0;
 	}

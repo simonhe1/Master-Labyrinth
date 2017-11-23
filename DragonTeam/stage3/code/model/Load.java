@@ -49,6 +49,7 @@ public class Load {
 	public String getIllegalInsert(){
 		return IllegalInsert;
 	}
+	@SuppressWarnings("static-access")
 	private String getSaved(String filename){
 		FileIO fi = new FileIO();
 		return fi.readFileToString(filename);

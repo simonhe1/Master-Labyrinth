@@ -1088,6 +1088,7 @@ public class GameBoard {
 		}
 		return number;
 	}
+	@SuppressWarnings("static-access")
 	public void saveData(){
 		String line = "";
 	
@@ -1397,7 +1398,7 @@ public class GameBoard {
 	
 	
 
-	public static void main(String[]args){
+	/*public static void main(String[]args){
 		GameBoard gb = new GameBoard(4);
 		gb.setupRandomBoard();
 		Player[] players = gb.getPlayers();
@@ -1426,5 +1427,5 @@ public class GameBoard {
 			}
 		}
 		System.out.println(gb.getMoveableTileArray().size());
-	}
+	}*/
 } //end of Game Board class definition
